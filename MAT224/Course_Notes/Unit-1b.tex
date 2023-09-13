@@ -1,0 +1,278 @@
+\documentclass[fontsize=12pt]{scrartcl}
+\usepackage[utf8]{inputenc}
+\usepackage{latexsym, amsfonts, fullpage, lscape, cancel, array, lastpage}
+\usepackage{mathrsfs, graphicx, amssymb, amsmath, amscd, amsthm, MnSymbol}
+\usepackage{titlesec}
+\usepackage{enumerate}
+\usepackage{graphicx}
+\usepackage{geometry}
+\usepackage{float}
+\usepackage{appendix}
+\usepackage{color}
+\usepackage{amsmath}
+\usepackage{pifont}
+\usepackage{fancyhdr}
+\usepackage{enumitem}
+\usepackage{amssymb}
+
+\titleformat{\section}
+  {\normalfont\Large\bfseries}{\S\thesection}{1em}{}
+
+\usepackage[english]{babel}
+\usepackage{eucal}
+
+\title{Unit 1(b) Lecture Notes for MAT224}
+\author{Xuanqi Wei 1009353209}
+
+\date{\today}
+
+\begin{document}
+
+\maketitle
+
+\noindent
+These notes are intended for study purposes. You should be able to fill in these blanks from the notes you take during lecture and/or the textbook. You are welcome to use them to work ahead. Your completed copy of these notes should be submitted to the Quercus assignment called ``Unit 1(b) Lecture Notes'' by April 7, 2023. You can scan your handwritten answers or you can type them out. See the Unit 1 Homework for details.
+
+\newpage
+
+\section{Linear Combinations 1.3 Continued...}
+
+\textcolor{cyan}{What is the definition of a linear combination?}\\
+\\
+Let $V$ be a vector space with scalars in $\mathbb{R}$. A linear combination of vectors $v_1, v_2, v_3, \ldots , v_k \in V$ is defined to be a vector of the form $c_1v_1 + c_2v_2 + c_3v_3 + \ldots + c_kv_k$, where $c_1, c_2, c_3, \ldots, c_k$ are scalars in $\mathbb{R}$.\\
+
+\vspace{2 in}
+
+\noindent
+\textcolor{cyan}{Write the matrix $\left( \begin{array}{cc} 1 & 2\\ 3 & 4\end{array}\right) \in M_{2\times 2} (\mathbb{R})$ as a linear combination of elements in}\\
+
+$\left\{  \left( \begin{array}{cc} 1 & 0\\ 0 & 1\end{array}\right), \left( \begin{array}{cc} -1 & 0\\ 0 & 1\end{array}\right), \left( \begin{array}{cc} 0 & 1\\ 0 & 0\end{array}\right), \left( \begin{array}{cc} 0 & 0\\ 1 & 0\end{array}\right)\right\}$.\\
+
+Equating the entries in the above equation, we get the following system of equations:
+
+\begin{align*}
+a - b &= 1\\
+a + b &= 4\\
+c &= 2\\
+3d &= 3
+\end{align*}
+
+Solving this system, we get $a=\frac{5}{2}$, $b=\frac{3}{2}$, $c=2$, and $d=1$.
+
+$$\left( \begin{array}{cc} 1 & 2\\ 3 & 4\end{array}\right) = \frac{5}{2} \cdot \left( \begin{array}{cc} 1 & 0\\ 0 & 1\end{array}\right) + \frac{3}{2}\cdot \left( \begin{array}{cc} -1 & 0\\ 0 & 1\end{array}\right) + 2\cdot \left( \begin{array}{cc} 0 & 1\\ 0 & 0\end{array}\right) + \left( \begin{array}{cc} 0 & 0\\ 1 & 0\end{array}\right)$$
+
+\newpage
+
+\noindent
+\textcolor{cyan}{Define the set $W_1 + W_2$ for subspaces $W_1$ and $W_2$ of vector space $V$. Is it a subspace of $V$?}\\
+\noindent
+The set $W_1 + W_2$ is defined as the set of all possible sums of vectors from $W_1$ and $W_2$, that is, $W_1 + W_2 = \{w_1+w_2: w_1\in W_1, w_2\in W_2\}$To show that $W_1 + W_2$ is a subspace of $V$, we need to verify that it satisfies the three axioms of a vector space:
+
+\begin{enumerate}
+	\item Closure under addition: For any $v_1,v_2 \in W_1 + W_2$, we have $v_1 = w_1 + w_2$ and $v_2 = u_1 + u_2$ for some $w_1, u_1 \in W_1$ and $w_2, u_2 \in W_2$. Then, $v_1 + v_2 = (w_1 + w_2) + (u_1 + u_2) = (w_1 + u_1) + (w_2 + u_2).$ Since $W_1$ and $W_2$ are subspaces of $V$, we have $w_1 + u_1 \in W_1$ and $w_2 + u_2 \in W_2$, which means $v_1 + v_2$ is also in $W_1 + W_2$.
+	\item Closure under scalar multiplication: For any $v \in W_1 + W_2$ and any scalar $c$, we have $v = w_1 + w_2$ for some $w_1 \in W_1$ and $w_2 \in W_2$. Then, $cv = c(w_1 + w_2) = c\cdot w_@ + c\cdot w_2$. Since $W_1$ and $W_2$ are subspaces of $V$, we have $cw_1 \in W_1$ and $cw_2 \in W_2$, which means $cv$ is also in $W_1 + W_2$.
+	\item Contains the zero vector: The zero vector of $V$ is in both $W_1$ and $W_2$, so it is also in $W_1 + W_2$.
+\end{enumerate}
+
+Since $W_1 + W_2$ satisfies all three axioms, it is indeed a subspace of $V$.
+\\
+
+\noindent
+\textcolor{cyan}{If $W_1 = span(S_1)$ and $W_2 = span(S_2)$ where $S_1 \subset V$ and $S_2 \subset V$ and $W_1$ and $W_2$ subspaces of $V$, we can write $W_1 + W_2$ as the span of which set? Explain.}
+
+\noindent 
+We can write $W_1 + W_2$ as the span of the set $S_1 \cup S_2$.
+
+\noindent
+To see why this is true, let $w \in W_1 + W_2$. Then, by definition of the sum of subspaces, we have $w = w_1 + w_2$ for some $w_1 \in W_1$ and $w_2 \in W_2$. Since $W_1 = \operatorname{span}(S_1)$, we have $w_1 = \sum_{i=1}^k c_i v_i$ for some $v_1,\dots,v_k \in S_1$ and $c_1,\dots,c_k \in \mathbb{F}$, where $\mathbb{F}$ is the field over which the vector space $V$ is defined. Similarly, since $W_2 = \operatorname{span}(S_2)$, we have $w_2 = \sum_{j=1}^m d_j u_j$ for some $u_1,\dots,u_m \in S_2$ and $d_1,\dots,d_m \in \mathbb{F}$. Thus, we have $w = w_1 + w_2 = \sum^{k}_{i=1}c_iv_i + \sum^{m}_{j=1}d_ju_j$. This means that $w$ can be expressed as a linear combination of vectors in the set $S_1 \cup S_2$, which implies that $w \in \operatorname{span}(S_1 \cup S_2)$.
+
+\noindent
+Conversely, it is clear that any vector in $\operatorname{span}(S_1 \cup S_2)$ can be written as a linear combination of vectors in $S_1 \cup S_2$, which means it can be expressed as a sum of vectors in $W_1$ and $W_2$. Therefore, we have $\operatorname{span}(S_1 \cup S_2) \subseteq W_1 + W_2$.
+
+\noindent
+Putting these two facts together, we have $W_1 + W_2 = span(S_1 \cup S_2)$, as desired.
+
+
+
+\noindent
+Let $V$ be a set of vectors. Under which condition (if any) is $span(V)$ not a vector space? Explain.
+
+\newpage
+
+\noindent
+\textcolor{cyan}{Use arithmetic, explanation in words, and, if you want, matrices to show that any vector with three real coordinates, say $\left( \begin{array}{c} x_0 \\ y_0 \\ z_0 \end{array}\right)$  where $x_0, y_0, z_0 \in \mathbb{R}$, can be written as a linear combination of elements from the linearly independent set \\
+$\left\{ \left(\begin{array}{c} u_1 \\ u_2 \\ u_3 \end{array}\right) , \ \left(\begin{array}{c} v_1 \\ v_2 \\ v_3 \end{array}\right) , \ \left(\begin{array}{c} w_1 \\ w_2 \\ w_3 \end{array}\right) \right\} \subset \mathbb{R}$.}
+
+\noindent
+Let $A = \left(\begin{array}{c} x_0 \\ y_0 \\ z_0 \end{array}\right)$ and $B = \left(\begin{array}{c} u_1 \\ u_2 \\ u_3 \end{array}\right)$, $C = \left(\begin{array}{c} v_1 \\ v_2 \\ v_3 \end{array}\right)$, and $D = \left(\begin{array}{c} w_1 \\ w_2 \\ w_3 \end{array}\right)$ be the column vectors associated with the given vectors. We need to show that $A$ can be written as a linear combination of $B$, $C$, and $D$.
+
+\noindent
+Since we have three vectors in $\mathbb{R}^3$, one approach is to check if they are linearly independent by constructing a matrix with these vectors as columns and performing row operations to see if the matrix reduces to the identity matrix. However, for the purpose of this question, we will assume that ${B, C, D}$ is a linearly independent set. (Note that if this set is not linearly independent, then we cannot write any vector in $\mathbb{R}^3$ as a linear combination of its elements.)
+
+\noindent
+Since ${B, C, D}$ is linearly independent, we can use them as a basis for $\mathbb{R}^3$. Thus, any vector in $\mathbb{R}^3$ can be expressed as a linear combination of $B$, $C$, and $D$. That is, we can write $A$ as $A = c_1B + c_2C + c_3D$ for some scalars $c_1$, $c_2$, and $c_3$ in $\mathbb{R}$.
+
+\noindent
+To solve for the coefficients $c_1$, $c_2$, and $c_3$, we can use the fact that $A$ satisfies the above equation. Rearranging terms, we get $$c_1B + c_2C + c_3D - A = \left(\begin{array}{c} 0 \\ 0 \\ 0 \end{array}\right)$$. 
+
+\noindent
+This is a system of three linear equations in three variables, which can be written in matrix form as:
+
+$$\left(\begin{array}{ccc} u_1 & v_1 & w_1 \\ u_2 & v_2 & w_2\\ u_3 & v_3 & w_3 \end{array}\right) \cdot \left(\begin{array}{c} c_1 \\ c_2 \\ c_3 \end{array}\right) = \left(\begin{array}{c} x_0 \\ y_0 \\ z_0 \end{array}\right)$$.
+
+\newpage
+
+\section{Linear Independence 1.4} 
+\centerline{\textbf{Mislabeled as 1.3 in last week's notes}}
+
+\bigskip
+\bigskip
+
+\noindent
+\textbf{Definition of Linear Independence:} The set of vectors $\{ v_1, v_2, \ldots v_n\}$ is linearly independent if and only if the only solution to the equation $a_1v_1+ a_2v_2 + \ldots + a_nv_n = 0$ is the trivial solution $a_1 = a_2 = \cdots = a_n = 0$. In other words, the vectors $v_1, v_2, \ldots v_n$ are linearly independent if there is no non-trivial linear combination of these vectors that equals the zero vector. \\
+
+\noindent
+\textbf{Definition of Linear Dependence:} The set of vectors $\{ v_1, v_2, \ldots v_n\}$ is linearly dependent if and only if there exist scalars $a_1, a_2, \ldots, a_n$, not all zero, such that $a_1v_1+ a_2v_2 + \ldots + a_nv_n = 0$ In other words, the vectors $v_1, v_2, \ldots v_n$ are linearly dependent if there is a non-trivial linear combination of these vectors that equals the zero vector. \\
+
+\noindent
+\textcolor{cyan}{Can a set of only one vector be linearly dependent? Why or why not?}
+
+\noindent
+No, a set consisting of only one vector cannot be linearly dependent.
+
+\noindent
+By definition, a set of vectors is linearly dependent if there exists a non-trivial linear combination of the vectors that equals the zero vector. If there is only one vector in the set, the only linear combination possible is $a_1 v_1$, where $a_1$ is a scalar and $v_1$ is the only vector.
+
+\noindent
+For this linear combination to be equal to the zero vector, we must have $a_1 v_1 = 0$, but since $v_1$ is assumed to be non-zero, this equation can only hold if $a_1 = 0$. Therefore, the only solution to the equation $a_1 v_1 = 0$ is the trivial solution, which means that the set consisting of only one vector is linearly independent.
+\\
+
+\noindent
+\textcolor{cyan}{Can a set of 5 vectors in $\mathbb{R}^4$ be linearly independent?}
+
+\noindent
+Let $B = \{ v_1, v_2, v_3, v_4, v_5\}, \ v_i \in \mathbb{R}^4, \ i = 1, 2, \ldots 5$. If the rank of the matrix formed by stacking these vectors as columns is 4 (i.e., the matrix is full rank), then the vectors are linearly independent. Otherwise, if the rank of the matrix is less than 4, then the vectors are linearly dependent.
+
+\noindent
+More formally, suppose we form the matrix $A$ whose columns are the vectors $v_1, v_2, \ldots, v_5$. Then the vectors are linearly independent if and only if the only solution to the homogeneous system of equations $Ax=0$ is the trivial solution $x=0$.
+
+\noindent
+In general, if $n$ is the dimension of the vector space, then any set of $n+1$ or more vectors in $\mathbb{R}^n$ must be linearly dependent, and any set of $n$ or fewer vectors in $\mathbb{R}^n$ can be linearly independent.
+
+\newpage
+
+\noindent
+\textcolor{cyan}{Give an example of a proof that a set is linearly independent.}
+
+\noindent
+Let $v_1 = \begin{pmatrix} 1 \ 0 \ 2 \end{pmatrix}, v_2 = \begin{pmatrix} 0 \ 1 \ -1 \end{pmatrix}, v_3 = \begin{pmatrix} 2 \ -1 \ 3 \end{pmatrix}$ be three vectors in $\mathbb{R}^3$. We want to show that the set $S = {v_1, v_2, v_3}$ is linearly independent.
+
+\noindent
+Suppose that there exist scalars $c_1, c_2, c_3$ such that $c_1v_1+c_2v_2+c_3v_3 = \left(\begin{array}{c} 0 \\ 0 \\ 0
+\end{array} \right).$
+
+\noindent
+Then we have the system of linear equations: $$\left\{ \begin{array}{rcl} c_1 + 2c_3 = 0 \\ c_2 - c_3 = 0 \\ 2c_1 - c_2 + 3c_3 = 0 \end{array} \right.$$
+
+\noindent
+Since the system has only the trivial solution $c_1 = c_2 = c_3 = 0$, we can conclude that $S$ is linearly independent.
+
+\noindent
+Therefore, the set $S = {v_1, v_2, v_3}$ is linearly independent.\\
+
+\noindent
+\textcolor{cyan}{Give an example of a proof that a set is linearly dependent.}
+
+\noindent
+Let $v_1 = \begin{pmatrix} 1 \ 2 \ 3 \end{pmatrix}, v_2 = \begin{pmatrix} -1 \ 0 \ 1 \end{pmatrix}, v_3 = \begin{pmatrix} 2 \ 4 \ 6 \end{pmatrix}$ be three vectors in $\mathbb{R}^3$. We want to show that the set $S = {v_1, v_2, v_3}$ is linearly dependent.
+
+\noindent
+We notice that $v_3 = 2v_1 + v_2$. Indeed, we have
+
+$$2v_1 + v_2 - v_3 = 2\cdot \left(\begin{array}{c} 1 \\ 2 \\ 3 \end{array} \right) + \left(\begin{array}{c} -1 \\ 0 \\1 \end{array} \right) = \left(\begin{array}{c} 1 \\ 4 \\7 \end{array} \right) = v_3$$
+\noindent
+Therefore, the set $S$ is linearly dependent, since we have found a nontrivial linear combination of $v_1$, $v_2$, and $v_3$ that equals the zero vector:
+
+$$2v_1 + v_2 - v_3 = 2\cdot \left(\begin{array}{c} 1 \\ 2 \\ 3 \end{array} \right) + \left(\begin{array}{c} -1 \\ 0 \\1 \end{array} \right) - \left(\begin{array}{c} 2 \\ 4 \\6 \end{array} \right) = \left(\begin{array}{c} 0 \\ 0 \\0 \end{array} \right) = v_3$$
+
+\noindent
+\textcolor{cyan}{Which of the above two examples is also an example of disproving that a set is linearly independent? Why?}
+
+\noindent
+The second example is also an example of disproving that a set is linearly independent, because it shows that the set $S = {v_1, v_2, v_3}$ is not linearly independent by providing a nontrivial linear combination of $v_1$, $v_2$, and $v_3$ that equals the zero vector. This means that there exist scalars $c_1$, $c_2$, and $c_3$, not all zero, such that
+
+$$c_1v_1+c_2v_2+c_3v_3 = \left(\begin{array}{c} 0 \\ 0 \\ 0
+\end{array} \right).$$
+
+which is the definition of linearly dependent. Specifically, we have shown that $2v_1 + v_2 - v_3 = \mathbf{0}$, so $S$ is linearly dependent.
+
+\newpage
+
+\section{Bases and Dimension 1.6}
+
+\noindent
+\textcolor{cyan}{What is a basis of vector space $V$?}
+
+\noindent
+\begin{enumerate}
+	\item The vectors are linearly independent, meaning that no vector in the set can be expressed as a linear combination of the others.
+	\item The vectors span $V$, meaning that every vector in $V$ can be expressed as a linear combination of the basis vectors.
+\end{enumerate}
+
+\noindent
+\textcolor{cyan}{Write the theorem that allows us to write every function as a linear combination of an odd function and an even function.}
+
+\noindent
+The theorem states that for any function $f(x)$ defined on the real line, there exist unique even and odd functions $g(x)$ and $h(x)$, respectively, such that $f(x) = g(x) + h(x)$, where
+$$g(x) = \frac{1}{2}[f(x) + f(-x)]$$
+$$h(x) = \frac{1}{2}[f(x) - f(-x)]$$
+
+\noindent
+The even function is the average of the original function evaluated at $x$ and $-x$, while the odd function is the difference between the original function evaluated at $x$ and $-x$.
+\\
+
+\noindent
+\textcolor{cyan}{Restate Theorem 1.6.6. in plane English:} Theorem 1.6.6 states that if we have a set of vectors in a vector space, and if some subset of those vectors is linearly independent, then we can extend that subset to form a basis for the entire vector space by adding more vectors from the original set. In other words, we can always find a basis for a vector space using linearly independent subsets of the vectors in that space.
+\\
+\newpage
+\noindent
+\textcolor{cyan}{Read the proof for Theorem 1.6.10 and write it here. Then explain how it gives us a maximum number of distinct vectors we can have in a linearly independent subset of vector space $V$.}
+
+\noindent
+Theorem 1.6.10: Any linearly independent subset of a vector space $V$ can be extended to a basis for $V$.
+
+\noindent
+Proof: Let $S$ be a linearly independent subset of $V$. If $S$ already spans $V$, then we are done, so assume $S$ does not span $V$. Then there exists some vector $v_1 \in V \setminus \text{span}(S)$.
+
+\noindent
+We claim that $S \cup {v_1}$ is still linearly independent. Indeed, suppose there exist scalars $c_1, c_2, \ldots, c_n, d$ (not all zero) such that
+
+$$c_1v_1 + c_2v_2 + \ldots + c_nv_n + dv_{n+1} = 0$$
+
+where $v_2, v_3, \ldots, v_{n+1} \in S$. Then $d \neq 0$ (since otherwise we would have a nontrivial linear dependence among the vectors in $S$), so we can solve for $v_{n+1}$ to get
+
+$$v_{n+1} = -\frac{c_1}{d}v_1 - \frac{c_2}{d}v_2 - \ldots - \frac{c_n}{d}v_n$$, which shows that $v_{n+1}$ is in the span of $S$, contradicting our choice of $v_1$.
+
+\noindent
+We can now repeat this process, starting with $S \cup {v_1}$, to obtain a sequence of vectors $v_1, v_2, \ldots, v_k$ such that $S \cup {v_1, v_2, \ldots, v_k}$ is a linearly independent set that spans $V$. Thus, we have constructed a basis for $V$ that contains $S$.
+
+\noindent
+\textcolor{cyan}{Relate the statement of Theorem 1.6.18 to a Venn Diagram of two overlapping circles. Also, explain the theorem in words.}\\
+
+\noindent
+Theorem 1.6.18 states that if $W_1$ and $W_2$ are subspaces of a vector space $V$, then $W_1 \cap W_2$ is also a subspace of $V$.
+
+\noindent
+In terms of a Venn diagram, $W_1$ and $W_2$ can be thought of as two overlapping circles, where each circle represents a subspace of $V$. The intersection of the circles represents the set of all vectors that belong to both $W_1$ and $W_2$. The theorem tells us that this intersection is also a subspace of $V$, which means that it satisfies the three conditions of being a subspace: it contains the zero vector, it is closed under vector addition, and it is closed under scalar multiplication.
+
+\noindent
+From the Unit 1 Homework:\\
+\\
+\textcolor{cyan}{Question: It is possible to define a finite basis of a vector space $V$ as a subset $\{v_1, \ v_2, v_3, \dots, v_n\}$ of $V$ that is neither too big nor too small. Define ``too big'' and ``too small'' so that the above statement is accurate.}\\
+\\
+By `too big', we mean the basis contains vectors that are not linearly independent to each other, which some vectors in this subset(basis) can be written as a linear combination of other vectors in the subset. 
+\\
+\\
+By `too small', we mean the vectors that basis contains can’t span the entire vector space. 
+
+\end{document}

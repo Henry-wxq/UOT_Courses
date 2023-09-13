@@ -1,0 +1,404 @@
+\documentclass[fontsize=12pt]{scrartcl}
+\usepackage[utf8]{inputenc}
+\usepackage{latexsym, amsfonts, fullpage, lscape, cancel, array, lastpage}
+\usepackage{mathrsfs, graphicx, amssymb, amsmath, amscd, amsthm, MnSymbol}
+\usepackage{titlesec}
+\usepackage{enumerate}
+\usepackage{graphicx}
+\usepackage{geometry}
+\usepackage{float}
+\usepackage{appendix}
+\usepackage{color}
+\usepackage{amsmath}
+\usepackage{pifont}
+\usepackage{fancyhdr}
+\usepackage{enumitem}
+\usepackage{amssymb}
+
+\titleformat{\section}
+  {\normalfont\Large\bfseries}{\S\thesection}{1em}{}
+
+\usepackage[english]{babel}
+\usepackage{eucal}
+
+\title{Unit 5(b) Lecture Notes for MAT224}
+\author{Xuanqi Wei 1009353209}
+
+\date{21-23 March 2023}
+
+\begin{document}
+
+\maketitle
+
+\newpage
+
+\section{5.2 Vector Spaces over a Field}
+
+\bigskip
+
+\noindent
+\textcolor{cyan}{Give an example of a complex vector space $V$.}
+
+\noindent
+One example of a complex vector space $V$ is the space of all $n\times n$ complex matrices, denoted by $M_{n\times n}(\mathbb{C})$.
+
+\noindent
+The addition and scalar multiplication operations are defined as follows:
+
+\noindent
+Given $A,B \in M_{n\times n}(\mathbb{C})$ and $c \in \mathbb{C}$,
+
+\noindent
+$(A+B){i,j} = A{i,j} + B_{i,j}$, and $(cA){i,j} = cA{i,j}$.
+
+\noindent
+It can be shown that $M_{n\times n}(\mathbb{C})$ satisfies all the axioms of a complex vector space, including the existence of an additive identity, additive inverses, and distributive laws.
+\\
+
+\noindent
+\textcolor{cyan}{Your vector space $V$ from above is also a real vector space. Give an example of a basis for $V$ as a real vector space (with scalars from $\mathbb{R}$) and another basis for $V$ as a complex vector space (with scalars from $\mathbb{C}$).}
+
+\noindent
+As a real vector space, a basis for $V$ can be obtained by considering the standard basis for $M_{n\times n}(\mathbb{C})$ as a real vector space.
+
+\noindent
+Let $E_{ij}$ be the $n\times n$ matrix with a $1$ in the $ij$-th position and $0$ elsewhere. Then, the set ${E_{ij} : 1\leq i,j\leq n}$ is a basis for $M_{n\times n}(\mathbb{C})$ as a real vector space.
+
+\noindent
+As a complex vector space, a natural basis for $V$ is the set of matrices with a single $1$ in one position and $0$ elsewhere. More formally, let $E_{ij}$ be the $n\times n$ matrix with a $1$ in the $ij$-th position and $0$ elsewhere. Then, the set ${E_{ij} : 1\leq i,j\leq n}$ is a basis for $M_{n\times n}(\mathbb{C})$ as a complex vector space.
+\\
+
+\noindent
+\textcolor{cyan}{In general, is there a relationship between $\dim_{\mathbb{R}}(V)$ and $\dim_{\mathbb{C}}(V)$? These are the size of a basis for $V$ when linear combinations can use real scalars and complex scalars respectively.}
+
+\noindent
+Yes, there is a relationship between $\dim_{\mathbb{R}}(V)$ and $\dim_{\mathbb{C}}(V)$ for any complex vector space $V$. In fact, we have the following result:
+
+\noindent
+If $V$ is a complex vector space of finite dimension $n$, then $\dim_{\mathbb{C}}(V) = 2\dim_{\mathbb{R}}(V)$.
+
+\noindent
+To see why, let ${v_1, v_2, \dots, v_m}$ be a basis for $V$ as a real vector space, where $m=\dim_{\mathbb{R}}(V)$. Since $V$ is a complex vector space, each $v_i$ can be written as a linear combination of complex basis vectors where $u_1, u_2, \dots, u_n$ is a basis for $V$ as a complex vector space and $a_{ij}\in\mathbb{C}$.
+
+\noindent
+Note that we have $m$ real equations of the form $v_i=\sum_{j=1}^na_{ij}u_j$ for each $i=1,2,\dots,m$. Since $u_1,u_2,\dots,u_n$ is a basis for $V$ as a complex vector space, the coefficients $a_{ij}$ are uniquely determined by these equations for each $i=1,2,\dots,m$. Therefore, we have a total of $m\times n$ complex coefficients, which shows that $\dim_{\mathbb{C}}(V) = m\times n = 2\dim_{\mathbb{R}}(V)$.
+
+
+\newpage
+
+\section{5.3 Geometry of a Complex Vector Space}
+
+\bigskip
+
+\noindent
+\textcolor{cyan}{What is the definition of a Hermitian Inner Product?}
+
+\noindent
+A Hermitian inner product, also known as a conjugate-symmetric inner product, is a generalization of the standard dot product to complex vector spaces. Let $V$ be a complex vector space. A Hermitian inner product on $V$ is a function $\langle\cdot,\cdot\rangle:V\times V\rightarrow\mathbb{C}$ that satisfies the following properties for all $u,v,w\in V$ and $\alpha\in\mathbb{C}$:
+
+\begin{enumerate}
+	\item $\langle u,v\rangle=\overline{\langle v,u\rangle}$ (conjugate symmetry).
+	\item $\langle u,u\rangle\geq 0$ and $\langle u,u\rangle=0$ if and only if $u=0$ (positive definiteness).
+	\item $\langle \alpha u+v,w\rangle=\alpha\langle u,w\rangle+\langle v,w\rangle$ (linearity in the first argument).
+\end{enumerate}
+In the above definition, the bar notation $\overline{z}$ denotes the complex conjugate of $z\in\mathbb{C}$. Property (1) is a generalization of symmetry in the standard dot product. Property (2) ensures that the inner product of a vector with itself is non-negative and vanishes only when the vector is zero. Property (3) generalizes linearity of the dot product.
+
+
+
+\noindent
+\textcolor{cyan}{How can you use a Hermitian inner product to calculate the length of a vector $v$? Choose an Hermitian inner product and use it to calculate the length of $\displaystyle{\begin{pmatrix} 1 \\ i \\ 2+3i \end{pmatrix}}$.}
+
+To calculate the length of a vector $v$ using a Hermitian inner product, we can use the following formula:
+
+$$|v| = \sqrt{<v, v>} $$
+
+where $\langle\cdot,\cdot\rangle$ is a Hermitian inner product on the vector space containing $v$.
+
+$$<u, v> = u_1v_1 + u_2v_2 + u_3v_3 $$
+
+\begin{align*}
+\left\Vert \begin{pmatrix} 1 \ i \ 2+3i \end{pmatrix} \right\Vert &= \sqrt{\langle \begin{pmatrix} 1 \ i \ 2+3i \end{pmatrix}, \begin{pmatrix} 1 \ i \ 2+3i \end{pmatrix}\rangle} \
+&= \sqrt{1\cdot\overline{1}+i\cdot\overline{i}+(2+3i)\cdot\overline{(2+3i)}} \\
+&= \sqrt{1-1+13} \\
+&= \sqrt{13}.
+\end{align*}
+
+Therefore, the length of $\begin{pmatrix} 1 \ i \ 2+3i \end{pmatrix}$ with respect to the standard Hermitian inner product on $\mathbb{C}^3$ is $\sqrt{13}$.
+
+\noindent
+\textcolor{cyan}{What is another name for the conjugate transpose of a matrix?}\\
+The conjugate transpose of a matrix is also known as the Hermitian transpose or the adjoint. It is denoted by $A^\dagger$ or $A^*$, and can be obtained by taking the transpose of the matrix and then taking the complex conjugate of all its entries.
+\\
+
+\textcolor{cyan}{What is the adjoint $M^*$ of matrix $M$ if $$M = \begin{bmatrix} 2-2i & 4-i & 0\\
+7+2i & i & 8i\\
+8 & -5 & -4i\end{bmatrix}$$}
+
+
+Taking the complex conjugate of each entry in $M^\top$ gives us
+$$\overline{M^\top} = \begin{bmatrix} 2+2i & 4+i & 0\\
+7-2i & -i & -8i\\
+8 & 5 & 4i\end{bmatrix}.$$
+Therefore, the adjoint of $M$ is
+$$M^* = \begin{bmatrix} 2+2i & 4+i & 0\\
+7-2i & -i & -8i\\
+8 & 5 & 4i\end{bmatrix}.$$
+
+\noindent
+Proposition 5.3.8 says: Let $V$ be a finite dimensional Hermitian inner product space. The adjoint of $T : V \to V$ satisfies $< T(v), w > = < v, T^*(w) > $ for all $v, w \in V$.\\
+\\
+\textcolor{cyan}{What does this proposition tell us about the matrix $[T]_{\alpha}^{\alpha}$ of a self-adjoint (Hermitian) linear transformation $T:V \to V$ with $\alpha$ any basis of $V$?}
+
+Proposition 5.3.8 tells us that the adjoint $T^$ of a linear transformation $T: V \to V$ on a finite dimensional Hermitian inner product space $V$ satisfies the following property for all $v, w \in V$:
+
+$$
+<T(v),w>=<v,T 
+∗
+ (w)>.$$
+ 
+If $T$ is a self-adjoint linear transformation, then $T^ = T$ and we have:
+
+$$
+<T(v),w>=<v,T(w)>$$
+
+for all $v, w \in V$. Let $\alpha = {v_1, \ldots, v_n}$ be a basis of $V$. Then, for any $i, j \in {1, \ldots, n}$, we have:
+
+$$
+[T(v 
+j
+​	
+ )] 
+α
+​	
+ =[T] 
+α
+α
+​	
+ [v 
+j
+​	
+ ] 
+α$$
+​	
+ 
+and
+$$
+[v 
+i
+​	
+ ] 
+α
+∗
+​	
+ [T(v 
+j
+​	
+ )] 
+α
+​	
+ =<v 
+i
+​	
+ ,T(v 
+j
+​	
+ )>=<T(v 
+i
+​	
+ ),v 
+j
+​	
+ >=[T(v 
+i
+​	
+ )] 
+α
+∗
+​	
+ [v 
+j
+​	
+ ] 
+α$$
+​, where the second equality follows from the self-adjointness of $T$ and the third equality follows from Proposition 5.3.8. Therefore, we have:
+$$
+[v 
+i
+​	
+ ] 
+α
+∗
+​	
+ [T] 
+α
+α
+​	
+ [v 
+j
+​	
+ ] 
+α
+​	
+ =[T] 
+α
+α
+​	
+ [v 
+i
+​	
+ ] 
+α
+∗
+​	
+ [v 
+j
+​	
+ ] 
+α$$
+​
+Since this holds for all $i, j \in {1, \ldots, n}$, we conclude that $[T]_{\alpha}^{\alpha}$ is a Hermitian (self-adjoint) matrix.
+
+\newpage
+
+\noindent
+\textcolor{cyan}{It turns out that, like symmetric transformations, self-adjoint transformations are diagonalizable (Theorem 5.3.12) and have real eigenvalues (Theorem 5.3.13). What does that tell you about the eigenvectors of a self-adjoint transformation?}
+\noindent
+The fact that self-adjoint transformations are diagonalizable and have real eigenvalues tells us that they have a basis consisting of eigenvectors, which are orthogonal to each other with respect to the Hermitian inner product.
+
+\noindent
+More specifically, Theorem 5.3.12 states that if $T$ is a self-adjoint linear transformation on a finite-dimensional Hermitian inner product space $V$, then $T$ has an orthonormal basis consisting of eigenvectors. That is, there exists an orthonormal basis ${v_1, \ldots, v_n}$ of $V$ such that each $v_i$ is an eigenvector of $T$. Moreover, the corresponding eigenvalues $\lambda_1, \ldots, \lambda_n$ are all real.
+
+\noindent
+Theorem 5.3.13 states that if $T$ is a self-adjoint linear transformation on a finite-dimensional real inner product space $V$, then $T$ has a basis consisting of eigenvectors, which are orthogonal to each other with respect to the real inner product. That is, there exists an orthogonal basis ${v_1, \ldots, v_n}$ of $V$ such that each $v_i$ is an eigenvector of $T$. Moreover, the corresponding eigenvalues $\lambda_1, \ldots, \lambda_n$ are all real.
+
+\noindent
+Therefore, the eigenvectors of a self-adjoint transformation are not only guaranteed to exist, but they also have some special properties. They are orthogonal (or orthonormal) with respect to the Hermitian (or real) inner product, and the corresponding eigenvalues are real. This makes self-adjoint transformations very useful in applications where real eigenvalues and orthogonal eigenvectors are important, such as in physics, engineering, and statistics.
+
+
+\newpage
+
+\section{6.1 Triangular Form}
+
+\bigskip
+
+\noindent
+\textcolor{cyan}{What is a $T$-invariant subspace? Give an example of a transformation $T$ and a subspace $W$ which is $T$-invariant.}
+
+\noindent
+Let $T:V\to V$ be a linear transformation on a vector space $V$. A subspace $W\subseteq V$ is said to be $T$-invariant if $T(w) \in W$ for all $w \in W$. That is, the subspace $W$ is preserved by the action of the linear transformation $T$.
+
+\noindent
+To give an example, let $V = \mathbb{R}^3$ be the vector space of $3$-dimensional column vectors, and let $T:V\to V$ be the linear transformation given by the matrix
+
+$$[T] = \left( \begin{array}{ccc} 2 & 1& 0 \\ 1 & 2 & 1 \\ 0 & 1 & 2 \end{array} \right )$$
+\noindent
+Consider the subspace $W = \operatorname{span}{(1,0,0)^T, (0,1,0)^T}$, which is the $xy$-plane in $\mathbb{R}^3$. We claim that $W$ is $T$-invariant.
+
+To see this, note that any vector in $W$ can be written as a linear combination $w = a(1,0,0)^T + b(0,1,0)^T$ for some scalars $a,b\in\mathbb{R}$. Then we have
+$$T(w)=T(a(1,0,0)^T+b(0,1,0)^T)=aT(1,0,0)^T+bT(0,1,0)^T$$
+and using the matrix $[T]$, we can compute that
+$$T(1,0,0)^T =(2,1,0)^T, T(0,1,0)^T =(1,2,1)^T$$
+$$T(w)=a(2,1,0)^T+b(1,2,1)^T=(2a+b,a+2b,b)^T$$
+We see that $T(w)$ is always a linear combination of $(1,0,0)^T$, $(0,1,0)^T$, and $(0,0,1)^T$, which span $\mathbb{R}^3$. Therefore, $T(w) \in W$ for any $w\in W$, so $W$ is $T$-invariant.
+\\
+
+\noindent
+\textcolor{cyan}{How is the upper-triangular form of a matrix helpful in identifying $T$-invariant subspaces? You can illustrate with an example, rather than explain in words.}
+\noindent
+The upper-triangular form of a matrix is helpful in identifying $T$-invariant subspaces because it allows us to easily see which subspaces are preserved under the action of the linear transformation $T$. Specifically, if a subspace is spanned by the first $k$ standard basis vectors, then it is $T$-invariant if and only if the $(k+1)$st row and all subsequent columns of the upper-triangular form of the matrix $[T]_{\beta}^{\beta}$ are zero.
+
+\noindent
+As an example, consider the linear transformation $T:\mathbb{R}^3\to\mathbb{R}^3$ given by the matrix
+
+$$[T] = \left( \begin{array}{ccc} 2 & 1& 0 \\ 0 & 1 & -1 \\ 0 & 0 & 3 \end{array} \right )$$
+with respect to the standard basis $\beta = {(1,0,0)^T, (0,1,0)^T, (0,0,1)^T}$.
+
+$$[T] = \left( \begin{array}{ccc} 2 & 1& 0 \\ 0 & 1 & -1 \\ 0 & 0 & 3 \end{array} \right ) \backsim [T] = \left( \begin{array}{ccc} 2 & \frac{1}{2} & 0 \\ 0 & 1 & -1 \\ 0 & 0 & 3 \end{array} \right )$$
+
+\noindent
+Since the first two columns of the upper-triangular form are nonzero, the subspace spanned by the first standard basis vector ${(1,0,0)^T}$ is not $T$-invariant. However, since the third column of the upper-triangular form is zero, the subspace spanned by the first two standard basis vectors ${(1,0,0)^T, (0,1,0)^T}$ is $T$-invariant. This can be verified directly by checking that $T((1,0,0)^T)$ and $T((0,1,0)^T)$ are both in the subspace $\operatorname{span}{(1,0,0)^T, (0,1,0)^T}$.
+
+\newpage
+
+\noindent
+\textcolor{cyan}{How can you tell from the characteristic polynomial of linear transformation $T:V \to V$, whether or not $T$ is triangularizable?}
+\noindent
+characteristic polynomial splits over the field $F$ and each eigenvalue of $T$ has an eigenvector in $V$. In other words, $T$ is triangularizable if and only if its characteristic polynomial factors completely into linear factors over $F$ and the algebraic multiplicity of each eigenvalue equals its geometric multiplicity.
+
+\noindent
+Therefore, if the characteristic polynomial of $T$ splits over $F$ but some eigenvalue of $T$ does not have a corresponding eigenvector in $V$, then $T$ is not triangularizable.
+
+\noindent
+For example, suppose $T: \mathbb{R}^3 \to \mathbb{R}^3$ is a linear transformation with characteristic polynomial $(x-2)^2(x-3)$, and suppose that $T$ has only one eigenvector corresponding to the eigenvalue $2$. Then $T$ is not triangularizable over $\mathbb{R}$, since the algebraic multiplicity of the eigenvalue $2$ is $2$, but its geometric multiplicity is $1$.
+\\
+
+\noindent
+\textcolor{cyan}{The Cayley-Hamilton Theorem (6.1.12) says: Let $T:V \to V$ be a linear mapping on a finite-dimensional vector space $V$, and let $p(t) = det(T - tI)$ be its characteristic polynomial. Assume that $p(t)$ has $\dim(V)$ roots in the field $F$ over which $V$ is defined. Then $p(T) = 0$ (the zero mapping on $V$).}\\
+\\
+\textcolor{cyan}{What does the theorem say about transformation $T$, which is defined by}
+
+\textcolor{cyan}{$$T \vec{v} = \begin{bmatrix} 2i & 1 \\ 0 & -2i\end{bmatrix} \vec{v}$$}
+
+\noindent
+Let $V = \mathbb{C}^2$ be the vector space over $\mathbb{C}$ on which $T$ is defined as in the question, and let $p(t)$ be the characteristic polynomial of $T$. We have:
+
+\begin{align*}
+p(t) &= \det(T-tI) \\
+&= \det\left(\begin{bmatrix} 2i-t & 1 \ 0 & -2i-t\end{bmatrix}\right) \\
+&= (2i-t)(-2i-t)-0\cdot 1 \\
+&= t^2 + 4 \\
+&= (t+2i)(t-2i).
+\end{align*}
+\noindent
+Since $p(t)$ has two distinct roots $2i$ and $-2i$ in the field $\mathbb{C}$, which is the field over which $V$ is defined, the Cayley-Hamilton theorem implies that $p(T) = 0$, i.e., the linear transformation $T$ satisfies the polynomial equation $T^2 + 4I = 0$, where $I$ is the $2 \times 2$ identity matrix.
+
+\section{6.2 A Canonical Form for Nilpotent Mappings}
+
+\bigskip
+
+\noindent
+\textcolor{cyan}{Recall: A \textbf{nilpotent} linear transformation $N$ is a transformation such that $N^k$ is the zero transformation for some $k \in \mathbb{Z}$, $k \geq 1$.}\\
+
+\noindent
+\textcolor{cyan}{What do we know about the span of a cycle (see 6.2.1) defined by a nilpotent transformation (as opposed to a transformation that is not nilpotent)?}
+
+$$span(N iv∣i∈Z)=span( v,N v,…,N k−1  v ,N k  v ,N k+1  v ,…). $$
+
+\noindent
+Let $N$ be a nilpotent linear transformation on a finite-dimensional vector space $V$, and let $\vec{v}$ be a cyclic vector for $N$ such that ${N^i \vec{v} \mid i = 0,1,\ldots, k-1}$ is a basis for the cyclic subspace $W = \operatorname{span}(\vec{v}, N\vec{v}, \ldots, N^{k-1}\vec{v})$. Then, the span of the cycle is given by
+
+\noindent
+Since $N^k$ is the zero transformation, it follows that $N^{k+i} \vec{v} = N^i(N^k \vec{v}) = \vec{0}$ for all $i \geq 0$, so $\operatorname{span}(N^i \vec{v} \mid i \in \mathbb{Z}) = W$. In other words, the span of the cycle is equal to the cyclic subspace generated by $\vec{v}$.
+
+\noindent
+On the other hand, if $N$ is not nilpotent, then every vector in $V$ is cyclic for $N$, and the span of the cycle generated by any vector $\vec{v}$ is equal to the whole space $V$.
+\\
+
+
+
+\noindent
+\textcolor{cyan}{Let $N = (T-\lambda I)$ for some eigenvalue $\lambda$ of linear transformation $T$. How do you create a tableau to depict the cycles of $T$. Include an example. Section 6.2 contains many of them. You can use one of thos here.}\\
+\\
+\textcolor{cyan}{Note: This section merely states that a canonical basis exists without showing you how to find one. For now, you do not have to concern yourself with finding $x$ to generate the cycles. You simply need to know that $x$ exists.}
+
+\noindent
+To create a tableau to depict the cycles of $T$ associated with an eigenvalue $\lambda$, we start by writing down the generalized eigenspace $W_{\lambda}(T)$, which is the kernel of $(T-\lambda I)^n$ for some $n$ such that $(T-\lambda I)^n \neq 0$ but $(T-\lambda I)^{n+1} = 0$. We then choose a basis $\beta = {\vec{v}_1, \ldots, \vec{v}k}$ for $W{\lambda}(T)$, and for each $\vec{v}_i$, we write down the sequence of vectors ${\vec{v}_i, (T-\lambda I)\vec{v}_i, \ldots, (T-\lambda I)^{n_i-1}\vec{v}_i}$ until we reach a vector $\vec{w}_j$ that is already in the span of the previous vectors. We repeat this process for all $\vec{v}i$ until all vectors in $W{\lambda}(T)$ have been accounted for.
+
+\noindent
+To illustrate with an example, consider the linear transformation $T:\mathbb{C}^3 \to \mathbb{C}^3$ given by the matrix
+
+$$[T]_\beta^\beta = \left[ \begin{array}{ccc} 2 & 0 & 1 \\ 0 & 2 & 1 \\ 0 & 0 & 1 \end{array} \right] $$
+
+where $\beta = {(1,0,0),(0,1,0),(0,0,1)}$ is the standard basis for $\mathbb{C}^3$. The characteristic polynomial of $T$ is $(t-2)^2(t-1)$, so $T$ has one eigenvalue $2$ with multiplicity $2$, and another eigenvalue $1$.
+
+Let's focus on the cycles of $T$ associated with the eigenvalue $\lambda=2$. We first find the generalized eigenspace $W_2(T)$, which is the kernel of $(T-2I)^2$. We have
+
+$$(T-2I)^2 = \left[ \begin{array}{ccc} 0 & 0 & 0 \\ 0 & 0 & 0 \\ 0 & 0 & 0 \end{array} \right] $$
+
+so $n=2$ is the smallest integer such that $(T-2I)^n = 0$. We compute
+
+$$(T-2I)\vec{v} = \vec{0} \leftrightarrow \vec{v} = a \left[ \begin{array}{c} 1 \\ 0 \\ 0 \end{array} \right] + b\left[ \begin{array}{c} -1 \\ 1 \\ 0 \end{array} \right] $$
+
+where $a,b \in \mathbb{C}$. Thus, $W_2(T) = \operatorname{span}\left{\begin{bmatrix} 1 \\ 0\\ 0 \end{bmatrix}, \begin{bmatrix}-1\\ 1\\ 0 \end{bmatrix}\right}$.
+
+\end{document}
