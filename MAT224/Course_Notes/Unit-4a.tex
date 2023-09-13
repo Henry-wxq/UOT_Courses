@@ -1,0 +1,244 @@
+\documentclass[fontsize=12pt]{scrartcl}
+\usepackage[utf8]{inputenc}
+\usepackage{latexsym, amsfonts, fullpage, lscape, cancel, array, lastpage}
+\usepackage{mathrsfs, graphicx, amssymb, amsmath, amscd, amsthm, MnSymbol}
+\usepackage{titlesec}
+\usepackage{enumerate}
+\usepackage{graphicx}
+\usepackage{geometry}
+\usepackage{float}
+\usepackage{appendix}
+\usepackage{color}
+\usepackage{amsmath}
+\usepackage{pifont}
+\usepackage{fancyhdr}
+\usepackage{enumitem}
+\usepackage{amssymb}
+
+\titleformat{\section}
+  {\normalfont\Large\bfseries}{\S\thesection}{1em}{}
+
+\usepackage[english]{babel}
+\usepackage{eucal}
+
+\title{Unit 4(a) Lecture Notes for MAT224}
+\author{Xuanqi Wei 1009353209}
+
+\date{28 Feb-2 March 2023}
+
+\begin{document}
+
+\maketitle
+
+\newpage
+
+\noindent
+\textcolor{cyan}{What is an eigenvalue?}\\
+\textcolor{cyan}{What is an eigenvector?}\\
+\textcolor{cyan}{How are they related?}
+
+\noindent
+An eigenvalue of a square matrix $A$ is a scalar $\lambda$ for which there exists a non-zero vector $\mathbf{v}$ such that the following equation holds:
+
+$$ A\vec{v} = \lambda\vec{v} $$
+
+\noindent
+The vector $\mathbf{v}$ is called an eigenvector of $A$ corresponding to the eigenvalue $\lambda$.
+\\
+
+\noindent
+\textcolor{cyan}{Give an example of a linear transformation $T$, one of its eigenvalues $\lambda$ and a corresponding eigenvector $v$. Confirm that $T(v) = \lambda v$. No other calculations are required.}
+
+\noindent
+Suppose we have the linear transformation $T:\mathbb{R}^2\rightarrow \mathbb{R}^2$ given by the matrix:
+
+$$A = \left(\begin{array}{cc} 2 & -1 \\ 4 & -3 \end{array} \right) $$
+
+\noindent
+We claim that $\lambda = -1$ is an eigenvalue of $A$, with corresponding eigenvector $\mathbf{v} = \begin{pmatrix} 1 \ 2 \end{pmatrix}$. To confirm this, we can compute:
+
+$$Av = \left(\begin{array}{cc} 2 & -1 \\ 4 & -3 \end{array} \right)\left(\begin{array}{c} 1 \\ 2 \end{array} \right) = \left(\begin{array}{c} 0 \\ 0 \end{array} \right) = (-1)\left(\begin{array}{c} 1 \\ 2 \end{array} \right) = \lambda v $$
+
+\noindent
+Thus, $\mathbf{v}$ is indeed an eigenvector of $A$ corresponding to the eigenvalue $\lambda = -1$. Note that $T(\mathbf{v}) = A\mathbf{v} = \lambda \mathbf{v} = -\mathbf{v}$, which confirms that $\mathbf{v}$ is an eigenvector of $T$ with eigenvalue $\lambda$.
+\\
+
+\noindent
+\textcolor{cyan}{Give an example of a matrix $A$ and explain how you find its characteristic polynomial and eigenvalues. Include your calculations.}
+
+\noindent
+Suppose we have the matrix:
+$$A = \left(\begin{array}{cc} 3 & 2 \\ 4 & -1 \end{array} \right) $$
+
+\noindent
+To find the characteristic polynomial of $A$, we need to compute the determinant of the matrix $A-\lambda I$, where $\lambda$ is a variable and $I$ is the $2\times 2$ identity matrix. That is,
+
+$$A - \lambda I = \left(\begin{array}{cc} 3-\lambda & 2 \\ 4 & -1-\lambda \end{array} \right) $$
+
+\noindent
+So the characteristic polynomial of $A$ is $p(\lambda) = \lambda^2 - 2\lambda - 5$. To find the eigenvalues of $A$, we need to solve the equation $p(\lambda) = 0$. Using the quadratic formula, we have the eigenvalues of $A$ are $\lambda_1 = 3$ and $\lambda_2 = -1$.
+
+
+\newpage
+
+
+\noindent
+\textcolor{cyan}{Give an example of a matrix $A$, one of its eigenvalues $\lambda$, and explain how you can find a basis of its corresponding eigenspace $E_{\lambda}$. Is it possible to find more than one basis for $E_{\lambda}$? If so, how?}\\
+$$A = \left(\begin{array}{cc} 2 & -1 \\ 4 & -3 \end{array} \right) $$
+
+\noindent
+We found in a previous answer that one of the eigenvalues of $A$ is $\lambda=-1$. To find a basis for the eigenspace $E_{-1}$, we need to find all solutions to the equation
+
+$$(A - \lambda I)v = 0 $$
+
+\noindent
+where $\mathbf{0}$ is the $2 \times 1$ zero vector. That is, we need to find all vectors $\mathbf{v} = \begin{pmatrix} v_1 \ v_2 \end{pmatrix}$ such that
+$$\left(\begin{array}{cc} 3 & -1 \\ 4 & -2 \end{array} \right)\left(\begin{array}{cc} v_1 \\ v_2 \end{array} \right) = \left(\begin{array}{cc} 0 \\ 0 \end{array} \right)$$
+
+$$3v_1 - v_2 = 0 $$
+$$4v_1 - 2v_2 = 0 $$
+
+\noindent
+Simplifying the second equation gives $2v_1 - v_2 = 0$, which we can substitute into the first equation to obtain $v_1 = \frac{1}{3}v_2$. So the eigenvectors of $A$ corresponding to $\lambda=-1$ are of the form $\begin{pmatrix} v_1 \ v_2 \end{pmatrix} = \begin{pmatrix} \frac{1}{3}v_2 \ v_2 \end{pmatrix}$. To find a basis for $E_{-1}$, we can choose one nonzero vector that satisfies this condition. A convenient choice is $\mathbf{v} = \begin{pmatrix} 1 \\ 3 \end{pmatrix}$. 
+
+\noindent
+It is possible to find more than one basis for $E_{\lambda}$. In fact, any nonzero scalar multiple of an eigenvector corresponding to $\lambda$ is also an eigenvector corresponding to $\lambda$, and thus it is a basis for $E_{\lambda}$. In our example, $\begin{pmatrix} 2 \\ 6 \end{pmatrix}$ is also an eigenvector of $A$ corresponding to $\lambda=-1$, and it is a scalar multiple of $\mathbf{v}$. So $\begin{pmatrix} 2 \\ 6 \end{pmatrix}$ is also a basis for $E_{-1}$.
+\\
+
+\noindent
+\textcolor{cyan}{An \textbf{involution} is a function $f$ such that $f^2 = I$. Another way to say this is $(f \circ f) = I$ or  $$f(f(x)) = I(x) = x$$}
+
+\noindent
+\textcolor{cyan}{An example of an involution is the transpose operator $f(A) = A^T$, where $A^T$ is the transpose of matrix $A$. From Questions 15 and 16 at the end of textbook section 4.1, what do we know about the eigenvalues and eigenspaces of involutions?}
+
+\noindent
+From Questions 15 and 16 at the end of textbook section 4.1, we know that the only possible eigenvalues of an involution are $1$ and $-1$.
+
+\noindent
+If $\lambda = 1$, then the eigenspace $E_{\lambda}$ consists of all vectors $v$ such that $f(v) = v$, i.e., $v = f(v) = f(f(v)) = f(\lambda v)$. So the eigenspace $E_{1}$ is the set of all fixed points of $f$.
+
+\noindent
+If $\lambda = -1$, then the eigenspace $E_{\lambda}$ consists of all vectors $v$ such that $f(v) = -v$, i.e., $v = f(v) = f(f(v)) = f(-\lambda v)$. So the eigenspace $E_{-1}$ is the set of all vectors that are mapped to their negation by $f$.
+\\
+
+\noindent
+\textcolor{cyan}{Let $W$ be a subspace of vector space $V$. In Section 4.4 we will be talking about \textbf{orthogonal projections}. These are the function $p_W(x) = w$ whenever $x = x_1 + w$, for $w \in W$ and $x_1 \in W^{\perp}$.}\\
+\\
+\textcolor{cyan}{An example of an orthogonal projection is $p_1$ which projects a vector in $\mathbb{R}^3$ onto the $x-y$ plane:}\\
+\\
+\textcolor{cyan}{$$p\left( \begin{array}{c} x \\ y \\ z \end{array} \right) = \left( \begin{array}{c} x \\ y \\ 0 \end{array} \right)$$}\\
+\\
+\textcolor{cyan}{Such a projection will have the property $p^2(x) = p(x)$. What do we know about the eigenvalues of $p$? (see question 17 at the end of textbook section 4.1)}
+
+\noindent
+From question 17 at the end of textbook section 4.1, we know that the only possible eigenvalues of an orthogonal projection $p$ are $0$ and $1$.
+
+\noindent
+If $\lambda = 1$, then the eigenspace $E_{\lambda}$ consists of all vectors $v$ such that $p(v) = v$. In other words, $v$ is already in the subspace $W$ and is not affected by the projection.
+
+\noindent
+If $\lambda = 0$, then the eigenspace $E_{\lambda}$ consists of all vectors $v$ such that $p(v) = 0$. In other words, $v$ lies entirely in the orthogonal complement $W^{\perp}$ and is completely projected onto the zero vector.
+\\
+
+\noindent
+\textcolor{cyan}{Give an example of a matrix $A$ and its characteristic polynomial $p$. Confirm that $p(A) = 0$ by calculating $p(A)$.}
+
+\noindent
+Consider the matrix
+$$A = \left( \begin{array}{cc} 1 & 2 \\ 2 & 1 \end{array} \right)$$
+
+\noindent
+To find the characteristic polynomial of $A$, we compute $|A - \lambda I|$:
+$$ (1-\lambda)^2 - 4 = \lambda^2 - 2\lambda -3 $$
+
+\noindent
+Therefore, the characteristic polynomial of $A$ is $p(\lambda) = \lambda^2 - 2\lambda - 3$.
+
+\noindent
+To confirm that $p(A) = 0$, we substitute $A$ into $p(\lambda)$:
+
+$$p(A)  = A^2 - 2A -3I = \left( \begin{array}{cc} -6 & -6 \\ -6 & -6 \end{array} \right) = 0$$
+
+\noindent
+Therefore, $p(A) = 0$, as expected.
+\\
+
+\noindent
+\textcolor{cyan}{Let $A$ and $B$ be \textbf{similar} matrices. What does that mean? In what way are the eigenvalues of similar matrices related? Find the answer in the textbook or your notes from class and summarize the proof.}
+
+\noindent
+Two matrices $A$ and $B$ are called similar if there exists an invertible matrix $P$ such that $B = P^{-1}AP$. The matrices $A$ and $B$ are essentially the same, just represented in different coordinate systems.
+
+\noindent
+The eigenvalues of similar matrices are the same. To prove this, suppose $A$ and $B$ are similar matrices, and let $\lambda$ be an eigenvalue of $A$ with corresponding eigenvector $v$. Then we have $Av = \lambda v$. Multiplying both sides by $P^{-1}$ on the left and $P$ on the right, we get $P^{-1}AP(P^{-1}v) = \lambda(P^{-1}v)$, which can be written as $B(P^{-1}v) = \lambda(P^{-1}v)$. This shows that $P^{-1}v$ is an eigenvector of $B$ with eigenvalue $\lambda$. Therefore, any eigenvalue of $A$ is also an eigenvalue of $B$ and vice versa, and they have the same eigenvectors.
+\\
+
+\noindent
+\textcolor{cyan}{How can you tell the number of DISTINCT eigenvalues that a matrix $A$ will have? How can you tell the multiplicity of $(x - \lambda)$ for each each eigenvalue $\lambda$ as it appears in the characteristic polynomial?}\\
+
+\noindent
+To determine the number of distinct eigenvalues of a matrix $A$, we can compute the characteristic polynomial $p(\lambda)$ of $A$ and count the number of distinct roots of $p(\lambda)$. Each distinct root corresponds to a distinct eigenvalue.
+
+\noindent
+To determine the multiplicity of $(x - \lambda)$ for each eigenvalue $\lambda$, we need to look at the powers of $(x-\lambda)$ in the factorization of $p(x)$. Specifically, the multiplicity of $(x - \lambda)$ is equal to the power of $(x - \lambda)$ in the factorization of $p(x)$ as a product of linear factors. For example, if the characteristic polynomial is $p(x) = (x-2)^3(x-5)^2$, then $2$ has algebraic multiplicity $3$ and $5$ has algebraic multiplicity $2$.
+\\
+ 
+\noindent
+\textcolor{cyan}{Consider a matrix $M$ with characteristic polynomial $q$ where $q(x) = x^3 - x$. How can we relate each of the following matrices to $M$ with a lower exponent?} \begin{itemize}
+\item[(i)] $M^3$: If $A = M^3$, then the characteristic polynomial of $A$ is $q(x) = x^3 - x$. Therefore, $A$ has the same eigenvalues as $M$, which are $\lambda_1 = -1, \lambda_2 = 0,$ and $\lambda_3 = 1$. The eigenvectors of $A$ corresponding to $\lambda_1, \lambda_2,$ and $\lambda_3$ are $(M(v_1))^3, (M(v_2))^3,$ and $(M(v_3))^3$ respectively.
+\item[(ii)] $M^4$: To relate $M^4$ to $M$, we can use the fact that $M^3 = M - I$. Multiplying both sides of this equation by $M$ gives $M^4 = M^2 - M$, and we can express $M^2$ in terms of $M$ using the above calculations: $M^2 v = \lambda^2 v$ for any eigenvector $v$ of $M$. Therefore, $M^4$ is the zero matrix.
+\item[(iii)] $M^{2k}$ for $k \in \mathbb{N}$: Since $M$ has characteristic polynomial $q(x) = x^3 - x$, we know that $q(M) = M^3 - M = 0$. Therefore, we can write $M^3 = M$. Now, for any even integer $k$, we have $M^{2k} = (M^3)^k = M^{3k}$. Since $3k$ is also an even integer, we can repeat this process and get $M^{3k} = (M^3)^{k} = M^k$. Therefore, $M^{2k} = M^k$ for any even integer $k$
+\item[(iv)] $M^{2k+1}$ for $k \in \mathbb{N}$: Now, notice that $q(x) = x^3 - x = x(x^2 - 1) = x(x+1)(x-1)$, so the eigenvalues of $M$ are $0$, $1$, and $-1$. We know from the theory of diagonalization that if a matrix $A$ is diagonalizable with diagonal matrix $D$ and invertible matrix $P$ such that $A = PDP^{-1}$, then $A^k = PD^kP^{-1}$ for any positive integer $k$. In other words, we can compute $M^{2k+1}$ by diagonalizing $M$ and raising the diagonal matrix to the power of $2k+1$. Therefore, we can conclude that $M^{2k+1}$ is similar to $D^{2k+2}$, which is a diagonal matrix whose entries are $0$, $1^{2k+2}$, and $(-1)^{2k+2}$.
+\end{itemize}
+
+\newpage
+
+\section{4.2 Diagonalizability}
+
+\bigskip
+
+\noindent
+\textcolor{cyan}{What does it mean for a matrix $A$ to be \textbf{diagonalizable}?}\\
+\textcolor{cyan}{What does it mean for a transformation $T$ to be \textbf{diagonalizable}?}\\
+\textcolor{cyan}{How are these two concepts related?}\\
+
+\noindent
+A matrix $A$ is diagonalizable if it is similar to a diagonal matrix, i.e., if there exists an invertible matrix $P$ such that $P^{-1}AP$ is a diagonal matrix.
+
+\noindent
+A transformation $T$ is diagonalizable if there exists a basis of $V$ consisting of eigenvectors of $T$. In other words, $T$ is diagonalizable if there exists an invertible matrix $P$ such that $P^{-1}TP$ is a diagonal matrix.
+
+\noindent
+These two concepts are related in that a matrix $A$ is diagonalizable if and only if the linear transformation $T(\mathbf{x})=A\mathbf{x}$ is diagonalizable. More specifically, if $A$ is diagonalizable, then $T$ is diagonalizable with eigenvectors corresponding to the diagonal entries of the diagonalized form of $A$. Conversely, if $T$ is diagonalizable, then the matrix representation of $T$ with respect to the basis of eigenvectors is a diagonal matrix, and the matrix $A$ whose columns are the coordinates of the eigenvectors with respect to the standard basis is diagonalizable and similar to this diagonal matrix.
+\\
+
+\noindent
+\textcolor{cyan}{At the bottom of page 176 in the textbook, its says ``In order for a linear mapping or a matrix to be diagonalizable, it must have enough linearly independent eigenvectors to form a basis of V." Consider a diagonalizable matrix $A$. What does the previous statement say about the eigenvectors of $A$?}
+
+\noindent
+The statement means that in order for a diagonalizable matrix $A$ to exist, there must be enough linearly independent eigenvectors of $A$ to form a basis for the vector space $V$ on which $A$ is acting. In other words, the eigenvectors of $A$ must span the entire vector space $V$. This is because, as mentioned earlier, a diagonalizable matrix is one that can be written in the form $A = PDP^{-1}$, where $D$ is a diagonal matrix and $P$ is a matrix whose columns are the eigenvectors of $A$. If there are not enough linearly independent eigenvectors of $A$, then the matrix $P$ will not be invertible, and $A$ will not be diagonalizable.
+
+\newpage
+\noindent
+\textcolor{cyan}{What do Propositions 4.2.4, 4.2.6, Corollary 4.2.5, 4.2.8, 4.2.9, and Theorem 4.2.7 tell us about how to find a basis of $V$ made up of eigenvectors of $T$ for a diagonalizable linear transformation $T: V \to V$?}
+
+\noindent
+Taken together, these results tell us that in order to find a basis of $V$ made up of eigenvectors of $T$ for a diagonalizable linear transformation $T: V \to V$, we need to find a set of linearly independent eigenvectors of $T$ that spans $V$. If such a set exists, then it forms a basis of $V$, and we can use it to diagonalize $T$. Conversely, if we know that $T$ is diagonalizable, then we know that there exists a basis of $V$ made up of eigenvectors of $T$. We can find this basis by finding the eigenvectors of $T$ and checking that they are linearly independent.
+\\
+
+\noindent
+\textcolor{cyan}{Give an example of a matrix $[T]_{\alpha}^{\alpha}$ corresponding to a linear transformation $T: V \to V$ and a basis $\beta$ of $V$ (not necessarily equal to $\alpha$), such that the elements of $\beta$ are eigenvectors of the matrix.}
+
+\noindent
+Let $T: \mathbb{R}^2 \to \mathbb{R}^2$ be a linear transformation defined by $T(x,y) = (3x + 2y, 2x + 3y)$, and let $\beta = {(1,1), (-1,1)}$ be a basis of $\mathbb{R}^2$. To find the matrix $[T]_{\beta}^{\beta}$, we need to compute the action of $T$ on each basis vector in $\beta$ and write the result as a linear combination of the basis vectors in $\beta$. That is:
+
+$$T(1, 1) = (3(1) + 2(1), 2(1) + 3(1)) = (5, 5) = 5(1, 1) + 0(-1, 1) $$
+$$T(-1, 1) = (3(-1) + 2(1), 2(-1)+ 3(1)) = (-1, 1)  = 0(1, 1) + 1(-1, 1)$$
+Therefore, the matrix $[T]_{\beta}^{\beta}$ is:
+$$[T]_{\beta}^{\beta} = \begin{bmatrix} 5 & 0 \\ 0 & 1\end{bmatrix} $$
+
+\noindent
+Notice that the elements of $\beta$ are eigenvectors of $[T]_{\beta}^{\beta}$, with corresponding eigenvalues $\lambda_1 = 5$ and $\lambda_2 = 1$.
+
+
+\end{document}
