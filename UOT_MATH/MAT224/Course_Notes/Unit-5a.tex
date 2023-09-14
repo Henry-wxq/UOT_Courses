@@ -1,0 +1,173 @@
+\documentclass[fontsize=12pt]{scrartcl}
+\usepackage[utf8]{inputenc}
+\usepackage{latexsym, amsfonts, fullpage, lscape, cancel, array, lastpage}
+\usepackage{mathrsfs, graphicx, amssymb, amsmath, amscd, amsthm, MnSymbol}
+\usepackage{titlesec}
+\usepackage{enumerate}
+\usepackage{graphicx}
+\usepackage{geometry}
+\usepackage{float}
+\usepackage{appendix}
+\usepackage{color}
+\usepackage{amsmath}
+\usepackage{pifont}
+\usepackage{fancyhdr}
+\usepackage{enumitem}
+\usepackage{amssymb}
+
+\titleformat{\section}
+  {\normalfont\Large\bfseries}{\S\thesection}{1em}{}
+
+\usepackage[english]{babel}
+\usepackage{eucal}
+
+\title{Unit 5(a) Lecture Notes for MAT224}
+\author{Xuanqi Wei 1009353209}
+
+\date{14-16 March 2023}
+
+\begin{document}
+
+\maketitle
+
+\newpage
+
+
+\section{5.1 Complex Numbers}
+
+\bigskip
+
+\noindent
+\textcolor{cyan}{The set of complex numbers $\mathbb{C} = \{ a + bi \ | \ a, b, \in \mathbb{R} \}$. Is $2$ a complex number? Why or why not?}
+\noindent
+No, $2$ is not a complex number because it is not in the form $a+bi$ where $a$ and $b$ are real numbers. A complex number has both a real part and an imaginary part, and $2$ has no imaginary part, meaning that it is a purely real number.
+
+\noindent
+However, any real number $a$ can be written as a complex number $a+0i$, so in that sense, $2$ can be viewed as a complex number with $a=2$ and $b=0$.
+\\
+
+\noindent
+\textcolor{cyan}{Compare and contrast the definitions of ``vector space'' and ``field''? How are they similar? How are they different?}
+
+\noindent
+A vector space and a field are both mathematical structures used in algebra, but they have different definitions and serve different purposes.
+
+\noindent
+A field is a set of numbers (or other mathematical objects) where addition, subtraction, multiplication, and division can be defined and satisfy certain axioms. Specifically, a field is a set $F$ with two binary operations, addition and multiplication, such that the following axioms hold:
+
+\begin{enumerate}
+	\item Associativity of addition and multiplication.
+	\item Commutativity of addition and multiplication.
+	\item Existence of identity elements for addition and multiplication.
+	\item Existence of inverse elements for addition and multiplication (except for the additive identity).
+	\item Distributivity of multiplication over addition.
+\end{enumerate}
+\noindent
+Examples of fields include the real numbers, the rational numbers, and the complex numbers.
+
+\noindent
+A vector space, on the other hand, is a collection of vectors that can be added together and multiplied by scalars (numbers) in a consistent way. Specifically, a vector space is a set $V$ of elements (called vectors) with two operations, vector addition and scalar multiplication, such that the following axioms hold:
+
+\begin{enumerate}
+	\item Associativity of vector addition.
+	\item Commutativity of vector addition.
+	\item Existence of an identity element for vector addition.
+	\item Existence of inverse elements for vector addition.
+	\item Distributivity of scalar multiplication over vector addition.
+	\item Distributivity of scalar multiplication over scalar addition.
+	\item Associativity of scalar multiplication.
+	\item Compatibility of scalar multiplication with field multiplication.
+	\item Existence of a multiplicative identity in the field.
+\end{enumerate}
+
+\noindent
+Examples of vector spaces include the space of polynomials with coefficients in a field, the space of all functions from one set to another, and the space of all $n$-dimensional vectors with entries in a field.
+
+\noindent
+In summary, a field is a set with operations that satisfy certain axioms, while a vector space is a collection of vectors with operations that satisfy certain axioms. Both structures involve operations of addition and multiplication, but in a vector space, the multiplication involves scalar multiplication, while in a field, the multiplication involves multiplication of elements of the field.
+\\
+
+\noindent
+\textcolor{cyan}{Which arithmetic operations can we do with complex numbers? List all of the operations described in section 5.1. (Example: we can divide $\displaystyle{\frac{a+bi}{c+di}}$)}
+
+\noindent
+Complex numbers can be added, subtracted, multiplied, and divided just like real numbers. In addition to these basic arithmetic operations, there are a few more operations that can be performed with complex numbers, which are described in section 5.1 of most standard algebra textbooks. Here's a list of all the arithmetic operations that can be done with complex numbers:
+
+\begin{enumerate}
+	\item Addition: If $z_1=a_1+ib_1$ and $z_2=a_2+ib_2$ are two complex numbers, then their sum is $z_1+z_2=(a_1+a_2)+i(b_1+b_2)$.
+	\item Subtraction: If $z_1=a_1+ib_1$ and $z_2=a_2+ib_2$ are two complex numbers, then their difference is $z_1-z_2=(a_1-a_2)+i(b_1-b_2)$.
+	\item Multiplication: If $z_1=a_1+ib_1$ and $z_2=a_2+ib_2$ are two complex numbers, then their product is given by the formula: $z_1z_2=(a_1a_2-b_1b_2)+i(a_1b_2+b_1a_2)$.
+	\item Complex Conjugation: The complex conjugate of a complex number $z=a+bi$ is denoted by $\overline{z}$ and is defined as $\overline{z}=a-bi$.
+	\item Modulus: The modulus of a complex number $z=a+bi$ is denoted by $|z|$ and is defined as $|z|=\sqrt{a^2+b^2}$.
+	\item Argument: The argument of a complex number $z=a+bi$ is denoted by $\text{arg}(z)$ and is defined as the angle between the positive real axis and the line joining the origin to the point $(a,b)$ in the complex plane. It is usually measured in radians and is denoted by $\theta$.
+	\item Exponential Form: Any complex number $z=a+bi$ can be written in exponential form as $z=|z|e^{i\theta}$, where $|z|$ is the modulus of $z$ and $\theta$ is the argument of $z$.
+\end{enumerate}
+
+\noindent
+Note that the first four operations (addition, subtraction, multiplication, and division) are the same as the operations that can be done with real numbers. The last four operations (complex conjugation, modulus, argument, and exponential form) are specific to complex numbers.
+\\
+
+\noindent
+\textcolor{cyan}{What does it mean for a field to be algebraically closed? Is $\mathbb{C}$ algebraically closed?}
+
+\noindent
+An algebraically closed field is a field in which every polynomial equation of positive degree has at least one solution in that field. In other words, every polynomial equation over that field can be factored into linear factors over the same field.
+
+\noindent
+The field of complex numbers, denoted by $\mathbb{C}$, is algebraically closed. This is known as the fundamental theorem of algebra. It states that every non-constant polynomial with complex coefficients has at least one complex root.
+
+\noindent
+This is a fundamental result in complex analysis and has many applications in mathematics, physics, and engineering.
+
+\newpage
+
+
+\section{4.6 Spectral Theorem}
+
+\bigskip
+
+\noindent
+\textcolor{cyan}{Let $M \in M_{n\times n}(\mathbb{R})$ be a symmetric matrix. What can we conclude about the eigenvalues of $M$?}
+
+\noindent
+If $M$ is a symmetric matrix, then we can conclude that all of its eigenvalues are real.
+
+\noindent
+One way to see this is to note that the characteristic polynomial of $M$ is given by $\det(M - \lambda I)$, where $I$ is the identity matrix and $\lambda$ is a scalar variable. Since $M$ is symmetric, it follows that $M$ is diagonalizable and we can write $M = PDP^{-1}$, where $P$ is an invertible matrix and $D$ is a diagonal matrix whose diagonal entries are the eigenvalues of $M$.
+
+\noindent
+Substituting $M = PDP^{-1}$ into the characteristic polynomial, we have:
+
+$$det(M-\lambda I) = det(PDP^{-1} - \lambda I) = det(P(D-\lambda I )P^{-1}) = det(D - \lambda I) $$
+\noindent
+since the determinant is multiplicative. Therefore, the eigenvalues of $M$ are the roots of the characteristic polynomial, which are real.
+
+\noindent
+In fact, we can say more about the eigenvalues of $M$. If $\lambda$ is an eigenvalue of $M$, then there exists a corresponding eigenvector $v$ such that $Mv = \lambda v$. Taking the transpose of both sides, we have $v^T M = \lambda c^T $. Since $M$ is symmetric, we also have $M^T = M$, so we can rewrite the above equation as $v^T M^T = \lambda c^T $, which $(Mv)^T = \lambda c^T $. Since $v$ is nonzero, we have $v^T v \neq 0$, so we can divide both sides by $v^T$ to obtain $Mv = \lambda v $
+
+\noindent
+Thus, we have shown that the eigenvectors of $M$ corresponding to distinct eigenvalues are orthogonal. This is known as the spectral theorem for real symmetric matrices.
+\\
+
+\noindent
+\textcolor{cyan}{Is $M$ diagonalizable?}
+
+\noindent
+Yes, every symmetric matrix $M \in M_{n\times n}(\mathbb{R})$ is diagonalizable. This is a consequence of the Spectral Theorem for Symmetric Matrices, which states that every symmetric matrix has a complete set of orthonormal eigenvectors, and its eigenvalues are real.
+
+\noindent
+Since $M$ has a complete set of eigenvectors, it is diagonalizable. Specifically, if $\lambda_1, \lambda_2, \dots, \lambda_n$ are the distinct eigenvalues of $M$ and $v_1, v_2, \dots, v_n$ are corresponding orthonormal eigenvectors, then we can write $M$ as the diagonal matrix:
+
+$$ M = QAQ^{-1}$$
+
+\noindent
+where $Q$ is the orthogonal matrix whose columns are the eigenvectors $v_1, v_2, \dots, v_n$, and $\Lambda$ is the diagonal matrix with entries $\lambda_1, \lambda_2, \dots, \lambda_n$ on the diagonal.
+
+\noindent
+Thus, every symmetric matrix is diagonalizable via an orthogonal matrix $Q$, which means that $M$ can be written as $M = Q D Q^T$ for some diagonal matrix $D$ and orthogonal matrix $Q$.
+
+
+
+
+
+\end{document}
