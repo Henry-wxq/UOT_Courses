@@ -28,7 +28,7 @@
 
 \title{CSC236 Problem Set 1}
 
-\author{Xuanqi Wei}
+\author{Xuanqi Wei 1009353209}
 
 \date{\today}
 
@@ -96,10 +96,164 @@
 
 \newpage
 
-\section*{Question 2}
+\section{Question 2}
+\begin{enumerate}[label=(\alph*)]
+    \item
+\begin{figure*}[h]
+    \centering
+    \includegraphics[width = 1.0\textwidth]{tex_pic/q2.png}
+    \caption{Python function for Q2-a}
+\end{figure*}
 
+\noindent The above code is the Python function with parameter x and n that (ignoring floating-point issues) returns $c_n$, the comments are both in the code above and below.
 
+\noindent Firstly, I clearly stated the pre-conditions on x and n in a header comment, which $x \in \mathbb{R} / \{0\} $ and $n \in \mathbb{N}$.
 
+\noindent Secondly, at line 12, I write the calculation of $c_1$ because it will be used in both `if' statement at line 14 and `else' statement at line 21, avoiding redundancy.
+
+\noindent Thirdly, I implemented the based case when n equals to 1 and n equals to 2 according to the definition of $c_n$.
+
+\noindent Fourthly, I implemented the recursion based on the discovery from hint.
+
+\begin{align*}
+    (x + \frac{1}{x}) \cdot (x^n + \frac{1}{x^n}) &= x^{n+1} + \frac{1}{x^{n-1}} + x^{n-1} + \frac{1}{x^{n+1}} \\
+    &= (x^{n+1} + \frac{1}{x^{n+1}}) + (x^{n-1} + \frac{1}{x^{n-1}})
+\end{align*}
+
+\noindent According to the definition of $c_n$, gives:
+\begin{align*}
+    c_1 \cdot c_n &= c_{n+1} + c_{n-1} \\
+    \implies c_{n+1} &= c_1 \cdot c_n - c_{n-1}
+\end{align*}
+\noindent Thus, we generalize the above equation into: $c_{n} = c_1 \cdot c_{n-1} - c_{n-2} $, which is the core of our recursive part, at line 31.
+
+\noindent Fifthly, aiming at returning the recursive value of $c_{n-1}$ after reaching the case when n eqials to 1, I write the code line 26.
+Aiming at return the recursive value of $c_{n-2}$, I write the code at line 29.
+Since we don't know whether n is an even number or an odd number, we need to add both n equals to 1 and n equals to 2 to our base case at line 16 and at line 19.
+
+\noindent Finally, we can obtain the $c_n$ using the recursive function without use any loops, or any helper functions, nor call any exponentiation functions.
+
+    \item To state a recurrence for the sequence c, I will take $n=3$, which a natural number satisfying the precondition, and I will take $x = 2$, which is a non-zero real number.
+    
+    Firstly, it will calculate the $c_1$ which $c_1 = 2 + \frac{1}{2} = 2.5$.
+    
+    Then it will go directly into the `else' statement which will get into calculate $c_{n-1}$ calling the function $q_2$ recursively.
+    We put $n-1 = 2$ and $x=2$ into the function again which this time goes into the `elif' statement and return $c_2 = 4.25$.
+    Thus we get, in this case, $c_{n-1} = 4.25$.
+    Continuing, it will get into calculate $c_{n-2}$ calling the function recursively.
+    We put $n-2 = 1 $ and $x = 2$ into the function agiain which this time go into the `if' statement and return $c_1 = 2.5$
+    Thus we get, in this case, $c_{n-2} = 2.5$
+
+    Finally, the above values goes into our equation which gives:
+    \begin{align*}
+        c_n &= c_1 \cdot c_{n-1} - c_{n-2} \\
+        &= 2.5 \times 4.25 - 2.5 = 8.125
+    \end{align*}
+
+    \item If $x+\frac{1}{x}$ is an integer, then $x^n + \frac{1}{x^n} $ is an integer for each $n \in \mathbb{N}$
+    
+    Given statement to prove: $\forall n \in \mathbb{N},\ P(n)$, which $P(n)$: $x^n + \frac{1}{x^n}$ is an integer where $x \in \mathbb{R} / \{0\}$
+
+    \textbf{Proof:} We prove this by complete induction on n.
+
+    \textbf{Base Case:} Let $n = 1$
+
+    By assumption, $ P(n) = x + \frac{1}{x}$ is an integer.
+
+    We've proved that $P(1)$ is true.
+
+    \textbf{Induction Step:} Let $n > 1$
+    
+    \textbf{Induction Hypothesis:} Assume $\forall k,\ 1 \leq k < n,\ P(k)$
+
+    WTS: $P(n)$
+
+    From induction hypothesis, when $k_1 = 1,\ 1 \leq k_1 < n$, $P(1)$ is true, which $x + \frac{1}{x}$ is an integer.
+    
+    From induction hypothesis, when $k_{n-1} = n-1,\ 1 \leq k_{n-1} < n$, $P(n-1)$ is true, which $x^{n-1} + \frac{1}{x^{n-1}}$ is an integer.
+
+    From induction hypothesis, when $k_{n-2} = n-2,\ 1 \leq k_{n-2} < n$, $P(n-2)$ is true, which $x^{n-2} + \frac{1}{x^{n-2}}$ is an integer.
+
+    Thus, we obtain that 
+    \begin{align*}
+        &(x+\frac{1}{x})\cdot (x^{n-1} + \frac{1}{x^{n-1}}) - (x^{n-2} + \frac{1}{x^{n-2}})\ \text{is an integer.} \\
+        =\ &x^n + \frac{1}{x^{n-2}} + x^{n-2} + \frac{1}{x^n} - x^{n-2} - \frac{1}{x^{n-2}} \\
+        =\ &x^n + \frac{1}{x^n} \ \text{is an integer}
+    \end{align*}
+
+    I've proved that $P(n)$ is true.
+
+    To conclude, I've proved that $x+\frac{1}{x}$ is an integer, then $x^n + \frac{1}{x^n} $ is an integer for each $n \in \mathbb{N}$.
+
+    $\quad \quad \quad \quad \quad \quad \quad \quad \quad \quad \quad \quad \quad \quad \quad \quad \quad \quad \quad \quad \quad \quad \quad \quad \quad \quad \quad \quad \quad \quad \quad \quad \quad \quad \quad \quad \quad \blacksquare $
 \end{enumerate}
+
+\newpage
+
+\section{Question 3}
+(a)
+\begin{figure*}[h]
+    \centering
+    \includegraphics[width = 1.0\textwidth]{tex_pic/q3_a.png}
+    \caption{Python function for Q3-a}
+\end{figure*}
+
+\noindent (b)
+\begin{figure*}[h]
+    \centering
+    \includegraphics[width = 1.0\textwidth]{tex_pic/q3_b.png}
+    \caption{Python function for Q3-b}
+\end{figure*}
+
+\begin{enumerate}[label=(\alph*)]
+\setcounter{enumi}{2}
+    \item When $n_0 = 2$, $n_0$ is the smallest natural $n_0$ so that $a_n$ is a multiple of 3 for each natural $ n \geq n_0$.
+    
+    Given statement to prove: $\forall n \in \mathbb{N},\ n \geq n_0,\ P(n)$, which $P(n):$ $a_n$ is a multiple of 3.
+
+    Let $n \in \mathbb{N}$.
+
+    \textbf{Proof:} We prove this by complete induction on n.
+
+    \textbf{Base Case:} Let $2 \leq n < 4$.
+    \begin{align*}
+        P(2):\ a_2 &= (a_{\lfloor \sqrt{2} \rfloor})^2 + 2 \cdot a_{\lfloor \sqrt{2} \rfloor} \\
+        &= a_1^2 + 2 \cdot a_1 = 1^2 + 2 = 3 \text{is a multiple of 3}.
+    \end{align*}
+    \begin{align*}
+        P(3):\ a_3 &= (a_{\lfloor \sqrt{3} \rfloor})^2 + 2 \cdot a_{\lfloor \sqrt{3} \rfloor} \\
+        &= a_1^2 + 2 \cdot a_1 = 1^2 + 2 = 3 \text{is a multiple of 3}.
+    \end{align*}
+
+    Thus, I've proved the base case is true.
+
+    \textbf{Induction Step:} Let $n \geq 4$.
+
+    \textbf{Induction Hypothesis:} Assume $\forall k,\ 2\leq k < n,\ P(k)$
+
+    Since $n \geq 4$, gives $\lfloor \sqrt{n} \rfloor < n$.
+
+    Since $\lfloor \sqrt{n} \rfloor < n$ and $4 \leq n$, gives $2 \leq \lfloor \sqrt{n} \rfloor$ as 2 is the smallest value of $\lfloor \sqrt{n} \rfloor$, which gives, $$2 \leq \lfloor \sqrt{n} \rfloor < n $$
+
+    Since $\lfloor \sqrt{n} \rfloor$ is an integer which $\lfloor \sqrt{n} \rfloor \geq 2$, from induction hypothesis, we can always find $k' = \lfloor \sqrt{n} \rfloor$, which $P(k')$ is true and $a_{k'} = 3p,\ p \in \mathbb{N}$.
+
+    Thus gives,
+    \begin{align*}
+        a_n &= (\lfloor \sqrt{n} \rfloor)^2 + 2\cdot a_{\lfloor \sqrt{n} \rfloor} \\
+        &= (a_{k'})^2 + s\cdot a_{k'} \\
+        &= (3p)^2 + 2 \cdot (3 \cdot p) \\
+        &= 9 \cdot p^2 + 6 \cdot p \\
+        &= 3 \cdot (3\cdot p^2 + 2p)
+    \end{align*}
+
+    Let $q=3\cdot p^2 + 2\cdot p$.
+    Since $p \in \mathbb{N}$, gives $q \in \mathbb{N}$, which $$a_n = 3q,\ q \in \mathbb{N}\ \text{, where $a_n$ is a multiple of 3.}$$
+    I've proved that $P(n)$ is true.
+
+    To conclude, I've proved when $n_0 = 2$, $n_0$ is the smallest natural $n_0$ so that $a_n$ is a multiple of 3 for each natural $ n \geq n_0$.
+
+    $\quad \quad \quad \quad \quad \quad \quad \quad \quad \quad \quad \quad \quad \quad \quad \quad \quad \quad \quad \quad \quad \quad \quad \quad \quad \quad \quad \quad \quad \quad \quad \quad \quad \quad \quad \quad \quad \blacksquare $
+\end{enumerate}
+
 
 \end{document}
