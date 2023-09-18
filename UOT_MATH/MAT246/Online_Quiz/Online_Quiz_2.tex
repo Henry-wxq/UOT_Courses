@@ -82,10 +82,10 @@ Since the original set contains k natural numbers, and I've added one more $(k+1
 
 \noindent \textbf{Assume for contradiction:} There are more than $(k+1)$ many natural numbers r such that $1 \leq r \leq (k+1)$.
 
-\noindent Saying there are p natural numbers between 1 and $(k+1)$, according to the assuption for contradiction, $m > (k+1)$. 
-Representing the the set of natural numbers between 1 and $(k+1)$ by using the index, gives: \{$x_1,\ x_2,\ x_3,\ ...,\ x_m$\}, such that $1 \leq x_1 < x_2 < ... < x_m \leq (k+1)$.
+\noindent Saying there are p natural numbers between 1 and $(k+1)$, according to the assuption for contradiction, $p > (k+1)$. 
+Representing the the set of natural numbers between 1 and $(k+1)$ by using the index, gives: \{$x_1,\ x_2,\ x_3,\ ...,\ x_p$\}, such that $1 \leq x_1 < x_2 < ... < x_p \leq (k+1)$.
 
-\noindent However, since all the numbers $x_i$ are distinct, there are m numbers and $m > (k+1)$, this means that at least one of the numbers must be greater than (k+1), which contradicts to the assumption for contradiction as we assume all the numbers in \{$x_1,\ x_2,\ x_3,\ ...,\ x_m$\} are between 1 and $(k+1)$.
+\noindent Since all the numbers $x_i$ in the set are distinct, there are p numbers in the set. However, since $p > (k+1)$, this means that at least one of the number $r=x_i$ in the set must be greater than (k+1), which contradicts to the assumption for contradiction as we assume all the numbers in \{$x_1,\ x_2,\ x_3,\ ...,\ x_p$\} are between 1 and $(k+1)$.
 
 \noindent Combining both proofs, we have shown that there are there are no less than $(k+1)$ many natural numbers r and there are no more than $(k+1)$ many natural numbers r such that $1 \leq r \leq (k+1)$, which there is exactly (k+1) many natural numbers r such that $1 \leq r \leq (k+1)$.
 
@@ -98,13 +98,12 @@ $\quad \quad \quad \quad \quad \quad \quad \quad \quad \quad \quad \quad \quad \
 We want to show that S contains all of the natural numbers.
 We do this by showing that S has properties A and B.
 
-\noindent For property A, we need to check that there is exactly one natural number r such that $1 \leq r \leq 1$.
+\noindent For property A, the base case, we need to check that there is exactly one natural number r such that $1 \leq r \leq 1$.
 It's apparent that, in this case, $r=1$, which there is exactly one natural number satisfying.
 
 \noindent To verify property B, let k be in S. We must show that $(k+1)$ is in S.
-To state the procedure more clearly, I'm expanding the sentence. 
-For a natural number k, assume there are exactly k many natural numbers r, such that $1 \leq r \leq k$.
-Show that there is exactly $(k+1)$ many natural numbers r such that $1 \leq r \leq (k+1)$.
+For a natural number k, assume there are exactly k many natural numbers r, such that $1 \leq r \leq k$, which is the Induction Hypothesis.
+Show that there is exactly $(k+1)$ many natural numbers r such that $1 \leq r \leq (k+1)$, which is the Induction Conclusion.
 
 \noindent We observed that for property B, we've already proved it in Question 2, which it's true.
 
