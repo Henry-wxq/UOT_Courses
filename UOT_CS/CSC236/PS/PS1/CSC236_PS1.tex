@@ -73,7 +73,9 @@
     \textbf{Proof:} We prove this by Simple Induction on n.
 
 
-    \textbf{Base Case:} Let $n = 1$.
+    \textbf{Base Case:} Let $0 \leq n \leq 1$.
+
+    Since $G_0$ is the set of $2^0 \times 2^0$ grid with on cell removed, which $G_0$ does not contain any grid, meaning there does not exist $g_0 \in G_0$, which the statement $\forall g_0 \in G_0,\ \exists t_0 \in T_0,\ t_0\ tiles\ g_0$ is vacuously True.
 
     Since $G_1$ is the set of all $2^1 \times 2^1$ grids with one cell removed, which by definition is a single triominoe.
     
@@ -111,7 +113,7 @@
 
 \noindent Secondly, at line 12, I write the calculation of $c_1$ because it will be used in both `if' statement at line 14 and `else' statement at line 21, avoiding redundancy.
 
-\noindent Thirdly, I implemented the based case when n equals to 1 and n equals to 2 according to the definition of $c_n$.
+\noindent Thirdly, I implemented the based case when n equals to 0 and n equals to 1 according to the definition of $c_n$.
 
 \noindent Fourthly, I implemented the recursion based on the discovery from hint.
 
@@ -133,34 +135,46 @@ Since we don't know whether n is an even number or an odd number, we need to add
 
 \noindent Finally, we can obtain the $c_n$ using the recursive function without use any loops, or any helper functions, nor call any exponentiation functions.
 
-    \item To state a recurrence for the sequence c, I will take $n=3$, which a natural number satisfying the precondition, and I will take $x = 2$, which is a non-zero real number.
+    \item To state a recurrence for the sequence c, I will start from $n=0$, which $c_0 = x^0 + \frac{1}{x^0} = 2$.
     
-    Firstly, it will calculate the $c_1$ which $c_1 = 2 + \frac{1}{2} = 2.5$.
-    
-    Then it will go directly into the `else' statement which will get into calculate $c_{n-1}$ calling the function $q_2$ recursively.
-    We put $n-1 = 2$ and $x=2$ into the function again which this time goes into the `elif' statement and return $c_2 = 4.25$.
-    Thus we get, in this case, $c_{n-1} = 4.25$.
-    Continuing, it will get into calculate $c_{n-2}$ calling the function recursively.
-    We put $n-2 = 1 $ and $x = 2$ into the function agiain which this time go into the `if' statement and return $c_1 = 2.5$
-    Thus we get, in this case, $c_{n-2} = 2.5$
+    Then I will goes to $n=1$, which $c_1 = x + \frac{1}{x}$.
 
-    Finally, the above values goes into our equation which gives:
+    Moreover, for $ n\geq 2$, from the hint, we have:
     \begin{align*}
-        c_n &= c_1 \cdot c_{n-1} - c_{n-2} \\
-        &= 2.5 \times 4.25 - 2.5 = 8.125
+        (x + \frac{1}{x}) \cdot (x^n + \frac{1}{x^n}) &= x^{n+1} + \frac{1}{x^{n-1}} + x^{n-1} + \frac{1}{x^{n+1}} \\
+        &= (x^{n+1} + \frac{1}{x^{n+1}}) + (x^{n-1} + \frac{1}{x^{n-1}})
     \end{align*}
+    \noindent According to the definition of $c_n$, gives:
+    \begin{align*}
+        c_1 \cdot c_n &= c_{n+1} + c_{n-1} \\
+        \implies c_{n+1} &= c_1 \cdot c_n - c_{n-1}
+    \end{align*}
+
+    Thus, we generalize the above equation into: $c_{n} = c_1 \cdot c_{n-1} - c_{n-2}$.
+
+    Therefore, we have:
+
+    $$c_n =  \left\{ \begin{array}{lcl}
+        2 & \mbox{for} & n = 0 \\
+        x + \frac{1}{x} & \mbox{for} & n=1 \\
+        c_1 \cdot c_{n-1} - c_{n-2} & \mbox{for} & n\geq2
+    \end{array}\right. $$
 
     \item If $x+\frac{1}{x}$ is an integer, then $x^n + \frac{1}{x^n} $ is an integer for each $n \in \mathbb{N}$
     
+    Assume $x+\frac{1}{x}$ is an integer.
+
     Given statement to prove: $\forall n \in \mathbb{N},\ P(n)$, which $P(n)$: $x^n + \frac{1}{x^n}$ is an integer where $x \in \mathbb{R} / \{0\}$
 
     \textbf{Proof:} We prove this by complete induction on n.
 
-    \textbf{Base Case:} Let $n = 1$
+    \textbf{Base Case:} Let $0 \leq n \leq 1$
 
-    By assumption, $ P(n) = x + \frac{1}{x}$ is an integer.
+    For $n=0$, we have $x^0 + \frac{1}{x^0} = 2$ is an integer, which P(0) is True.
 
-    We've proved that $P(1)$ is true.
+    By assumption, $x + \frac{1}{x}$ is an integer, which P(1) is True.
+
+    We've proved that $P(0)\ \&\ P(1)$ is true.
 
     \textbf{Induction Step:} Let $n > 1$
     
@@ -183,7 +197,7 @@ Since we don't know whether n is an even number or an odd number, we need to add
 
     I've proved that $P(n)$ is true.
 
-    To conclude, I've proved that $x+\frac{1}{x}$ is an integer, then $x^n + \frac{1}{x^n} $ is an integer for each $n \in \mathbb{N}$.
+    To conclude, I've proved that if $x+\frac{1}{x}$ is an integer, then $x^n + \frac{1}{x^n} $ is an integer for each $n \in \mathbb{N}$.
 
     $\quad \quad \quad \quad \quad \quad \quad \quad \quad \quad \quad \quad \quad \quad \quad \quad \quad \quad \quad \quad \quad \quad \quad \quad \quad \quad \quad \quad \quad \quad \quad \quad \quad \quad \quad \quad \quad \blacksquare $
 \end{enumerate}
@@ -240,7 +254,7 @@ Since we don't know whether n is an even number or an odd number, we need to add
     Thus gives,
     \begin{align*}
         a_n &= (\lfloor \sqrt{n} \rfloor)^2 + 2\cdot a_{\lfloor \sqrt{n} \rfloor} \\
-        &= (a_{k'})^2 + s\cdot a_{k'} \\
+        &= (a_{k'})^2 + 2\cdot a_{k'} \\
         &= (3p)^2 + 2 \cdot (3 \cdot p) \\
         &= 9 \cdot p^2 + 6 \cdot p \\
         &= 3 \cdot (3\cdot p^2 + 2p)

@@ -1,4 +1,4 @@
-This is XeTeX, Version 3.141592653-2.6-0.999995 (TeX Live 2023) (preloaded format=xelatex 2023.9.17)  18 SEP 2023 02:33
+This is XeTeX, Version 3.141592653-2.6-0.999995 (TeX Live 2023) (preloaded format=xelatex 2023.9.17)  19 SEP 2023 18:22
 entering extended mode
  restricted \write18 enabled.
  file:line:error style messages enabled.
@@ -292,9 +292,6 @@ Package fancyhdr Warning: \headheight is too small (12.0pt):
 (fancyhdr)                \addtolength{\topmargin}{-2.49998pt}.
 
 [1]
-File: tex_pic/q2.png Graphic file (type bmp)
-<tex_pic/q2.png>
-
 
 Package fancyhdr Warning: \headheight is too small (12.0pt): 
 (fancyhdr)                Make it at least 14.49998pt, for example:
@@ -303,6 +300,9 @@ Package fancyhdr Warning: \headheight is too small (12.0pt):
 (fancyhdr)                \addtolength{\topmargin}{-2.49998pt}.
 
 [2]
+File: tex_pic/q2.png Graphic file (type bmp)
+<tex_pic/q2.png>
+
 
 Package fancyhdr Warning: \headheight is too small (12.0pt): 
 (fancyhdr)                Make it at least 14.49998pt, for example:
@@ -319,6 +319,14 @@ Package fancyhdr Warning: \headheight is too small (12.0pt):
 (fancyhdr)                \addtolength{\topmargin}{-2.49998pt}.
 
 [4]
+
+Package fancyhdr Warning: \headheight is too small (12.0pt): 
+(fancyhdr)                Make it at least 14.49998pt, for example:
+(fancyhdr)                \setlength{\headheight}{14.49998pt}.
+(fancyhdr)                You might also make \topmargin smaller to compensate:
+(fancyhdr)                \addtolength{\topmargin}{-2.49998pt}.
+
+[5]
 File: tex_pic/q3_a.png Graphic file (type bmp)
 <tex_pic/q3_a.png>
 File: tex_pic/q3_b.png Graphic file (type bmp)
@@ -331,7 +339,7 @@ Package fancyhdr Warning: \headheight is too small (12.0pt):
 (fancyhdr)                You might also make \topmargin smaller to compensate:
 (fancyhdr)                \addtolength{\topmargin}{-2.49998pt}.
 
-[5]
+[6]
 
 Package fancyhdr Warning: \headheight is too small (12.0pt): 
 (fancyhdr)                Make it at least 14.49998pt, for example:
@@ -339,19 +347,19 @@ Package fancyhdr Warning: \headheight is too small (12.0pt):
 (fancyhdr)                You might also make \topmargin smaller to compensate:
 (fancyhdr)                \addtolength{\topmargin}{-2.49998pt}.
 
-[6] (./CSC236_PS1.aux)
+[7] (./CSC236_PS1.aux)
  ***********
 LaTeX2e <2023-06-01> patch level 1
 L3 programming layer <2023-08-29>
  ***********
  ) 
 Here is how much of TeX's memory you used:
- 4866 strings out of 475591
- 75366 string characters out of 5768554
- 1926432 words of memory out of 5000000
- 26141 multiletter control sequences out of 15000+600000
+ 4868 strings out of 475591
+ 75420 string characters out of 5768554
+ 1927432 words of memory out of 5000000
+ 26143 multiletter control sequences out of 15000+600000
  566712 words of font info for 78 fonts, out of 8000000 for 9000
  1348 hyphenation exceptions out of 8191
- 57i,12n,65p,273b,346s stack positions out of 10000i,1000n,20000p,200000b,200000s
+ 57i,12n,65p,289b,346s stack positions out of 10000i,1000n,20000p,200000b,200000s
 
-Output written on CSC236_PS1.pdf (8 pages).
+Output written on CSC236_PS1.pdf (9 pages).

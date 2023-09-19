@@ -4,17 +4,7 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="27011e25-df60-4331-be24-7eb2b599652e" name="Changes" comment="CSC236 PS1 Q2 Code Updated">
-      <change afterPath="$PROJECT_DIR$/tex_pic/q2.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/tex_pic/q2_2.png" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/CSC236_PS1.aux" beforeDir="false" afterPath="$PROJECT_DIR$/CSC236_PS1.aux" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/CSC236_PS1.log" beforeDir="false" afterPath="$PROJECT_DIR$/CSC236_PS1.log" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/CSC236_PS1.pdf" beforeDir="false" afterPath="$PROJECT_DIR$/CSC236_PS1.pdf" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/CSC236_PS1.synctex.gz" beforeDir="false" afterPath="$PROJECT_DIR$/CSC236_PS1.synctex.gz" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/CSC236_PS1.tex" beforeDir="false" afterPath="$PROJECT_DIR$/CSC236_PS1.tex" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/CSC236_PS1.toc" beforeDir="false" afterPath="$PROJECT_DIR$/CSC236_PS1.toc" afterDir="false" />
-    </list>
+    <list default="true" id="27011e25-df60-4331-be24-7eb2b599652e" name="Changes" comment="CSC236 PS1 Q2 Code Updated" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -94,7 +84,7 @@
       <option name="presentableId" value="Default" />
       <updated>1694981718873</updated>
       <workItem from="1694981721795" duration="2540000" />
-      <workItem from="1695002991585" duration="3227000" />
+      <workItem from="1695002991585" duration="3933000" />
     </task>
     <task id="LOCAL-00001" summary="CSC236 PS1 Q3 Code">
       <option name="closed" value="true" />
