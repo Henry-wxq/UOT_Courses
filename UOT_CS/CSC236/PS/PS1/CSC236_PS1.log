@@ -1,4 +1,4 @@
-This is XeTeX, Version 3.141592653-2.6-0.999995 (TeX Live 2023) (preloaded format=xelatex 2023.9.17)  19 SEP 2023 18:22
+This is XeTeX, Version 3.141592653-2.6-0.999995 (TeX Live 2023) (preloaded format=xelatex 2023.9.17)  19 SEP 2023 18:28
 entering extended mode
  restricted \write18 enabled.
  file:line:error style messages enabled.
@@ -300,8 +300,8 @@ Package fancyhdr Warning: \headheight is too small (12.0pt):
 (fancyhdr)                \addtolength{\topmargin}{-2.49998pt}.
 
 [2]
-File: tex_pic/q2.png Graphic file (type bmp)
-<tex_pic/q2.png>
+File: tex_pic/q2_3.png Graphic file (type bmp)
+<tex_pic/q2_3.png>
 
 
 Package fancyhdr Warning: \headheight is too small (12.0pt): 
@@ -355,8 +355,8 @@ L3 programming layer <2023-08-29>
  ) 
 Here is how much of TeX's memory you used:
  4868 strings out of 475591
- 75420 string characters out of 5768554
- 1927432 words of memory out of 5000000
+ 75438 string characters out of 5768554
+ 1926432 words of memory out of 5000000
  26143 multiletter control sequences out of 15000+600000
  566712 words of font info for 78 fonts, out of 8000000 for 9000
  1348 hyphenation exceptions out of 8191

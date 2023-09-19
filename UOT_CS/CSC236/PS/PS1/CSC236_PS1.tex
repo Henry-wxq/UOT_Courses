@@ -103,7 +103,7 @@
     \item
 \begin{figure*}[h]
     \centering
-    \includegraphics[width = 1.0\textwidth]{tex_pic/q2.png}
+    \includegraphics[width = 1.0\textwidth]{tex_pic/q2_3.png}
     \caption{Python function for Q2-a}
 \end{figure*}
 
@@ -111,7 +111,7 @@
 
 \noindent Firstly, I clearly stated the pre-conditions on x and n in a header comment, which $x \in \mathbb{R} / \{0\} $ and $n \in \mathbb{N}$.
 
-\noindent Secondly, at line 12, I write the calculation of $c_1$ because it will be used in both `if' statement at line 14 and `else' statement at line 21, avoiding redundancy.
+\noindent Secondly, at line 9, I write the calculation of $c_1$ because it will be used in both `elif' statement at line 14 and `else' statement at line 17, avoiding redundancy.
 
 \noindent Thirdly, I implemented the based case when n equals to 0 and n equals to 1 according to the definition of $c_n$.
 
@@ -127,11 +127,11 @@
     c_1 \cdot c_n &= c_{n+1} + c_{n-1} \\
     \implies c_{n+1} &= c_1 \cdot c_n - c_{n-1}
 \end{align*}
-\noindent Thus, we generalize the above equation into: $c_{n} = c_1 \cdot c_{n-1} - c_{n-2} $, which is the core of our recursive part, at line 31.
+\noindent Thus, we generalize the above equation into: $c_{n} = c_1 \cdot c_{n-1} - c_{n-2} $, which is the core of our recursive part, at line 27.
 
-\noindent Fifthly, aiming at returning the recursive value of $c_{n-1}$ after reaching the case when n eqials to 1, I write the code line 26.
+\noindent Fifthly, aiming at returning the recursive value of $c_{n-1}$ after reaching the case when n eqials to 1, I write the code line 22.
 Aiming at return the recursive value of $c_{n-2}$, I write the code at line 29.
-Since we don't know whether n is an even number or an odd number, we need to add both n equals to 1 and n equals to 2 to our base case at line 16 and at line 19.
+Since we don't know whether n is an even number or an odd number, we need to add both n equals to 0 and n equals to 1 to our base case at line 11 and at line 14.
 
 \noindent Finally, we can obtain the $c_n$ using the recursive function without use any loops, or any helper functions, nor call any exponentiation functions.
 
