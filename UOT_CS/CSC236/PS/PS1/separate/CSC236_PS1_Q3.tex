@@ -215,17 +215,37 @@
     \caption{Python function for Q3-a}
 \end{figure*}
 
+\noindent Firstly, I will import sqrt, floor from math module.
+
+\noindent Then, I write a comment to ensure it satisfies the pre-condition.
+
+\noindent Besides, I handled the case when $n=1$ in the `if' statement.
+
+\noindent Moreover, I handled $n \geq 2$ in the `else' statement, which floor(sqrt(n)) is a positive natural number less than n since $\lfloor \sqrt{n} \rfloor \leq \sqrt{n} < n$ as $n>1$
+
 \noindent (b)
 \begin{figure*}[h]
     \centering
-    \includegraphics[width = 1.0\textwidth]{../tex_pic/q3_b.png}
+    \includegraphics[width = 1.0\textwidth]{../tex_pic/q3_b_2.png}
     \caption{Python function for Q3-b}
 \end{figure*}
+
+\noindent Firstly, I will import sqrt, floor from math module.
+
+\noindent Then, I write a comment to ensure it satisfies the pre-condition.
+
+\noindent Besides, I handled the case when $n=1$ in the `if' statement, and raise NotImplementedError.
+
+\noindent Next, I handled the case when $n=2\ or\  n=3$ in the `elif' statement.
+
+\noindent Moreover, I handled the case when $n\geq 4$, which similar to question a that floor(sqrt(n)) is a positive natural number less than n since $\lfloor \sqrt{n} \rfloor \leq \sqrt{n} < n$ as $n>1$.
 
 \begin{enumerate}[label=(\alph*)]
 \setcounter{enumi}{2}
     \item When $n_0 = 2$, $n_0$ is the smallest natural $n_0$ so that $a_n$ is a multiple of 3 for each natural $ n \geq n_0$.
     
+    If $n_0 = 1$, $a_n=a_1=1$ which is not a multiple of 3.
+
     Given statement to prove: $\forall n \in \mathbb{N},\ n \geq n_0,\ P(n)$, which $P(n):$ $a_n$ is a multiple of 3.
 
     Let $n \in \mathbb{N}$.
@@ -244,7 +264,7 @@
 
     Thus, I've proved the base case is true.
 
-    \textbf{Induction Step:} Let $n \geq 4$.
+    \textbf{Induction Step:} Let $n \in \mathbb{N}$. Let $n \geq 4$.
 
     \textbf{Induction Hypothesis:} Assume $\forall k,\ 2\leq k < n,\ P(k)$
 

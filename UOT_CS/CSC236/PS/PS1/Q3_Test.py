@@ -25,7 +25,7 @@ def q3_b_func(n: int) -> int:
     """
     if n == 1:
         # By question requirement, when n is 1, raises an Exception.
-        raise Exception("Sorry, n must be greater than 1")
+        raise NotImplementedError
     elif n == 2 or n == 3:
         """Since when n equals to 2 or n equals to 3, the floor of square root of n is 1, and, in this function, we 
         don't have the value of a_n when n equals 1. Thus, we need to manually add the value of a_n when n equals to 2

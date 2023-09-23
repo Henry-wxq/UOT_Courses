@@ -1,4 +1,4 @@
-This is XeTeX, Version 3.141592653-2.6-0.999995 (TeX Live 2023) (preloaded format=xelatex 2023.9.17)  19 SEP 2023 18:47
+This is XeTeX, Version 3.141592653-2.6-0.999995 (TeX Live 2023) (preloaded format=xelatex 2023.9.17)  21 SEP 2023 13:48
 entering extended mode
  restricted \write18 enabled.
  file:line:error style messages enabled.
@@ -272,16 +272,17 @@ LaTeX Font Info:    ... okay on input line 38.
 \c@lstlisting=\count288
 File: ../tex_pic/q3_a.png Graphic file (type bmp)
 <../tex_pic/q3_a.png>
-File: ../tex_pic/q3_b.png Graphic file (type bmp)
-<../tex_pic/q3_b.png>
-LaTeX Font Info:    Trying to load font information for U+msa on input line 227.
+LaTeX Font Info:    Trying to load font information for U+msa on input line 222.
 (d:/Environment/Texlive/texlive/2023/texmf-dist/tex/latex/amsfonts/umsa.fd
 File: umsa.fd 2013/01/14 v3.01 AMS symbols A
 )
-LaTeX Font Info:    Trying to load font information for U+msb on input line 227.
+LaTeX Font Info:    Trying to load font information for U+msb on input line 222.
  (d:/Environment/Texlive/texlive/2023/texmf-dist/tex/latex/amsfonts/umsb.fd
 File: umsb.fd 2013/01/14 v3.01 AMS symbols B
 )
+File: ../tex_pic/q3_b_2.png Graphic file (type bmp)
+<../tex_pic/q3_b_2.png>
+
 
 Package fancyhdr Warning: \headheight is too small (12.0pt): 
 (fancyhdr)                Make it at least 14.49998pt, for example:
@@ -307,11 +308,11 @@ L3 programming layer <2023-08-29>
  ) 
 Here is how much of TeX's memory you used:
  4831 strings out of 475591
- 74810 string characters out of 5768554
- 1920432 words of memory out of 5000000
+ 74828 string characters out of 5768554
+ 1924432 words of memory out of 5000000
  26112 multiletter control sequences out of 15000+600000
  564097 words of font info for 65 fonts, out of 8000000 for 9000
  1348 hyphenation exceptions out of 8191
- 57i,12n,65p,276b,346s stack positions out of 10000i,1000n,20000p,200000b,200000s
+ 57i,11n,65p,276b,335s stack positions out of 10000i,1000n,20000p,200000b,200000s
 
 Output written on CSC236_PS1_Q3.pdf (2 pages).

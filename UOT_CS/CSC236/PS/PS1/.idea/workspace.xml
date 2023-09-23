@@ -5,8 +5,20 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="27011e25-df60-4331-be24-7eb2b599652e" name="Changes" comment="CSC236 PS1 Q2 Code Updated">
-      <change afterPath="$PROJECT_DIR$/tex_pic/q2_3.png" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/.name" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.name" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Q3_Test.py" beforeDir="false" afterPath="$PROJECT_DIR$/Q3_Test.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/separate/CSC236_PS1_Q1.log" beforeDir="false" afterPath="$PROJECT_DIR$/separate/CSC236_PS1_Q1.log" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/separate/CSC236_PS1_Q1.pdf" beforeDir="false" afterPath="$PROJECT_DIR$/separate/CSC236_PS1_Q1.pdf" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/separate/CSC236_PS1_Q1.synctex.gz" beforeDir="false" afterPath="$PROJECT_DIR$/separate/CSC236_PS1_Q1.synctex.gz" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/separate/CSC236_PS1_Q1.tex" beforeDir="false" afterPath="$PROJECT_DIR$/separate/CSC236_PS1_Q1.tex" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/separate/CSC236_PS1_Q2.log" beforeDir="false" afterPath="$PROJECT_DIR$/separate/CSC236_PS1_Q2.log" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/separate/CSC236_PS1_Q2.pdf" beforeDir="false" afterPath="$PROJECT_DIR$/separate/CSC236_PS1_Q2.pdf" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/separate/CSC236_PS1_Q2.synctex.gz" beforeDir="false" afterPath="$PROJECT_DIR$/separate/CSC236_PS1_Q2.synctex.gz" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/separate/CSC236_PS1_Q2.tex" beforeDir="false" afterPath="$PROJECT_DIR$/separate/CSC236_PS1_Q2.tex" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/separate/CSC236_PS1_Q3.log" beforeDir="false" afterPath="$PROJECT_DIR$/separate/CSC236_PS1_Q3.log" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/separate/CSC236_PS1_Q3.pdf" beforeDir="false" afterPath="$PROJECT_DIR$/separate/CSC236_PS1_Q3.pdf" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/separate/CSC236_PS1_Q3.synctex.gz" beforeDir="false" afterPath="$PROJECT_DIR$/separate/CSC236_PS1_Q3.synctex.gz" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/separate/CSC236_PS1_Q3.tex" beforeDir="false" afterPath="$PROJECT_DIR$/separate/CSC236_PS1_Q3.tex" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -89,6 +101,7 @@
       <workItem from="1694981721795" duration="2540000" />
       <workItem from="1695002991585" duration="3933000" />
       <workItem from="1695162170717" duration="236000" />
+      <workItem from="1695318235541" duration="82000" />
     </task>
     <task id="LOCAL-00001" summary="CSC236 PS1 Q3 Code">
       <option name="closed" value="true" />

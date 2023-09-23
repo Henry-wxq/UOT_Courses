@@ -14,7 +14,6 @@
 \usepackage{listings}
 \fancyhf{}
 
-
 \geometry{a4paper}
 \geometry{left = 2cm}
 \geometry{right = 2cm}
@@ -50,13 +49,13 @@
 \section{Question 1}
 \begin{enumerate}[label=(\alph*)]
     \item According to the definition of P:
-    $$\forall g_1 \in G_1,\ \exists t_1 \in T_1,\ t_1\ tiles\ g_1 \implies \forall g_2 \in G_2,\ \exists t_2 \in T_2,\ t_2\ tiles\ g_2 $$
+    $$(\forall g \in G_1,\ \exists t \in T_1,\ t\ tiles\ g) \implies (\forall g \in G_2,\ \exists t \in T_2,\ t\ tiles\ g) $$
 
     \item 
-    Firstly, assume $$\forall g_1 \in G_1,\ \exists t_1 \in T_1,\ t_1\ tiles\ g\text{, which is the antecedent.}$$
+    Firstly, assume $$\forall g_1 \in G_1,\ \exists t_1 \in T_1,\ t_1\ tiles\ g_1\text{, which is the antecedent.}$$
     
-    Secondly, I will do the consequent part, which: $$Let\ g_2\ be\ an\ arbitrary\ element\ from\ G_2$$ 
-    Then, I want to prove that $$\exists t_2 \in T_2,\ t_2\ tiles\ g_2$$ \quad \quad \quad \quad \quad \quad \quad by selecting a satisfying element $t_2$ from $T_2$ 
+    Secondly, I will do the consequent part, which: $$Let\ g_2 \in G_2.\ Let\ t_2 = \text{[a tiling that satisfies the condition]}$$ 
+    Then, I want to prove that $$t_2 \in T_2\ and\ t_2\ tiles\ g_2$$ \quad \quad \quad \quad \quad \quad \quad by selecting a satisfying element $t_2$ from $T_2$ 
     and prove the element $t_2$ satisfies $t_2\ tiles\ g_2$.
 
     \item The diagram above illustrates one instance of $G_2$ grids, which being tiled by triominoes.
@@ -68,30 +67,37 @@
 
     Therefore, the diagram above illustrates an instance of that direct proof.
 
-    \item Given the statement to prove: $\forall n \in \mathbb{N},\ P(n)$, which for each natural n you can tile any $2^n \times 2^n$ grid with one cell missing using only triominoes.
+    \item Given the statement to prove: $\forall n \in \mathbb{N},\ P(n)$, which any $2^n \times 2^n$ grid with one cell missing can be tiled using only triominoes.
     
     \textbf{Proof:} We prove this by Simple Induction on n.
 
 
     \textbf{Base Case:} Let $0 \leq n \leq 1$.
 
-    Since $G_0$ is the set of $2^0 \times 2^0$ grid with on cell removed, which $G_0$ does not contain any grid, meaning there does not exist $g_0 \in G_0$, which the statement $\forall g_0 \in G_0,\ \exists t_0 \in T_0,\ t_0\ tiles\ g_0$ is vacuously True.
+    When $n=0$,
+    since $G_0$ is the set of $2^0 \times 2^0$ grid with one cell removed, which $G_0$ does not contain any grid.
+    This is actually an edge case, which $g \in G_0$ is empty, so g can definitely be tiled by a $t \in T_0$, which is empty as well.
+    $P(0)$ is True.
 
-    Since $G_1$ is the set of all $2^1 \times 2^1$ grids with one cell removed, which by definition is a single triominoe.
+    When $n=1$,
+    since $G_1$ is the set of all $2^1 \times 2^1$ grids with one cell removed, which by definition is a single triominoe.
+    $P(1)$ is True.
+
+    I've shown the base case is true.
+
+    \textbf{Induction Step:} Let $n \in \mathbb{N}$.
     
-    Therefore, $\forall g_1 \in G_1,\ \exists t_1 \in T_1,\ t_1\ tiles\ g_1$ is true, which P(1) is true.
+    \textbf{Induction Hypothesis:} Assume that $P(n)$ is true.
 
-    \textbf{Induction Step:} Let $k \in \mathbb{N}$.
+    Since $g_{n+1} \in G_{n+1}$ is a $2^{n+1} \times 2^{n+1}$ grid with one cell missing, I will siplit it into four $2^n \times 2^n$ quadrants.
     
-    \textbf{Induction Hypothesis:} Assume that $P(k)$ is true.
+    By Induction Hypothesis, we know that $P(n)$ is true, which $\forall g_n \in G_n,\ \exists t_n \in T_n,\ t_n\ tiles\ g_n $ is true.
+    I will take 3 different $g_n$s, the first with right button corner square missing, the second with right top corner square missing, and the third with left top corner square missing.
+    I will make the missing corners in these 3 $g_n$s face inwards and add a triomino which will result in getting a `L' shape.
+    The remaining $\frac{1}{4}$ place is missing a cell to form a $g_{n+1}$, which can actually be an arbitraty element from $G_n$.
+    By Induction Hypothesis, since $\forall g_n \in G_n,\ \exists t_n \in T_n,\ t_n\ tiles\ g_n $ is true, the remaining $G_n$ place can be covered by trimonoes, proving the $P(n+1)$ is true.
 
-    By Induction Hypothesis, we know that $P(k)$ is true, which $\forall g_k \in G_k,\ \exists t_k \in T_k,\ t_k\ tiles\ g_k $ is true.
-    I will take 3 different $g_k$s, the first with right button corner square missing, the second with right top corner square missing, and the third with left top corner square missing.
-    I will make the missing corners in these 3 $g_k$s face inwards and add a triomino which will result in getting a `L' shape.
-    The remaining $\frac{1}{4}$ place is missing a cell to form a $g_{k+1}$, which can actually be an arbitraty element from $G_k$.
-    By Induction Hypothesis, since $\forall g_k \in G_k,\ \exists t_k \in T_k,\ t_k\ tiles\ g_k $ is true, the remaining $G_k$ place can be covered by trimonoes, proving the $P(k+1)$ is true.
-
-    Therefore, we've proved $\forall n \in \mathbb{N},\ P(n)$ is true. 
+    Therefore, we've proved $\forall n \in \mathbb{N},\ P(n)$ is true.
 
     $\quad \quad \quad \quad \quad \quad \quad \quad \quad \quad \quad \quad \quad \quad \quad \quad \quad \quad \quad \quad \quad \quad \quad \quad \quad \quad \quad \quad \quad \quad \quad \quad \quad \quad \quad \quad \quad \blacksquare $
 \end{enumerate}
