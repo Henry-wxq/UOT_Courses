@@ -31,11 +31,8 @@ public class BST<T extends Comparable<T>> {
     }
 
 
-    // TODO Task 2: Implement the BST methods.
-
     public boolean isEmpty() {
-        // TODO implement me!
-        return false;
+        return root == null;
     }
 
     public boolean contains(T item) {
@@ -53,42 +50,114 @@ public class BST<T extends Comparable<T>> {
 
 
     public void insert(T item) {
-        // TODO implement me!
+        if (isEmpty()) {
+            root = item;
+            left = new BST<>();
+            right = new BST<>();
+        } else {
+            // Different from Chloe
+            (item.compareTo(this.root) <= 0 ? left : right).insert(item);
+        }
     }
 
 
     public void delete(T item) {
-        // TODO implement me!
+        // Different from Chloe
+        if (!isEmpty()) {
+            if (item.equals(root)) {
+                deleteRoot();
+            } else if (item.compareTo(root) <= 0) {
+                left.delete(item);
+            } else {
+                right.delete(item);
+            }
+        }
     }
 
     private void deleteRoot() {
-        // TODO implement me!
+        if (left.isEmpty() && left.isEmpty()) {
+            root = null;
+            left = null;
+            right = null;
+        } else if (left.isEmpty()) {
+            this.cRightTree();
+        } else {
+            root = left.extractMax();
+        }
     }
 
+    private void cRightTree() {
+        root = right.root;
+        left = right.left;
+        right = right.right;
+    }
 
     private T extractMax() {
-        // TODO implement me!
-        return this.root; // dummy code; replace with correct code when you implement this.
+        if (right.isEmpty()) {
+            T max_item = root;
+            root = left.root;
+            right = left.right;
+            left = left.left;
+            return max_item;
+        } else {
+            return right.extractMax();
+        }
     }
 
     public int height() {
-        // TODO implement me!
-        return 0;
+        if (isEmpty()) {
+            return 0;
+        } else {
+            return Math.max(left.height(), right.height()) + 1;
+        }
     }
 
     public int count(T item) {
-        // TODO implement me!
-        return 0;
+        if (isEmpty()) {
+            return 0;
+        } else {
+            int comparison = item.compareTo(root);
+            if (comparison < 0) {
+                return left.count(item);
+            } else if (comparison == 0) {
+                return 1 + left.count(item) + right.count(item);
+            } else { // comparison > 0
+                return right.count(item);
+            }
+        }
     }
 
+
     public int getLength() {
-        // TODO implement me!
-        return 0;
+        if (isEmpty()){
+            return 0;
+        }
+        return 1 + left.getLength() + right.getLength();
     }
 
     public static void main(String[] args) {
-        // TODO you can write any code you want here and run this file to confirm that
-        //      your code is working as it should. We will not run this when testing your code.
+        // Create a new BST with an initial root node
+        BST<Integer> bst = new BST<>(5);
+
+        // Insert some elements into the BST
+        bst.insert(3);
+        bst.insert(7);
+        bst.insert(2);
+        bst.insert(4);
+        bst.insert(6);
+        bst.insert(8);
+
+        // Test various BST operations
+        System.out.println("Contains 4: " + bst.contains(4)); // Should print true
+        System.out.println("Contains 9: " + bst.contains(9)); // Should print false
+
+        System.out.println("BST height: " + bst.height()); // Should print the height of the tree
+
+        System.out.println("Count of 5: " + bst.count(5)); // Should print 1
+        System.out.println("Count of 7: " + bst.count(7)); // Should print 1
+        System.out.println("Count of 9: " + bst.count(9)); // Should print 0
+
+        System.out.println("BST Length: " + bst.getLength()); // Should print the number of nodes in the tree
     }
 
 }
