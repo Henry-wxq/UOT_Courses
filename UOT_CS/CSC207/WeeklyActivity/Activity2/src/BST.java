@@ -37,14 +37,14 @@ public class BST<T extends Comparable<T>> {
 
     public boolean contains(T item) {
         // provided
-        if (this.isEmpty()) {
+        if (isEmpty()) {
             return false;
-        } else if (item.equals(this.root)) { // we need to use .equals and not == to properly compare values
+        } else if (item.equals(root)) { // we need to use .equals and not == to properly compare values
             return true;
-        } else if (item.compareTo(this.root) < 0) {
-            return this.left.contains(item);
+        } else if (item.compareTo(root) < 0) {
+            return left.contains(item);
         }
-        return this.right.contains(item);
+        return right.contains(item);
 
     }
 
@@ -54,23 +54,22 @@ public class BST<T extends Comparable<T>> {
             root = item;
             left = new BST<>();
             right = new BST<>();
+        } else if (item.compareTo(root) <= 0) {
+            left.insert(item);
         } else {
-            // Different from Chloe
-            (item.compareTo(this.root) <= 0 ? left : right).insert(item);
+            right.insert(item);
         }
     }
 
 
     public void delete(T item) {
-        // Different from Chloe
-        if (!isEmpty()) {
-            if (item.equals(root)) {
-                deleteRoot();
-            } else if (item.compareTo(root) <= 0) {
-                left.delete(item);
-            } else {
-                right.delete(item);
-            }
+        if (this.isEmpty()) {}
+        else if (item.equals(root)) {
+            deleteRoot();
+        } else if (item.compareTo(root) <= 0) {
+            left.delete(item);
+        } else {
+            right.delete(item);
         }
     }
 
@@ -80,17 +79,14 @@ public class BST<T extends Comparable<T>> {
             left = null;
             right = null;
         } else if (left.isEmpty()) {
-            this.cRightTree();
+            root = right.root;
+            left = right.left;
+            right = right.right;
         } else {
             root = left.extractMax();
         }
     }
 
-    private void cRightTree() {
-        root = right.root;
-        left = right.left;
-        right = right.right;
-    }
 
     private T extractMax() {
         if (right.isEmpty()) {
@@ -115,16 +111,12 @@ public class BST<T extends Comparable<T>> {
     public int count(T item) {
         if (isEmpty()) {
             return 0;
-        } else {
-            int comparison = item.compareTo(root);
-            if (comparison < 0) {
+        } else if (item.compareTo(root) < 0) {
                 return left.count(item);
-            } else if (comparison == 0) {
-                return 1 + left.count(item) + right.count(item);
-            } else { // comparison > 0
-                return right.count(item);
-            }
+        } else if (item.compareTo(root) == 0) {
+            return 1 + left.count(item) + right.count(item);
         }
+        return right.count(item);
     }
 
 
