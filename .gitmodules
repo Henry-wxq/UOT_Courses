@@ -1,6 +1,3 @@
 [submodule "UOT_CS/CSC207/weixuanq"]
 	path = UOT_CS/CSC207/weixuanq
 	url = https://markus.teach.cs.toronto.edu/git/2023-09/csc207/weixuanq
-[submodule "UOT_CS/CSC207/Lab/Lab3/grade-api"]
-	path = UOT_CS/CSC207/Lab/Lab3/grade-api
-	url = https://github.com/CSC207-2023F-UofT/grade-api.git
