@@ -81,12 +81,14 @@ def win(n: int, m: int) -> str:
     """
     # Use the strategy developed for player 1 get the return list as lst1
     lst1 = p1_win_strategy(n, m)
+    print(f"Player 1 took {n - lst1[0]} pebbles from pile 1 and took {m - lst1[1]} pebbles from pile 2.")
     # Check whether the number of pebbles in both piles is 0, if it's not, then continue the game
     if lst1[0] != 0 or lst1[1] != 0:
         # Use the random function developed for player 2 to continue the game, ge tthe return list as lst2
         # The input of the function will use the updated pebbles in both piles after implementing the strategy
         # developed for player1, which is the list lst1
         lst2 = p2_move_strategy(lst1[0], lst1[1])
+        print(f"Player 2 took {n - lst2[0]} pebbles from pile 1 and took {lst1[1] - lst2[1]} pebbles from pile 2.")
         # Check whether the number of pebbles in both piles is 0, if it's not, then continue the game
         if lst2[0] != 0 or lst2[1] != 0:
             # Call the functino recursively and once both piles' pebbles become 0, the function will return the string
@@ -102,5 +104,5 @@ def win(n: int, m: int) -> str:
 
 
 if __name__ == '__main__':
-    a = win(3, 10)
+    a = win(3, 8)
     print(a)
