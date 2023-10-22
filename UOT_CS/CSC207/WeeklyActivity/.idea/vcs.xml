@@ -2,5 +2,7 @@
 <project version="4">
   <component name="VcsDirectoryMappings">
     <mapping directory="$PROJECT_DIR$/../../.." vcs="Git" />
+    <mapping directory="$PROJECT_DIR$/Activity4/LoginCleanArchitecture" vcs="Git" />
+    <mapping directory="$PROJECT_DIR$/Activity5&amp;6/CACoding" vcs="Git" />
   </component>
 </project>
