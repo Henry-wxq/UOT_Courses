@@ -1,5 +1,5 @@
 # UOT_Courses
-University of Toronto Course Notes
+University of Toronto Course Notes Folder Instruction
 
 ## First Year
 ### 2022-Fall
