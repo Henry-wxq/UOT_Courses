@@ -1,0 +1,610 @@
+\documentclass[12pt]{article}
+
+% \usepackage[utf8]{inputenc}
+% \usepackage[english]{babel}
+
+% \setlength{\headheight}{14.49998pt}
+
+\usepackage{enumerate}
+\usepackage{graphicx}
+\usepackage{geometry}
+\usepackage{float}
+\usepackage{appendix}
+\usepackage{color}
+\usepackage{amsmath}
+\usepackage{pifont}
+\usepackage{fancyhdr}
+\usepackage{enumitem}
+\usepackage{amssymb}
+\usepackage{authblk}
+\usepackage{hyperref}
+\usepackage{subcaption}
+\usepackage{verbatim}
+\usepackage{caption}
+\usepackage{booktabs}
+\usepackage{adjustbox}
+\usepackage{xcolor}
+\usepackage{threeparttable}
+
+\allowdisplaybreaks
+
+% Ensure the citation resources is in BibTeX format and the file name is citation.bib under the same directory.
+%\usepackage[style=apa]{biblatex}
+
+%\addbibresource{citation.bib}
+
+% Used to change the section number specifically
+% \newcommand{\mysection}[2]{\setcounter{section}{#1}\addtocounter{section}{-1}\section{Question #1}}
+% \mysection{2}{Question 2}
+
+\fancyhf{}
+
+\geometry{a4paper}
+\geometry{left = 2cm}
+\geometry{right = 2cm}
+\geometry{top = 3cm}
+\geometry{bottom = 3cm}
+
+\pagestyle{fancy}
+\lhead{2025 Summer}
+\rhead{APM462 Final Project}
+\cfoot{\thepage}
+
+\title{APM462 Final Project \\
+\begin{large} 
+  2025 Summer
+\end{large} 
+}
+
+\author{Xuanqi Wei}
+
+\date{\today}
+
+\begin{document}
+
+
+\maketitle
+\thispagestyle{empty}
+
+\newpage
+
+\tableofcontents
+\thispagestyle{empty}
+
+\newpage
+
+\setcounter{page}{1}
+
+\section{Final Project - HW1}
+
+\newpage
+
+\section{Final Project - HW2}
+
+\newpage
+
+\section{Final Project - HW3}
+\textbf{(a) WTS: $r_t$ is a convex function.}
+
+\ From the question, we have, $r_t = f(x)+t\max_{i=1,\dots,m}\{(g_i(x))_-\}$.  For $f(x)$, according to the question, it is convex.
+
+\ \quad  \textbf{WTS: $\displaystyle t\max_{i=1,\dots,m}\{(g_i(x))_-\}$ is convex.}
+
+\ \quad From the question, we have, 
+\begin{align*}
+	t\max_{i=1,\dots,m}\{(g_i(x))_-\} &= t\max_{i=1,\dots,m}\{(g_i(x))_-\} \\
+	&= t\max_{i=1,\dots,m}\bigl\{-\min \{g_i(x), 0 \}\bigr\} \\
+	&= t\max\bigl\{\max_{i}\{-g_i(x)\}, 0\bigr\}
+\end{align*}
+
+\quad \qquad \textbf{WTS: $\max_{i}\{-g_i(x)\}$ is convex.}
+
+\quad \qquad Let $x,y \in \mathbb{R}^n$ and $t \in [0,1]$. 
+
+\quad \qquad From the question, $g_i$ is concave for $i=1,\dots,m$, gives each $-g_i$ is convex\footnote{May $8^{th}$ Lecture Slides.}.
+
+\quad \qquad From the definition of convexity, for $i=1,\dots,m$, we have,
+$$
+-g_i\bigl((1-t)x+t y\bigr) \le (1-t)(-g_i(x)) + t(-g_i(y))
+$$
+
+\quad \qquad Since $\max_i(a_i+b_i)\le \max_i a_i+\max_i b_i$, I'll then take the max over $i$ on the both 
+
+\quad \qquad sides, 
+gives,
+\begin{align*}
+	\max_{i}\bigl\{-g_i\bigl((1-t)x+t y\bigr)\bigr\} &\le \max_i\bigl\{(1-t)(-g_i(x))+t(-g_i(y))\bigr\} \\
+	&\le (1-t)\max_i\{-g_i(x)\} + t\max_i\{-g_i(y)\}
+\end{align*}
+
+\quad \qquad Thus, $\max_{i}\{-g_i(x)\}$ is convex.
+
+\quad Since $\max\bigl\{\max_{i}\{-g_i(x)\}, 0\bigr\}$ is the pointwise maximum of two convex functions, it is also 
+
+\quad convex.
+
+\quad Since $t>0$, from the textbook\footnote{Linear and Nonlinear Programming by Luenberger and Ye ($5^{th}$ edition). The propostition states that: Let $f$ be a convex function on the convex set $\Omega$. Then the function $a f$ is convex for any $a \ge 0$.}, 7.4 proposition 2, multiplying by $t>0$ preserves 
+
+\quad convexity, gives, $t\max\bigl\{\max_{i}\{-g_i(x)\}, 0\bigr\}$ is convex. 
+
+\quad Thus, we have, 
+$
+t\max\bigl\{\max_{i}\{-g_i(x)\}, 0\bigr\}= t\max_{i=1,\dots,m}\{(g_i(x))_-\}
+$
+is convex.
+
+Therefore, since $f(x)$ and $t\max_{i=1,\dots,m}\{(g_i(x))_-\}$ are both convex, from the textbook\footnote{Linear and Nonlinear Programming by Luenberger and Ye ($5^{th}$ edition). The proposition states that: Let $f_1$ and $f_2$ be convex functions on the convex set $\Omega$. Then the function $f_1+f_2$ is convex on $\Omega$.}, 7.4 proposition 1, $r_t(x)=f(x)+t\max_{i}\{(g_i(x))_-\}$ is convex as needed. 
+
+\hfill $\blacksquare$
+
+\vspace{10pt}
+\noindent
+\textbf{(b)} 
+I'll firstly find the dual function for (1), which, 
+\begin{align*}
+	\phi_1(\mu) &= \inf_{x\in\mathbb R^n}\ \mathcal L(x,\mu) \\
+	&= \inf_{x\in\mathbb R^n}\bigl\{f(x)\;-\;\mu^\top g(x)\bigr\} \\
+	&= \inf_{x\in\mathbb R^n}\bigl\{f(x)-\sum_{i=1}^m \mu_i g_i(x)\bigr\}
+\end{align*}
+
+Given (3) from the question, we have, 
+\begin{align*}
+		\min\ &f(x)+ty \\
+		\text{s.t.}\ &g_i(x) + y\geq 0 \quad i=1,\dots,m\\
+		&(x,y)\in\Omega=\mathbb{R}^n\times\mathbb{R}_{\geq 0}
+\end{align*}
+
+Thus, I'll introduce the lagrange multiplier $\mu = (\mu_1, ..., \mu_m) \in \mathbb{R}_+^m$ for the constraint $g_i(x) + y\geq 0$.
+
+I'll then find the dual function for (3), where $\mu\in\mathbb R_+^m$, which is given by, 
+\begin{align*}
+	\phi_3(\mu)&=\inf_{x\in\mathbb R^n,\ y\ge 0}\mathcal L(x,y,\mu) \\
+	&= \inf_{x\in\mathbb R^n,\ y\ge 0} \bigl\{f(x)+t y-\mu^\top\!\bigl(g(x)+y\mathbf 1\bigr) \bigr\} \\
+	&= \inf_{x\in\mathbb R^n,\ y\ge 0} \bigl\{\bigl(f(x)-\mu^\top g(x)\bigr)+y(t-\mathbf 1^\top\mu) \bigr\} \\
+	&= \inf_{x\in\mathbb R^n}\bigl\{f(x)-\sum_{i=1}^m \mu_i g_i(x)\bigr\} + \inf_{y\ge 0}\bigl\{y\bigl(t-\sum_{i=1}^m \mu_i\bigr)\bigr\} \\
+	&= \phi_1(\mu) + \inf_{y\ge 0}\bigl\{y\bigl(t-\sum_{i=1}^m \mu_i\bigr)\bigr\}
+\end{align*}
+
+I'll then discuss the two cases for $y\bigl(t-\sum_{i=1}^m \mu_i\bigr)$ minimizing over $y\ge 0$, which is the function of $y$ on the half-line $[0,\infty)$ with slope $t-\sum_{i=1}^m \mu_i$, gives
+\begin{itemize}
+	\item $t-\sum_{i=1}^m \mu_i \ge 0$: The function is nondecreasing on $[0,\infty)$, so the minimum over $y\ge 0$ is attained at the boundary $y=0$. Thus, we have $\inf_{y\ge 0} y\Bigl(t-\sum_{i=1}^m \mu_i\Bigr)=0$.
+	\item $t-\sum_{i=1}^m \mu_i <0$: The function is strictly decreasing on $[0,\infty)$, so as $y\to+\infty$ we have $y\bigl(t-\sum_{i=1}^m \mu_i\bigr)\to -\infty$. Thus, we have $\inf_{y\ge 0} y\Bigl(t-\sum_{i=1}^m \mu_i\Bigr)=-\infty$.
+\end{itemize}
+
+Thus, we have, 
+\begin{align*}
+	\phi_3(\mu)&=\phi_1(\mu) + \inf_{y\ge 0}\bigl\{y\bigl(t-\sum_{i=1}^m \mu_i\bigr)\bigr\} \\
+	&= \begin{cases}
+			\phi_1(\mu), & t-\sum_{i=1}^m \mu_i \ge 0\\
+			-\infty, & t-\sum_{i=1}^m \mu_i <0
+		\end{cases} \\
+%	&= \begin{cases}
+%			\displaystyle \inf_{x\in\mathbb R^n}\Bigl(f(x)-\sum_{i=1}^m \mu_i g_i(x)\Bigr), & t-\sum_{i=1}^m \mu_i \ge 0\\[1ex]
+%			-\infty,& t-\sum_{i=1}^m \mu_i <0
+%		\end{cases}
+\end{align*}
+
+\vspace{10pt}
+\noindent
+\textbf{(c)} Assume $t>\bar\mu_1+\bar\mu_2+\dots+\bar\mu_m$, i.e., $t > \sum_{i=1}^m \bar \mu_i$. (still need to check the last part, whether it's different from the first time generation answer of GPT)
+
+\textbf{WTS: Any minimizer of (2) is also a minimizer of (1).} 
+
+I'll firstly investigate the minimizer relationship between (2) and (3).
+
+From the constraint, for all $i=1, ..., m$, we have,
+\begin{align*}
+	g_i(x) \geq -y &\implies  -y \le g_i(x) \\
+	&\implies -y\le \min_{i} g_i(x) \\
+	&\implies y\ge -\min_{i} g_i(x) \\
+	&\implies y\ge \max_{i}\{-g_i(x)\}
+\end{align*}
+
+From the question and from (a), we have $y \in \mathbb{R}_{\geq0}$, gives, 
+$$y\ge \max_{i}\{-g_i(x)\} \implies y\ge \max\bigl\{\max_{i}\{-g_i(x)\},0\bigr\} \implies y\ge \displaystyle \max_{i=1,\dots,m}\{(g_i(x))_-\}$$
+
+Thus, for fixed $x$, the least $y \ge 0$ satisfying $g_i(x)\ge -y$ for all $i$ is taking the equality, i.e.,
+$$
+y^*(x)=\max\Bigl\{0,\ \max_i\{-g_i(x)\}\Bigr\}=\max_i\{(g_i(x))_-\}
+$$
+
+Thus, substitute $y = y^* = \max_i\{(g_i(x))_-\}$, gives, 
+\begin{align*}
+	\min_{y\ge0,\ g_i(x)\ge -y,\ x\in \mathbb{R}^n}f(x)+ty &= \min_{x\in \mathbb{R}^n}f(x)+t\, y^*(x) \\
+	&= \min_{x\in \mathbb{R}^n}f(x)+t \max_i\{(g_i(x))_-\} \\
+	&= \min_{x\in \mathbb{R}^n} r_t(x)
+\end{align*}
+
+Thus, as shown above, taking minimum to x gives (2) and (3) have the same optimal value, which minimizer $x^\star$ of (2) corresponds to $(x^\star,y^\star)$ with $y^\star=y^*(x^*) = \max_{i}\{(g_i(x))_-\}$ minimizing (3), gives,
+\begin{equation}\tag{1}
+	r_{t_0} = r_t(x^*) = \{f(x)+ty\}_0 = f(x^*)+ty^*(x^*) = \phi_{3_0} = \phi_3(\bar \mu)
+\end{equation}
+
+Let $\bar x$ be the minimizer of (1).
+
+Since the question has already assume that, for (1), the strong duality theorem holds and that the maximum in the dual problem is attained at $\bar\mu=(\bar\mu_1,\dots,\bar\mu_m)$, from the lecture slides\footnote{June $5^{th}$ Lecture Slides}, we have, 
+\begin{equation}\tag{2}
+f_0=\min_{x,\, g_i(x)\ge 0} f(x)=f(\bar x)=\phi_{1_0}=\sup_{\mu\ge0}\,\phi_1(\mu)=\phi_1(\bar\mu)
+\end{equation}
+
+From (b), we have, the dual of (3) is exactly the dual function of (1) with $\mu \geq 0$ and $t-\sum_{i=1}^m \mu_i \ge 0 = t \ge \sum_{i=1}^m \mu_i$, i.e., 
+\begin{equation}\tag{3}
+\phi_1(\bar \mu) = \phi_3(\bar \mu)
+\end{equation}
+
+Thus, from equation 1, 2, and 3, under $t \ge \sum_{i=1}^m \mu_i$, we have, 
+$$\begin{cases}
+	r_t(x^*) = \phi_3(\bar \mu)\\
+	f(\bar x) = \phi_1(\bar\mu) \\
+	\phi_1(\bar \mu) = \phi_3(\bar \mu)
+\end{cases} \implies r_t(x^*) = f(\bar x)$$
+which the minimum value of (2) is the same as minimum value of (1) (also the minimum value of (3)).
+
+From the definition of dual function, for all $x\in \mathbb{R}^n$ , we have, 
+\begin{align*}
+	\phi_1(\bar \mu) &=\inf_{x}\bigl(f(x)-\sum_{i=1}^m \bar\mu_i g_i(x)\bigr)\\
+	 \implies  \phi_1(\bar \mu) &\le f(x)-\sum_{i=1}^m \bar\mu_i g_i(x) \\
+	 \implies  f(x) &\ge\phi_1(\bar\mu)+\sum_{i=1}^m \bar\mu_i g_i(x)
+\end{align*}
+
+Since $g_i(x^*)\ge -\max_{i}\{(g_i(x))_-\} = -y^*$, we have, 
+$
+\sum_{i=1}^m \bar\mu_i\,g_i(x^*)
+\ge-\sum_{i=1}^m \bar\mu_i\,y^*
+$, gives, 
+\begin{align*}
+	r_t(x)&= f(x)+t\max_{i=1,\dots,m}\{(g_i(x))_-\} \\
+	\implies r_t(x)&= f(x)+ty^* \\
+	\implies r_t(x)&\ge \phi_1(\bar\mu)+\sum_{i=1}^m \bar\mu_i g_i(x)+ty^*  \\
+	\implies r_t(x)&\ge \phi_1(\bar\mu)-\sum_{i=1}^m \bar\mu_i\,y^*+ty^*  \\
+	\implies r_t(x)&\ge \phi_1(\bar\mu)+\Bigl(t-\sum_{i=1}^m \bar\mu_i\Bigr)\,y^*(x^*) \quad \text{by equation (2)} \\
+	\implies r_t(x)&\ge f(\bar x)+\Bigl(t-\sum_{i=1}^m \bar\mu_i\Bigr)\,y^*(x^*)
+\end{align*}
+
+Since $y \in \mathbb{R}_{\ge 0}$, if $x$ is infeasible, then $y^*(x)>0$, and since $t>\sum_{i=1}^m\bar\mu_i$, we have $r_t(x)>f(\bar x)$. However, the optimal value of (2), as shown above, is $f_0$, which is the optimal value of (1).
+
+Thus, $x$ is feasible for (1), which $y^*(x)=0$, gives, 
+$$r_t(x^\star)=f(x^\star)+t\cdot 0=f(x^\star)$$
+
+Thus, every minimizer $x^\star$ of (2) must be feasible for (1), and $r_t(x^*)=\min r_t = f(\bar x)$, gives $r_t(x^\star)=f(x^\star)=f(\bar x)$, which $x^\star$ is also a minimizer of (1).
+
+Therefore, I've shown that any minimizer of (2) is also a minimizer of (1).
+
+\hfill $\blacksquare$
+
+\newpage
+
+\section{Final Project - HW4}
+\textbf{(a)}
+Given the question, 
+$$J(u)=\int_\Omega u(x,y)f(x,y) dx dy-\int_\Omega \frac{1}{2}\big(|\nabla u(x,y)|-1\big)_+^2 dx dy$$
+
+Thus, we have the Lagrangian, 
+\begin{align*}
+	\mathcal L &= u(x,y)f(x,y) - \frac{1}{2}\big(|\nabla u(x,y)|-1\big)_+^2 \\
+	 &= u f(x,y) - \frac{1}{2}\big(\sqrt{u_x^{2}+u_y^{2}}-1\big)_+^2
+\end{align*}
+
+For two independent variable, from the textbook\footnote{The Calculus of Variations by van
+Brunt.}, the Euler-Lagrange equation is given by, 
+\begin{align*}
+	0 &= \frac{\partial}{\partial x}\Big(\frac{\partial L}{\partial u_x}\Big) + \frac{\partial}{\partial y}\Big(\frac{\partial L}{\partial u_y}\Big) - \frac{\partial L}{\partial u} \\
+	\implies 0 &= \frac{\partial}{\partial x}\Big(\frac{\partial}{\partial u_x} \bigl(u f(x,y) - \frac{1}{2}\big(\sqrt{u_x^{2}+u_y^{2}}-1\big)_+^2 \bigr) \Big) + a - b \\
+	\implies 0 &= \frac{\partial}{\partial x}\Big(  \Big)
+\end{align*}
+
+------
+
+\begin{align*}
+0
+&= \frac{\partial}{\partial x}\Big(\frac{\partial L}{\partial u_x}\Big)
+ + \frac{\partial}{\partial y}\Big(\frac{\partial L}{\partial u_y}\Big)
+ - \frac{\partial L}{\partial u} \\
+&= \frac{\partial}{\partial x}\!\Bigg(\frac{\partial}{\partial u_x}
+   \Big(u f(x,y) - \tfrac12\big(\sqrt{u_x^{2}+u_y^{2}}-1\big)_+^2 \Big)\!\Bigg)
+ + \frac{\partial}{\partial y}\!\Bigg(\frac{\partial}{\partial u_y}
+   \Big(u f(x,y) - \tfrac12\big(\sqrt{u_x^{2}+u_y^{2}}-1\big)_+^2 \Big)\!\Bigg)
+ - f(x,y) \\
+&= \frac{\partial}{\partial x}\!\left(-\big(r-1\big)_+\frac{u_x}{r}\right)
+ + \frac{\partial}{\partial y}\!\left(-\big(r-1\big)_+\frac{u_y}{r}\right)
+ - f(x,y) \\
+&= -\,\operatorname{div}\!\left(\big(|\nabla u|-1\big)_+\frac{\nabla u}{|\nabla u|}\right)
+ - f(x,y).
+\end{align*}
+
+
+---
+
+(a) Euler–Lagrange equation — coordinate derivation
+
+Let
+
+$$
+\mathcal L(x,y,u,p,q)
+\;=\;
+u\,f(x,y)\;-\;\frac12\Big(\sqrt{p^{2}+q^{2}}-1\Big)_{+}^{2},
+\qquad
+p=u_x,\ q=u_y,
+$$
+
+and write $r:=\sqrt{u_x^2+u_y^2}=|\nabla u|$.
+The Euler–Lagrange equation (with fixed boundary values) is
+
+$$
+\frac{\partial\mathcal L}{\partial u}
+\;-\;\frac{d}{dx}\!\left(\frac{\partial\mathcal L}{\partial u_x}\right)
+\;-\;\frac{d}{dy}\!\left(\frac{\partial\mathcal L}{\partial u_y}\right)=0
+\quad\text{in }\Omega,\qquad u|_{\partial\Omega}=u_0 .
+$$
+
+We compute the partials. Clearly
+
+$$
+\frac{\partial\mathcal L}{\partial u}=f(x,y).
+$$
+
+For the gradient terms, set $g(z)=z_+^2$ (so $g'(z)=2z_+$) and $h(p,q)=\sqrt{p^2+q^2}$.
+For $(p,q)\neq(0,0)$, $\nabla h(p,q)=(p,q)/\sqrt{p^2+q^2}$. Hence, by the chain rule,
+
+$$
+\frac{\partial\mathcal L}{\partial u_x}
+=-\frac12\,g'(r-1)\,\frac{\partial r}{\partial u_x}
+=-(r-1)_+\,\frac{u_x}{r},
+\qquad
+\frac{\partial\mathcal L}{\partial u_y}
+=-(r-1)_+\,\frac{u_y}{r}.
+$$
+
+(When $r=0$ the factor $(r-1)_+=0$, so we set these derivatives to $0$ by continuity; the final PDE is then interpreted in the weak sense.)
+
+Differentiate in $x$ and $y$:
+
+$$
+\frac{d}{dx}\!\left(\frac{\partial\mathcal L}{\partial u_x}\right)
+=\partial_x\!\left(-\frac{(r-1)_+}{r}\,u_x\right),\qquad
+\frac{d}{dy}\!\left(\frac{\partial\mathcal L}{\partial u_y}\right)
+=\partial_y\!\left(-\frac{(r-1)_+}{r}\,u_y\right).
+$$
+
+Therefore
+
+$$
+\frac{d}{dx}\!\left(\frac{\partial\mathcal L}{\partial u_x}\right)
++\frac{d}{dy}\!\left(\frac{\partial\mathcal L}{\partial u_y}\right)
+=\operatorname{div}\!\left(-\frac{(r-1)_+}{r}\,\nabla u\right).
+$$
+
+Plugging into the Euler–Lagrange equation yields
+
+$$
+f\;-\;\operatorname{div}\!\left(-\frac{(|\nabla u|-1)_+}{|\nabla u|}\,\nabla u\right)=0,
+$$
+
+i.e.
+
+$$
+\boxed{\;
+-\operatorname{div}\!\left((|\nabla u|-1)_+\frac{\nabla u}{|\nabla u|}\right)=f
+\quad\text{in }\Omega,\qquad u|_{\partial\Omega}=u_0.
+\;}
+$$
+
+Using $\dfrac{(|\nabla u|-1)_+}{|\nabla u|}=\bigl(1-|\nabla u|^{-1}\bigr)_+$, an equivalent form is
+
+$$
+-\operatorname{div}\!\bigl(\,(1-|\nabla u|^{-1})_+\,\nabla u\,\bigr)=f.
+$$
+
+#### (Optional expansion you sketched)
+
+If you want the inner derivatives of $r=|\nabla u|$ explicitly (used in your notes), for $r>0$,
+
+$$
+\partial_x r=\frac{u_xu_{xx}+u_yu_{xy}}{r},
+\qquad
+\partial_y r=\frac{u_xu_{xy}+u_yu_{yy}}{r},
+$$
+
+and then
+
+$$
+\partial_x\!\left(-\frac{(r-1)_+}{r}\,u_x\right)
+=\,-\Big(\partial_x\!\left(\tfrac{(r-1)_+}{r}\right)\Big)u_x
+-\frac{(r-1)_+}{r}\,u_{xx},
+$$
+
+with the analogous formula in $y$; summing the two components reproduces
+$\operatorname{div}\!\bigl(-\tfrac{(r-1)_+}{r}\nabla u\bigr)$.
+
+#### Rigor note
+
+All computations above are pointwise where $r\neq0$. Since $(r-1)_+=0$ on $\{r\le1\}$, the vector field
+
+$$
+F:=-\frac{(r-1)_+}{r}\,\nabla u
+$$
+
+extends by $F=0$ on $\{r=0\}$; the Euler–Lagrange equation is then to be understood in the weak sense:
+
+$$
+\int_\Omega f\,\eta\,dx
++\int_\Omega F\cdot\nabla\eta\,dx=0
+\quad\forall\,\eta\in C_c^\infty(\Omega).
+$$
+
+---
+
+This is exactly your approach, but fully specified and cleaned up, and it lands in the neat divergence form the problem asks for.
+
+
+------
+
+\newpage
+
+\section{Final Project - HW5}
+\textbf{(a)} Given the discretized minimization problem, 
+\begin{align*}
+	\min\ & \sum_{i=0}^{N-1} f\Big(x_i,y_i,\frac{y_{i+1}-y_i}{h}\Big)\cdot h\\
+	\text{s.t. }&y_0=y_a\\
+	&y_N=y_b
+\end{align*}
+
+From the Euler-Lagrange equation, let $F(y_0, \cdots, y_N) = h \sum_{i=0}^{N-1} f(x_i, y_i, \frac{y_{i+1} - y_i}{h})$, for $i = 1, ..., N-1$, gives, 
+\begin{align*}
+	0 &= \frac{d}{dx} \left( \frac{\partial F}{\partial y_i'} \right) - \frac{\partial F}{\partial y_i}  \quad \text{Since in discrete case, we have, }\\
+	\implies 0 &= \frac{\partial F}{\partial y_i}  \\
+	\implies 0 &= \frac{\partial }{\partial y_i} \Bigl( h \sum_{i=0}^{N-1} f(x_i, y_i, \frac{y_{i+1} - y_i}{h}) \Bigr) \quad \text{Since only two terms in summation are related to $y_i$, gives, } \\
+	\implies 0 &= \frac{\partial }{\partial y_i} \Bigl(h \cdot \bigl(f(x_i, y_i, \frac{y_{i+1} - y_i}{h}) + f(x_{i-1}, y_{i-1}, \frac{y_i - y_{i-1}}{h}) \bigr) \Bigr)  \\
+	\implies 0 &= h \cdot \bigl( \frac{\partial}{\partial y_i} f(x_i, y_i, \frac{y_{i+1} - y_i}{h}) \bigr) + h \cdot \bigl( \frac{\partial}{\partial y_i} f(x_{i-1}, y_{i-1}, \frac{y_i - y_{i-1}}{h}) \bigr)  \\
+	\implies 0 &= h \cdot \bigl( \frac{\partial}{\partial y_i}f(x_i, y_i, \frac{y_{i+1} - y_i}{h}) + \frac{\partial}{\partial \frac{y_{i+1} - y_i}{h}}f(x_i, y_i, \frac{y_{i+1} - y_i}{h}) \cdot \frac{\partial}{\partial y_i} (\frac{y_{i+1} - y_i}{h}) \bigr) + \\
+	&\quad \ \frac{\partial}{\partial \frac{y_i - y_{i-1}}{h}}f(x_{i-1}, y_{i-1}, \frac{y_i - y_{i-1}}{h}) \cdot \frac{\partial}{\partial y_i} (\frac{y_i - y_{i-1}}{h}) \quad \text{Let $y_{di'} = \frac{y_{i+1} - y_{i}}{h}$, gives, } \\
+	\implies 0 &= h \cdot \bigl( f_{y_i}(x_i, y_i, \frac{y_{i+1} - y_i}{h}) + f_{y_{di'}}(x_i, y_i, \frac{y_{i+1} - y_i}{h}) \cdot \frac{\partial}{\partial y_i} (\frac{y_{i+1} - y_i}{h}) \bigr) + \\
+	&\quad \ h \cdot \bigl( f_{y_{di-1'}}(x_{i-1}, y_{i-1}, \frac{y_i - y_{i-1}}{h}) \cdot \frac{\partial}{\partial y_i} (\frac{y_i - y_{i-1}}{h}) \bigr) \\
+	\implies 0 &= h \cdot f_{y_i}(x_i, y_i, \frac{y_{i+1} - y_i}{h}) + h \cdot f_{y_{di'}}(x_i, y_i, \frac{y_{i+1} - y_i}{h}) \cdot (-\frac{1}{h} ) + h \cdot  f_{y_{di-1'}}(x_{i-1}, y_{i-1}, \frac{y_i - y_{i-1}}{h}) \cdot (\frac{1}{h} )\\
+	\implies 0 &= h \cdot f_{y_i}(x_i, y_i, \frac{y_{i+1} - y_i}{h}) - f_{y_{di'}}(x_i, y_i, \frac{y_{i+1} - y_i}{h}) +  f_{y_{di-1'}}(x_{i-1}, y_{i-1}, \frac{y_i - y_{i-1}}{h})
+\end{align*}
+
+Besides, I'll also derive the Euler-Lagrange equation for $i = 0$ and $i = N$. 
+
+For $i=0$, we have, 
+\begin{align*}
+	0 &= \frac{\partial F}{\partial y_0} \\
+	\implies 0 &= \frac{\partial }{\partial y_0} \Bigl( h \sum_{i=0}^{N-1} f(x_i, y_i, \frac{y_{i+1} - y_i}{h}) \Bigr) \\
+	\implies 0 &= h \cdot \frac{\partial}{\partial y_0} f(x_0, y_0, \frac{y_1 - y_0}{h})\\
+    \implies 0 &= h f_{y_0}(x_0, y_0, \frac{y_1 - y_0}{h}) + h f_{\frac{y_1 - y_0}{h}}(x_0, y_0, \frac{y_1 - y_0}{h}) \cdot \frac{\partial}{\partial y_0} (\frac{y_1 - y_0}{h})\\
+    \implies 0 &= h f_{y_0}(x_0, y_0, \frac{y_1 - y_0}{h}) + h f_{\frac{y_1 - y_0}{h}}(x_0, y_0, \frac{y_1 - y_0}{h}) \cdot (-\frac{1}{h}) \quad \text{From above, $y_{d0'} = \frac{y_1 - y_0}{h}$, gives, }\\
+    \implies 0 &= h \cdot f_y(x_0, y_0, \frac{y_1 - y_0}{h}) - f_{y_{d0'}}(x_0, y_0, \frac{y_1 - y_0}{h})
+\end{align*}
+
+For $i=N$, we have, 
+\begin{align*}
+	0 &= \frac{\partial F}{\partial y_N} \\
+	\implies 0 &= \frac{\partial }{\partial y_N} \Bigl( h \sum_{i=0}^{N-1} f(x_i, y_i, \frac{y_{i+1} - y_i}{h}) \Bigr) \\
+	\implies 0 &= h \cdot \frac{\partial}{\partial y_N} f(x_{N-1}, y_{N-1}, \frac{y_N - y_{N-1}}{h})\\
+	\implies 0 &= h f_{\frac{y_N - y_{N-1}}{h}}(x_{N-1}, y_{N-1}, \frac{y_N - y_{N-1}}{h}) \cdot \frac{\partial}{\partial y_N} (\frac{y_N - y_{N-1}}{h}) \quad \text{From above, $y_{dN-1'} = \frac{y_N - y_{N-1}}{h}$,}\\
+	\implies 0 &= h \cdot f_{y_{dN-1'}}(x_{N-1}, y_{N-1}, \frac{y_N - y_{N-1}}{h}) \cdot \frac{1}{h} \\
+	\implies 0 &= f_{y_{dN-1'}}(x_{N-1}, y_{N-1}, \frac{y_N - y_{N-1}}{h})
+\end{align*}
+
+Thus, for $y_{di'} = \frac{y_{i+1} - y_{i}}{h}$, where $i = 0, 1, ..., N-1$, the system equation is given by, 
+$$
+\begin{cases}
+	h \cdot f_{y_i}(x_i, y_i, \frac{y_{i+1} - y_i}{h}) - f_{y_{di'}}(x_i, y_i, \frac{y_{i+1} - y_i}{h}) +  f_{y_{di-1'}}(x_{i-1}, y_{i-1}, \frac{y_i - y_{i-1}}{h}) = 0, & i = 1, ..., N-1\\
+	h \cdot f_y(x_0, y_0, \frac{y_1 - y_0}{h}) - f_{y_{d0'}}(x_0, y_0, \frac{y_1 - y_0}{h})=0, & i=0\\
+	f_{y_{dN-1'}}(x_{N-1}, y_{N-1}, \frac{y_N - y_{N-1}}{h}) = 0, & i=N \\
+	y_0=y_a, y_N=y_b 
+\end{cases}
+$$
+
+\vspace{10pt}
+\noindent
+\textbf{(b)} For the KKT conditions for (2), I'll introduce multipliers $\lambda_0$, and $\lambda_N$ for the two constraints, which the Lagrangian is then given by, 
+$$
+\mathcal L(y,\lambda_0,\lambda_N) = F(y)-\lambda_0\,(y_0-y_a) - \lambda_N (y_N-y_b)
+$$
+
+Similarly to (1), I'll also divide the calculation of $\frac{\partial \mathcal{L}}{\partial y_i}$ into three cases. 
+Let $y_{di'} = \frac{y_{i+1} - y_{i}}{h}$. 
+
+For $i = 1, ..., N-1$, we have, 
+\begin{align*}
+	0 &= \frac{\partial \mathcal{L}}{\partial y_i} = \frac{\partial}{\partial y_i} \bigl(F(y)-\lambda_0\,(y_0-y_a) - \lambda_N (y_N-y_b) \bigr)\\
+	&= \frac{\partial}{\partial y_i} F(y) - \frac{\partial}{\partial y_i} \bigl( \lambda_0\,(y_0-y_a) \bigr) - \frac{\partial}{\partial y_i} \bigl( \lambda_N (y_N-y_b) \bigr) \\
+	&= \frac{\partial}{\partial y_i} F(y) \quad \text{From (1), we have,} \\
+	&= h \cdot f_{y_i}(x_i, y_i, \frac{y_{i+1} - y_i}{h}) - f_{y_{di'}}(x_i, y_i, \frac{y_{i+1} - y_i}{h}) +  f_{y_{di-1'}}(x_{i-1}, y_{i-1}, \frac{y_i - y_{i-1}}{h})
+\end{align*}
+
+For $i = 0$, we have, 
+\begin{align*}
+	0 &= \frac{\partial \mathcal{L}}{\partial y_0} = \frac{\partial}{\partial y_0} \bigl(F(y)-\lambda_0\,(y_0-y_a) - \lambda_N (y_N-y_b) \bigr)\\
+	&= \frac{\partial}{\partial y_0} F(y) - \frac{\partial}{\partial y_0} \bigl( \lambda_0\,(y_0-y_a) \bigr) - \frac{\partial}{\partial y_0} \bigl( \lambda_N (y_N-y_b) \bigr) \\
+	&= \frac{\partial}{\partial y_0} F(y) - \lambda_0 \quad \text{From (1), we have,} \\
+	&= h \cdot f_y(x_0, y_0, \frac{y_1 - y_0}{h}) - f_{y_{d0'}}(x_0, y_0, \frac{y_1 - y_0}{h}) - \lambda_0
+\end{align*}
+
+For $i = N$, we have, 
+\begin{align*}
+	0 &= \frac{\partial \mathcal{L}}{\partial y_N} = \frac{\partial}{\partial y_N} \bigl(F(y)-\lambda_0\,(y_0-y_a) - \lambda_N (y_N-y_b) \bigr)\\
+	&= \frac{\partial}{\partial y_N} F(y) - \frac{\partial}{\partial y_N} \bigl( \lambda_0\,(y_0-y_a) \bigr) - \frac{\partial}{\partial y_N} \bigl( \lambda_N (y_N-y_b) \bigr) \\
+	&= \frac{\partial}{\partial y_N} F(y) - \lambda_N \quad \text{From (1), we have,} \\
+	&= f_{y_{dN-1'}}(x_{N-1}, y_{N-1}, \frac{y_N - y_{N-1}}{h}) - \lambda_N
+\end{align*}
+
+Thus, for $y_{di'} = \frac{y_{i+1} - y_{i}}{h}$, where $i = 1, ..., N-1$, the KKT conditions are given by, 
+$$
+\begin{cases}
+	h \cdot f_{y_i}(x_i, y_i, \frac{y_{i+1} - y_i}{h}) - f_{y_{di'}}(x_i, y_i, \frac{y_{i+1} - y_i}{h}) +  f_{y_{di-1'}}(x_{i-1}, y_{i-1}, \frac{y_i - y_{i-1}}{h}) = 0, & i = 1, ..., N-1\\
+	h \cdot f_y(x_0, y_0, \frac{y_1 - y_0}{h}) - f_{y_{d0'}}(x_0, y_0, \frac{y_1 - y_0}{h}) - \lambda_0 =0, & i=0\\
+	f_{y_{dN-1'}}(x_{N-1}, y_{N-1}, \frac{y_N - y_{N-1}}{h}) - \lambda_N, & i=N \\
+	y_0=y_a, y_N=y_b 
+\end{cases}
+$$
+
+Therefore, the relations between the KKT conditions and the discretized Euler-Lagrange equation from (a) are, 
+\begin{itemize}
+	\item For $i = 1, ..., N-1$: the KKT conditions and the discretized Euler-Lagrange equation from (a) are the same.
+	\item For $i = 0$: the KKT condition and the discretized Euler-Lagrange equation from (a) are different. the KKT condition is minus by $\lambda_0$, which is one of the multipliers.
+	\item For $i = N$: the KKT condition and the discretized Euler-Lagrange equation from (a) are different. the KKT condition is minus by $\lambda_N$, which is the order multiplier.
+\end{itemize}
+
+\vspace{10pt}
+\noindent
+\textbf{(c)} 
+Given the question, 
+$$J(y)=\int_a^b (y')^2\ dx$$
+
+For the discrete case, from above,  $y'(x_i)\approx\frac{y_{i+1}-y_i}{h} = y_{di'}$, gives, 
+\begin{align*}
+	F(y_0, \cdots, y_N) =& F(y') = h \sum_{i=0}^{N-1} (y'(x_i))^2 \\
+	&= h \sum_{i=0}^{N-1} f(\frac{y_{i+1} - y_i}{h}) \\
+	&=\sum_{i=0}^{N-1} h\left(\frac{y_{i+1}-y_i}{h}\right)^2 \\
+	&=\frac{1}{h}\sum_{i=0}^{N-1}(y_{i+1}-y_i)^2
+\end{align*}
+
+Since we have, $f(x,y,y')=(y')^2$, which we have, $f_y = 0$, and $f_{y_{di'}}(x,y,y')=2y_{di'}$. Thus, for $i = 1, ..., N-1$, from (b), we have, 
+\begin{align*}
+	h \cdot f_{y_i}(x_i, y_i, \frac{y_{i+1} - y_i}{h}) - f_{y_{di'}}(x_i, y_i, \frac{y_{i+1} - y_i}{h}) +  f_{y_{di-1'}}(x_{i-1}, y_{i-1}, \frac{y_i - y_{i-1}}{h}) &= 0 \\
+	\implies 0 - 2 \cdot \frac{y_{i+1} - y_i}{h} + 2 \cdot  \frac{y_i - y_{i-1}}{h} &= 0 \\
+	\implies \frac{y_{i+1} - y_i}{h} &= \frac{y_i - y_{i-1}}{h}
+\end{align*}
+
+Thus, the forward slope is constant, i.e., for $i = 0, 1, ..., N-1$, we have, 
+$$
+\frac{y_{i+1}-y_i}{h}=c
+$$
+
+Thus, we have, 
+\begin{align*}
+	y_{i+1} &= y_i + hc \\
+	\implies y_i &=y_0+i \cdot hc \quad \text{Since $y_0=y_a$, }\\
+	\implies y_i &=y_a+i \cdot hc \quad \text{Since $h = \frac{b-a}{N}$, } \\
+	\implies y_i &=y_a+i \cdot \frac{b-a}{N} \cdot c
+\end{align*}
+
+Substitute $y_N=y_b$, gives, 
+\begin{align*}
+	y_b &= y_N = y_a + N \cdot \frac{b-a}{N} \cdot c \\
+	\implies y_b &= y_a + (b-a)c \\
+	\implies c &= \frac{y_b-y_a}{b-a}
+\end{align*}
+
+Therefore, we have the solution to the problem, 
+$$y_i = y_a + i \cdot \frac{b-a}{N} \cdot \frac{y_b-y_a}{b-a} = y_a + i \cdot \frac{y_b-y_a}{N}$$
+
+\newpage
+
+\section{Final Project - HW6}
+
+\newpage
+
+
+% To print the reference
+% \printbibliography
+
+% \newpage
+
+% Add appendix
+% \appendix
+% \section*{Appendix A: Sample Appendix}
+
+\end{document}
