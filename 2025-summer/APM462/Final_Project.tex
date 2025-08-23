@@ -76,10 +76,97 @@
 \setcounter{page}{1}
 
 \section{Final Project - HW1}
+\textbf{(a)} 
 
 \newpage
 
 \section{Final Project - HW2}
+\textbf{(a)}
+Given that $f(x)=\frac{1}{2}x^TQx-b^Tx$, we have, 
+\begin{align*}
+    \nabla f(x) &=  \frac{\partial}{\partial x_k}\Bigl(\tfrac12\,x^TQx-b^T x\Bigr) \\
+    &= \frac12\sum_{i,j}\frac{\partial}{\partial x_k}\bigl(x_i\,Q_{ij}\,x_j\bigr) - \frac{\partial}{\partial x_k}\bigl(b^T x\bigr) \\
+    &=\frac12\sum_{j}Q_{kj}\,x_j+\frac12\sum_{i}x_i\,Q_{ik} -b_k  \quad \text{Since $Q$ is symmetric, $Q_{ik}=Q_{ki}$,} \\
+    &= \sum_{j}Q_{kj}\,x_j - b_k  \\
+    &= Q\,x - b
+\end{align*}
+
+To make it a single variable function, I'll define $l_1(\alpha_0) = f(x_0+\alpha_0e_0)$, taking directional derivative along $e_0$ and set to 0, gives, 
+\begin{align*}
+	\frac{d}{d\alpha}l_1(\alpha)\Big|_{\alpha=\alpha_0} &\overset{\text{set}}{=} 0 \\
+	\implies \frac{d}{d\alpha}f(x_0+\alpha e_0)\Big|_{\alpha=\alpha_0} &\overset{\text{set}}{=} 0 \\
+	\implies \nabla f\big(x_0+\alpha_0 e_0\big)^{\!T}\,\frac{d(x_0+\alpha_0 e_0)}{d\alpha} &\overset{\text{set}}{=} 0 \\
+	\implies e_0^{T}\,\nabla f\big(x_0+\alpha_0 e_0\big) &\overset{\text{set}}{=} 0 \\
+	\implies e_0^T\big(Q(x_0+\alpha_0 e_0)-b\big) &\overset{\text{set}}{=} 0 \\
+	\implies (e_0^TQe_0)\,\alpha_0 &= e_0^T(b-Qx_0) \\
+	\implies \alpha_0 &= \frac{e_0^T(b-Qx_0)}{e_0^TQe_0}
+\end{align*}
+
+Since $Q\succ0$ and $e_0\neq0$, we have $e_0^T Q e_0>0$, so $g$ is strictly convex in $\alpha$, which it has exactly one critical point, which is the unique minimizer $\alpha_0$ I find above.
+
+Therefore, I've find the unique $\displaystyle \alpha_0=\frac{e_0^T(b-Qx_0)}{e_0^TQe_0} \in \mathbb{R}$ as needed.
+
+\vspace{10pt}
+\noindent
+\textbf{(b)}
+From (a), we have, $\nabla f(x) = Q\,x - b$. Define $l_2(\alpha_0',\alpha_1') = f(x_0 + \alpha_0' e_0 + \alpha_1'e_1)$ taking directional derivative for each $\alpha_0'$, and $\alpha_1'$, where both first-order partials vanish, we have, 
+\begin{align*}
+\frac{\partial}{\partial \alpha_0}l_2(\alpha_0,\alpha_1)\Big|_{(\alpha_0,\alpha_1)=(\alpha_0',\alpha_1')} &\overset{\text{set}}{=} 0 \\
+\implies \frac{\partial}{\partial \alpha_0} f(x_0 + \alpha_0 e_0 + \alpha_1 e_1)\Big|_{(\alpha_0,\alpha_1)=(\alpha_0',\alpha_1')} &\overset{\text{set}}{=} 0 \\
+\implies \nabla f(x_0 + \alpha_0 e_0 + \alpha_1 e_1)^{\!T} \frac{\partial}{\partial\alpha_0}\big(x_0 + \alpha_0 e_0 + \alpha_1 e_1\big)\Big|_{(\alpha_0,\alpha_1)=(\alpha_0',\alpha_1')}&\overset{\text{set}}{=} 0 \\
+\implies e_0^{T}\,\nabla f\big(x_0+\alpha_0' e_0+\alpha_1' e_1\big) &\overset{\text{set}}{=} 0 \\
+\implies e_0^{T}\big(Q(x_0+\alpha_0' e_0+\alpha_1' e_1)-b\big) &= 0
+\end{align*}
+
+Similarly for $\alpha_1'$, we have, 
+\begin{align*}
+\frac{\partial}{\partial \alpha_1}l_2(\alpha_0,\alpha_1)\Big|_{(\alpha_0,\alpha_1)=(\alpha_0',\alpha_1')} &\overset{\text{set}}{=} 0 \\
+\implies e_1^{T}\big(Q(x_0+\alpha_0' e_0+\alpha_1' e_1)-b\big) &= 0
+\end{align*}
+
+
+
+------
+
+These give the $2\times2$ linear system
+
+$$
+\begin{aligned}
+(e_0^TQe_0)\,\alpha_0' + (e_0^TQe_1)\,\alpha_1' &= e_0^T r_0,\\
+(e_1^TQe_0)\,\alpha_0' + (e_1^TQe_1)\,\alpha_1' &= e_1^T r_0,
+\end{aligned}
+$$
+
+i.e.
+
+$$
+\begin{bmatrix}
+e_0^TQe_0 & e_0^TQe_1\\
+e_1^TQe_0 & e_1^TQe_1
+\end{bmatrix}
+\begin{bmatrix}\alpha_0'\\ \alpha_1'\end{bmatrix}
+=
+\begin{bmatrix} e_0^T r_0\\ e_1^T r_0\end{bmatrix}.
+$$
+
+Solving (e.g., by Cramer’s rule) with
+$\displaystyle \Delta=(e_0^TQe_0)(e_1^TQe_1)-(e_0^TQe_1)^2>0$ (positivity holds if $e_0,e_1$ are linearly independent) yields
+
+$$
+\boxed{
+\alpha_0'
+=\frac{(e_1^TQe_1)\,e_0^Tr_0-(e_0^TQe_1)\,e_1^Tr_0}{\Delta},
+\qquad
+\alpha_1'
+=\frac{(e_0^TQe_0)\,e_1^Tr_0-(e_0^TQe_1)\,e_0^Tr_0}{\Delta}.
+}
+$$
+
+(As before, uniqueness follows because the $2\times2$ matrix is SPD when $e_0,e_1$ are independent.)
+
+
+
+------
 
 \newpage
 
@@ -119,9 +206,9 @@ gives,
 
 \quad \qquad Thus, $\max_{i}\{-g_i(x)\}$ is convex.
 
-\quad Since $\max\bigl\{\max_{i}\{-g_i(x)\}, 0\bigr\}$ is the pointwise maximum of two convex functions, it is also 
+\quad Since $\max_{i}\{-g_i(x)\}$ and constant 0 are convex, from textbook, Appendix A.6\footnote{Linear and Nonlinear Programming by Luenberger and Ye ($5^{th}$ edition). The rule states that: $\max_i \{ f_i(x) \}$ (i.e., return the maximal value of several functions) is convex if $f_i(\cdot)$'s are all convex}, gives, 
 
-\quad convex.
+\quad $\max\bigl\{\max_{i}\{-g_i(x)\}, 0\bigr\}$ is also convex.
 
 \quad Since $t>0$, from the textbook\footnote{Linear and Nonlinear Programming by Luenberger and Ye ($5^{th}$ edition). The propostition states that: Let $f$ be a convex function on the convex set $\Omega$. Then the function $a f$ is convex for any $a \ge 0$.}, 7.4 proposition 2, multiplying by $t>0$ preserves 
 
@@ -222,7 +309,7 @@ Thus, as shown above, taking minimum to x gives (2) and (3) have the same optima
 
 Let $\bar x$ be the minimizer of (1).
 
-Since the question has already assume that, for (1), the strong duality theorem holds and that the maximum in the dual problem is attained at $\bar\mu=(\bar\mu_1,\dots,\bar\mu_m)$, from the lecture slides\footnote{June $5^{th}$ Lecture Slides}, we have, 
+Since the question has already assume that, for (1), the strong duality theorem holds and that the maximum in the dual problem is attained at $\bar\mu=(\bar\mu_1,\dots,\bar\mu_m)$, from the lecture slides\footnote{June $5^{th}$ Lecture Slides.}, we have, 
 \begin{equation}\tag{2}
 f_0=\min_{x,\, g_i(x)\ge 0} f(x)=f(\bar x)=\phi_{1_0}=\sup_{\mu\ge0}\,\phi_1(\mu)=\phi_1(\bar\mu)
 \end{equation}
@@ -280,164 +367,123 @@ Given the question,
 $$J(u)=\int_\Omega u(x,y)f(x,y) dx dy-\int_\Omega \frac{1}{2}\big(|\nabla u(x,y)|-1\big)_+^2 dx dy$$
 
 Thus, we have the Lagrangian, 
-\begin{align*}
-	\mathcal L &= u(x,y)f(x,y) - \frac{1}{2}\big(|\nabla u(x,y)|-1\big)_+^2 \\
-	 &= u f(x,y) - \frac{1}{2}\big(\sqrt{u_x^{2}+u_y^{2}}-1\big)_+^2
-\end{align*}
+$$
+\mathcal L = u(x,y)f(x,y) - \frac{1}{2}\big(|\nabla u(x,y)|-1\big)_+^2
+$$
 
 For two independent variable, from the textbook\footnote{The Calculus of Variations by van
-Brunt.}, the Euler-Lagrange equation is given by, 
+Brunt, Page 67.}, Section 3.3, the Euler-Lagrange equation is given by, 
+$$
+\frac{\partial}{\partial x}\Big(\frac{\partial L}{\partial u_x}\Big) + \frac{\partial}{\partial y}\Big(\frac{\partial L}{\partial u_y}\Big) - \frac{\partial L}{\partial u} = 0
+$$
+
+Since the question gives, when $g(z) = z^{2}_+$, $g'(z) = 2 z_+$, and when $h(v) = |v|$, $v \neq 0$, $\nabla h(v) = \tfrac{v}{|v|}$, we have, 
 \begin{align*}
-	0 &= \frac{\partial}{\partial x}\Big(\frac{\partial L}{\partial u_x}\Big) + \frac{\partial}{\partial y}\Big(\frac{\partial L}{\partial u_y}\Big) - \frac{\partial L}{\partial u} \\
-	\implies 0 &= \frac{\partial}{\partial x}\Big(\frac{\partial}{\partial u_x} \bigl(u f(x,y) - \frac{1}{2}\big(\sqrt{u_x^{2}+u_y^{2}}-1\big)_+^2 \bigr) \Big) + a - b \\
-	\implies 0 &= \frac{\partial}{\partial x}\Big(  \Big)
+	\frac{\partial L}{\partial u_x} &= \frac{\partial}{\partial u_x} \bigl(u(x,y)f(x,y) - \frac{1}{2}\big(|\nabla u(x,y)|-1\big)_+^2 \bigr) \\
+	&= -\frac{1}{2} \cdot 2(| \nabla u | - 1)_+ \cdot \frac{\partial}{\partial u_x}| \nabla u | \\
+	&= -(| \nabla u | - 1)_+ \cdot \frac{\partial}{\partial u_x}(u_x^2 + u_y^2)^{1/2} \\
+	&= -(| \nabla u | - 1)_+ \cdot \frac{1}{2}(u_x^2+u_y^2)^{-1/2} \cdot 2u_x \\
+	&= -(| \nabla u | - 1)_+ \cdot \frac{u_x}{| \nabla u |}
 \end{align*}
 
-------
-
+Following the similar process, we have, 
 \begin{align*}
-0
-&= \frac{\partial}{\partial x}\Big(\frac{\partial L}{\partial u_x}\Big)
- + \frac{\partial}{\partial y}\Big(\frac{\partial L}{\partial u_y}\Big)
- - \frac{\partial L}{\partial u} \\
-&= \frac{\partial}{\partial x}\!\Bigg(\frac{\partial}{\partial u_x}
-   \Big(u f(x,y) - \tfrac12\big(\sqrt{u_x^{2}+u_y^{2}}-1\big)_+^2 \Big)\!\Bigg)
- + \frac{\partial}{\partial y}\!\Bigg(\frac{\partial}{\partial u_y}
-   \Big(u f(x,y) - \tfrac12\big(\sqrt{u_x^{2}+u_y^{2}}-1\big)_+^2 \Big)\!\Bigg)
- - f(x,y) \\
-&= \frac{\partial}{\partial x}\!\left(-\big(r-1\big)_+\frac{u_x}{r}\right)
- + \frac{\partial}{\partial y}\!\left(-\big(r-1\big)_+\frac{u_y}{r}\right)
- - f(x,y) \\
-&= -\,\operatorname{div}\!\left(\big(|\nabla u|-1\big)_+\frac{\nabla u}{|\nabla u|}\right)
- - f(x,y).
+	\frac{\partial L}{\partial u_y} &= \frac{\partial}{\partial u_y} \bigl(u(x,y)f(x,y) - \frac{1}{2}\big(|\nabla u(x,y)|-1\big)_+^2 \bigr) \\
+	&= -\frac{1}{2} \cdot 2(| \nabla u | - 1)_+ \cdot \frac{\partial}{\partial u_y}| \nabla u | \\
+	&= -(| \nabla u | - 1)_+ \cdot \frac{u_y}{| \nabla u |}
 \end{align*}
 
+Thus, substitute above, gives, 
+\begin{align*}
+	\frac{\partial}{\partial x}\Big(\frac{\partial L}{\partial u_x}\Big) + \frac{\partial}{\partial y}\Big(\frac{\partial L}{\partial u_y}\Big) - \frac{\partial L}{\partial u} &= 0 \\
+	\frac{\partial}{\partial x}\Big( -(| \nabla u | - 1)_+ \cdot \frac{u_x}{| \nabla u |} \Big)  + \frac{\partial}{\partial y}\Big( -(| \nabla u | - 1)_+ \cdot \frac{u_y}{| \nabla u |} \Big) &= \frac{\partial L}{\partial u} \\
+	\nabla \cdot \Big( -(| \nabla u | - 1)_+ \cdot \frac{\nabla u}{| \nabla u |} \Big) &= f \\
+	div \Big( -(| \nabla u | - 1)_+ \cdot \frac{u_x}{| \nabla u |}, -(| \nabla u | - 1)_+ \cdot \frac{u_y}{| \nabla u |} \Big) &= f
+\end{align*}
 
----
+\vspace{10pt}
+\noindent
+\textbf{(b)}
+Functional $\mathcal J$ is concave.
 
-(a) Euler–Lagrange equation — coordinate derivation
-
-Let
-
+\ From (a), we have, 
 $$
-\mathcal L(x,y,u,p,q)
-\;=\;
-u\,f(x,y)\;-\;\frac12\Big(\sqrt{p^{2}+q^{2}}-1\Big)_{+}^{2},
-\qquad
-p=u_x,\ q=u_y,
-$$
-
-and write $r:=\sqrt{u_x^2+u_y^2}=|\nabla u|$.
-The Euler–Lagrange equation (with fixed boundary values) is
-
-$$
-\frac{\partial\mathcal L}{\partial u}
-\;-\;\frac{d}{dx}\!\left(\frac{\partial\mathcal L}{\partial u_x}\right)
-\;-\;\frac{d}{dy}\!\left(\frac{\partial\mathcal L}{\partial u_y}\right)=0
-\quad\text{in }\Omega,\qquad u|_{\partial\Omega}=u_0 .
+\mathcal L = u(x,y)f(x,y) - \frac{1}{2}\big(|\nabla u(x,y)|-1\big)_+^2
 $$
 
-We compute the partials. Clearly
+Let $z = \nabla u(x,y)$, gives, 
+\begin{align*}
+	\mathcal L &= uf(x,y) - \frac{1}{2}\big(|z|-1\big)_+^2 \\
+	&= uf(x,y) - \frac{1}{2}\Big(\max\{|z| - 1, 0\}\Big)^2
+\end{align*}
 
+\quad \textbf{WTS: $|z|$ is convex.}
+
+\quad From definition, let $z_1,z_2\in\mathbb{R}^n$ and $t\in[0,1]$, we have, 
+\begin{align*}
+	| (1-t)z_1 + t z_2 |
+	&\le |(1-t)z_1| + |t z_2| \quad \text{(From triangle inequality, )} \\
+	&= (1-t)|z_1| + t|z_2| 
+\end{align*}
+
+%\quad Thus, $|z|$ is convex.
+
+Since $|z|$ is convex, and $|z| - 1$ is convex. Also,  0 is a constant, which is also convex. 
+
+Similar to HW3 (a), from textbook, Appendix A.6\footnote{Linear and Nonlinear Programming by Luenberger and Ye ($5^{th}$ edition). The rule states that: $\max_i \{ f_i(x) \}$ (i.e., return the maximal value of several functions) is convex if $f_i(\cdot)$'s are all convex}, gives, $\max\{|z| - 1, 0\}$ is also convex. 
+
+Thus, $g(z) = \big(|\nabla u(x,y)|-1\big)_+$ is convex.
+
+Let $h(t) = \frac{1}{2}t^2$, where $t \ge 0$.
+
+\quad \textbf{WTS: $h(t) = \frac{1}{2}t^2$ is convex.}
+
+\quad \quad \textbf{WTS: $t^2$ is convex.}
+
+\quad \quad Let $t_1,t_2 \ge 0,\;\lambda\in[0,1]$, gives, 
+\begin{align*}
+	(1-\lambda)t_1^2 + \lambda t_2^2 - \big((1-\lambda)t_1 + \lambda t_2\big)^2 &= (1-\lambda)t_1^2 + \lambda t_2^2 -  (1-\lambda)^2 t_1^2 + 2\lambda(1-\lambda)t_1t_2 + \lambda^2 t_2^2 \\
+	&= \big((1-\lambda) - (1-\lambda)^2\big)t_1^2+ \big(\lambda - \lambda^2\big)t_2^2- 2\lambda(1-\lambda)t_1t_2 \\
+	&= \big(\lambda - \lambda^2\big)t_1^2 + \big(\lambda - \lambda^2\big)t_2^2 - 2\lambda(1-\lambda)t_1t_2 \\
+	&= \lambda(1-\lambda)(t_1^2 + t_2^2 - 2t_1t_2) \\
+	&= \lambda(1-\lambda)(t_1 - t_2)^2 \;\ge 0 \\
+	\implies (1-\lambda)t_1^2 + \lambda t_2^2 &\ge \big((1-\lambda)t_1 + \lambda t_2\big)^2
+\end{align*}
+
+Thus, $t^2$ is convex. Since $\frac{1}{2}>0$, from the textbook\footnote{Linear and Nonlinear Programming by Luenberger and Ye ($5^{th}$ edition). The propostition states that: Let $f$ be a convex function on the convex set $\Omega$. Then the function $a f$ is convex for any $a \ge 0$.}, 7.4 proposition 2, $h(t) = \frac{1}{2}t^2$ is convex.
+
+Since $h(t) = \frac{1}{2}t^2$ is monotonically increasing when $t \ge 0$, and $h(t)$ and $g(z)$ are both convex, from the textbook, Appendix A.6\footnote{Linear and Nonlinear Programming by Luenberger and Ye ($5^{th}$ edition). The rule states that: A composite function $f(\psi(x))$ is convex if $f(\cdot)$ is monotonically increasing and convex, and $\psi(x)$ is convex.}, gives, $h(g(z)) = \frac{1}{2}\big(|\nabla u(x,y)|-1\big)_+^2$ is convex. 
+
+Thus, $-\frac{1}{2}\big(|\nabla u(x,y)|-1\big)_+^2$ is concave\footnote{May $8^{th}$ Lecture Slides.}.
+
+Since $uf(x,y)$ is linear in u, also, from the textbook, Appendix A.6, it's concave.
+
+Therefore, $\mathcal L = uf(x,y) - \frac{1}{2}\Big(\max\{|z| - 1, 0\}\Big)^2$ is concave, gives functional $\mathcal J$ is concave.
+
+\newpage
+\noindent
+\textbf{(c)} No, functional $\mathcal J$ is neither strictly convex nor strictly concave.
+
+From the question, we have, 
 $$
-\frac{\partial\mathcal L}{\partial u}=f(x,y).
-$$
-
-For the gradient terms, set $g(z)=z_+^2$ (so $g'(z)=2z_+$) and $h(p,q)=\sqrt{p^2+q^2}$.
-For $(p,q)\neq(0,0)$, $\nabla h(p,q)=(p,q)/\sqrt{p^2+q^2}$. Hence, by the chain rule,
-
-$$
-\frac{\partial\mathcal L}{\partial u_x}
-=-\frac12\,g'(r-1)\,\frac{\partial r}{\partial u_x}
-=-(r-1)_+\,\frac{u_x}{r},
-\qquad
-\frac{\partial\mathcal L}{\partial u_y}
-=-(r-1)_+\,\frac{u_y}{r}.
-$$
-
-(When $r=0$ the factor $(r-1)_+=0$, so we set these derivatives to $0$ by continuity; the final PDE is then interpreted in the weak sense.)
-
-Differentiate in $x$ and $y$:
-
-$$
-\frac{d}{dx}\!\left(\frac{\partial\mathcal L}{\partial u_x}\right)
-=\partial_x\!\left(-\frac{(r-1)_+}{r}\,u_x\right),\qquad
-\frac{d}{dy}\!\left(\frac{\partial\mathcal L}{\partial u_y}\right)
-=\partial_y\!\left(-\frac{(r-1)_+}{r}\,u_y\right).
-$$
-
-Therefore
-
-$$
-\frac{d}{dx}\!\left(\frac{\partial\mathcal L}{\partial u_x}\right)
-+\frac{d}{dy}\!\left(\frac{\partial\mathcal L}{\partial u_y}\right)
-=\operatorname{div}\!\left(-\frac{(r-1)_+}{r}\,\nabla u\right).
-$$
-
-Plugging into the Euler–Lagrange equation yields
-
-$$
-f\;-\;\operatorname{div}\!\left(-\frac{(|\nabla u|-1)_+}{|\nabla u|}\,\nabla u\right)=0,
-$$
-
-i.e.
-
-$$
-\boxed{\;
--\operatorname{div}\!\left((|\nabla u|-1)_+\frac{\nabla u}{|\nabla u|}\right)=f
-\quad\text{in }\Omega,\qquad u|_{\partial\Omega}=u_0.
-\;}
-$$
-
-Using $\dfrac{(|\nabla u|-1)_+}{|\nabla u|}=\bigl(1-|\nabla u|^{-1}\bigr)_+$, an equivalent form is
-
-$$
--\operatorname{div}\!\bigl(\,(1-|\nabla u|^{-1})_+\,\nabla u\,\bigr)=f.
-$$
-
-#### (Optional expansion you sketched)
-
-If you want the inner derivatives of $r=|\nabla u|$ explicitly (used in your notes), for $r>0$,
-
-$$
-\partial_x r=\frac{u_xu_{xx}+u_yu_{xy}}{r},
-\qquad
-\partial_y r=\frac{u_xu_{xy}+u_yu_{yy}}{r},
+J(u)=\int_\Omega u(x,y)f(x,y) dx dy-\int_\Omega \frac{1}{2}\big(|\nabla u(x,y)|-1\big)_+^2 dx dy = \int_\Omega \Big(u f(x, y) - \frac{1}{2}\big(|\nabla u|-1\big)_+^2 \Big)dx dy
 $$
 
-and then
+I'll take $|\nabla u_1| < 1$ and $|\nabla u_2| < 1$, gives, $(|\nabla u_1|-1)_+=(|\nabla u_2|-1)_+=0$.
 
-$$
-\partial_x\!\left(-\frac{(r-1)_+}{r}\,u_x\right)
-=\,-\Big(\partial_x\!\left(\tfrac{(r-1)_+}{r}\right)\Big)u_x
--\frac{(r-1)_+}{r}\,u_{xx},
-$$
+Take $t \in(0,1)$, gives, $|\nabla(t u_1 +(1-t)u_2)| \le 1$, which only the first term left, we have, 
+\begin{align*}
+J(\theta u+(1-\theta)v)
+&=\int_\Omega \big(\theta u+(1-\theta)v\big)f\,dx \\
+&=\theta\!\int_\Omega u f\,dx+(1-\theta)\!\int_\Omega v f\,dx \\
+&=\theta J(u)+(1-\theta)J(v)
+\end{align*}
 
-with the analogous formula in $y$; summing the two components reproduces
-$\operatorname{div}\!\bigl(-\tfrac{(r-1)_+}{r}\nabla u\bigr)$.
+which is neither strictly convex nor strictly concave.
 
-#### Rigor note
-
-All computations above are pointwise where $r\neq0$. Since $(r-1)_+=0$ on $\{r\le1\}$, the vector field
-
-$$
-F:=-\frac{(r-1)_+}{r}\,\nabla u
-$$
-
-extends by $F=0$ on $\{r=0\}$; the Euler–Lagrange equation is then to be understood in the weak sense:
-
-$$
-\int_\Omega f\,\eta\,dx
-+\int_\Omega F\cdot\nabla\eta\,dx=0
-\quad\forall\,\eta\in C_c^\infty(\Omega).
-$$
-
----
-
-This is exactly your approach, but fully specified and cleaned up, and it lands in the neat divergence form the problem asks for.
+Therefore, by the counterexample, functional $\mathcal J$ is neither strictly convex nor strictly concave.
 
 
-------
 
 \newpage
 
@@ -594,8 +640,182 @@ $$y_i = y_a + i \cdot \frac{b-a}{N} \cdot \frac{y_b-y_a}{b-a} = y_a + i \cdot \f
 \newpage
 
 \section{Final Project - HW6}
+\textbf{(a)} $\mathcal J$ is not convex.
+
+Given the question, 
+$$J(y)=\int_0^1 (y')^2(1+y')^2\ dx$$
+
+Thus, we have, $f(y, y') = f(y') = (y')^2(1+y')^2$, gives, $f_{yy} = 0 \ge 0$ as it doesn't depend on y.
+
+I'll then compute the first partial derivative w.r.t. y', which,
+\begin{align*}
+f_{y'}
+&=\frac{\partial}{\partial y'}\!\Bigl((y')^2(1+y')^2\Bigr) \\
+&= 2y'(1+y')^2 + (y')^2 \cdot 2(1+y') \\
+&= 2y' + 4(y')^2 + 2(y')^3 + 2(y')^2 + 2(y')^3 \\
+&= 2y' + 6(y')^2 + 4(y')^3
+\end{align*}
+
+I'll then compute the second partial derivative w.r.t. y', which, 
+\begin{align*}
+f_{y'y'}
+&=\frac{\partial}{\partial y'}\!\Bigl(2y' + 6(y')^2 + 4(y')^3\Bigr)\\
+&=12 (y')^2 + 12y' + 2 \\
+&=12\Bigl(y' + \frac12\Bigr)^2-1 \overset{\text{set}}{=} 0 \\
+\implies y' &= -\frac{1}{2}\pm \frac{1}{2\sqrt3}
+\end{align*}
+
+Thus, since $a= 12 > 0$, gives, $f_{y'y'}< 0$ for $y' \in\bigl(-\frac{1}{2}-\frac{1}{2\sqrt3},\,-\tfrac12+\tfrac1{2\sqrt3}\bigr)$.
+
+%From high school, know for the quadratic function, the axis of symmetry is at $-\frac{b}{2a} = -\frac{12}{24} = - \frac{1}{2}$, and $a = 12 > 0$, gives, when $y' = -\frac{1}{2}$, the minimum value of the function occurs, which, 
+%$$f_{y'y'}(-\frac{1}{2}) = 12 \cdot \frac{1}{4} - 12 \cdot \frac{1}{2} + 2 = 3 - 6 + 2 = -1 < 0 $$
+
+From the textbook\footnote{The Calculus of Variations by van Brunt, Page 259. The theorem states that: The function $f$ is convex if and only if for each $(y, y') \in \Omega$: $f_{yy}(y,y') \geq 0$; $f_{y'y'}(y,y') \geq 0$; $f_{yy}(y,y')\,f_{y'y'}(y,y') - \big(f_{yy'}(y,y')\big)^2 = \Delta \geq 0$.}, Theorem 10.7.2, since $\exists y \in S$, s.t. $f_{y'y'} < 0$, $\mathcal J$ is not convex.
+
+\vspace{10pt}
+\noindent
+\textbf{(b) WTS: $\bar y(x)=cx$ is an admissible extremal.}
+
+Provided $\bar y(x)=cx$, we have, $\bar y(x)' = c$.
+
+I'll show it satisfies the Euler Lagrange equation, which, 
+\begin{align*}
+	\frac{d}{dx}\frac{\partial f}{\partial y'} - \frac{\partial f}{\partial y} &= \frac{d}{dx}\frac{\partial f}{\partial y'} \\
+	&= \frac{d}{dx}\frac{\partial }{\partial y'}\bigl( (y')^2(1+y')^2\bigr) \quad \text{(From (a))} \\
+	&= \frac{d}{dx} \bigl( 2y' + 6(y')^2 + 4(y')^3 \bigr) \quad \text{(Substitute $\bar y(x)' = c$)} \\
+	&= \frac{d}{dx} \bigl( 2c + 6(c)^2 + 4(c)^3 \bigr) \quad \text{(Since c is a constant)} \\
+	&= 0
+\end{align*}
+
+Thus, since $\bar y(x)=cx$ satisfies the Euler Lagrange equation, it is an admissible extremal as needed.
+
+\hfill $\blacksquare$
 
 \newpage
+
+\noindent
+\textbf{(c) WTS: $\bar y$ is a weak local minimum if $c=-\frac{1}{6}$.} 
+
+Suppose $c=-\frac{1}{6}$, which $y' = c = -\frac{1}{6}$.
+
+From (a), (b), substituting c, we have, 
+$$f_{y'y'} = 12 (y')^2 + 12y' + 2  = 12\left(-\frac{1}{6}\right)^2 + 12\left(-\frac{1}{6}\right) + 2 = \frac{1}{3} > 0 $$
+
+To show it has no conjugate points, from the process of lecture slides\footnote{July $15^{th}$ Lecture Slides.}, I'll solve the general solution from Euler Lagrange equation, which, 
+\begin{align*}
+	\frac{d}{dx} \bigl( 2y' + 6(y')^2 + 4(y')^3 \bigr) &= 0 \\
+	\implies 2y'' + 12y'y'' + 12(y')^2y'' &= 0 \\
+	\implies \bigl(2 + 12y' + 12(y')^2\bigr)\,y'' &= 0 \\
+	\implies \frac{1}{3}y'' &= 0\\
+	\implies y'' &= 0 \quad \text{(We obtain the general solution)}\\
+	\implies y &= C_1x + C_2 
+\end{align*}
+
+Thus, $u_1(x)$ and $u_2(x)$ are given by, 
+$$u_1 = \frac{\partial y}{\partial C_1} = x \quad \quad u_2 = \frac{\partial y}{\partial C_2} = 1$$
+
+We have, $x_0 = 0$. If $\mathcal K$ is conjugate point to 0, get, 
+\begin{align*}
+	u_2(\mathcal K)u_1(x_0) &= u_2(x_0)u_1(\mathcal K) \\
+	\implies u_2(\mathcal K)u_1(0) &= u_2(0)u_1(\mathcal K) \\
+	\implies 0 &= \mathcal K = x_0
+\end{align*}
+
+Since $x_0 = \mathcal K = 0$, there's no conjugate points to $x_0$.
+
+Thus, from the textbook\footnote{The Calculus of Variations by van Brunt, Page 242.}, Theorem 10.5.1, since $f_{y'y'} > 0$ and there's no conjugate points to $x_0$, $\mathcal J$ has a weak local minimum in $S$ at $\bar y$ with $c = -\frac{1}{6}$.
+
+\hfill $\blacksquare$
+
+%I'll then solve for the Jacobi Accessary Equation\footnote{The Calculus of Variations by van Brunt, Section 10.4.2, Equation (10.14).}, gives, 
+%\begin{align*}
+%\frac{d}{dx}\big(f_{y'y'} u'\big) - \left(f_{yy} - \frac{d}{dx} f_{yy'} \right) u &= 0 \quad \text{(From (a), f is independent to y)}	\\
+%\implies \frac{d}{dx}\big(f_{y'y'} u'\big) &= 0 \\
+%\implies \frac{d}{dx}\big(\frac{1}{3}  u'\big) &= 0 \\
+%\implies u'' &= 0 \\
+%\implies u &= Ax + B
+%\end{align*}
+
+\vspace{10pt}
+\noindent
+\textbf{(d) WTS: $\bar y$ is a weak local maximum if $c=-\frac{1}{2}$, i.e., $-\mathcal J$ has a weak local minimum in $S$ at $\bar y$ with $c = -\frac{1}{2}$.\footnote{The Calculus of Variations by van Brunt, Page 241.}} 
+
+Following the similar process of (c), we have $c=-\frac{1}{2}$, which $y' = c = -\frac{1}{2}$.
+
+Form the question, we have, 
+$$-J(y)=-\int_0^1 (y')^2(1+y')^2\ dx = \int_0^1 -(y')^2(1+y')^2\ dx$$
+
+Thus, we have, $f_2(y') = -(y')^2(1+y')^2$, still, $f_{y2} = f_{yy'2} = f_{yy2} = 0$, which, from (a), (b), substituting c, we have, 
+\begin{align*}
+f_{y'2}
+&=\frac{\partial}{\partial y'}\!\Bigl(-(y')^2(1+y')^2\Bigr) \\
+&=-\frac{\partial}{\partial y'}\!\Bigl((y')^2(1+y')^2\Bigr) \\
+&= -\Bigl(2y'(1+y')^2 + (y')^2 \cdot 2(1+y')\Bigr) \\
+&= -\Bigl(2y' + 4(y')^2 + 2(y')^3 + 2(y')^2 + 2(y')^3\Bigr) \\
+&= - 2y' - 6(y')^2 - 4(y')^3
+\end{align*}
+
+Thus, for $f_{y'y'2}$, we have,
+$$f_{y'y'2} = - 12 (y')^2 - 12y' - 2  = - 12\left(-\frac{1}{2}\right)^2 - 12\left(-\frac{1}{2}\right) - 2 = 1 > 0 $$
+
+To show it has no conjugate points, I'll solve the general solution from Euler Lagrange equation, which, 
+\begin{align*}
+	\frac{d}{dx} \bigl(- 2y' - 6(y')^2 - 4(y')^3 \bigr) &= 0 \\
+	\implies -2y'' - 12y'y'' - 12(y')^2y'' &= 0 \\
+	\implies \bigl(2 - 12y' - 12(y')^2\bigr)\,y'' &= 0 \\
+	\implies 1 \cdot y'' &= 0\\
+	\implies y'' &= 0 \quad \text{(We obtain the general solution)}\\
+	\implies y &= C_1x + C_2 
+\end{align*}
+
+Thus, $u_1(x)$ and $u_2(x)$ are given by, 
+$$u_1 = \frac{\partial y}{\partial C_1} = x \quad \quad u_2 = \frac{\partial y}{\partial C_2} = 1$$
+
+We have, $x_0 = 0$. If $\mathcal K$ is conjugate point to 0, get, 
+\begin{align*}
+	u_2(\mathcal K)u_1(x_0) &= u_2(x_0)u_1(\mathcal K) \\
+	\implies u_2(\mathcal K)u_1(0) &= u_2(0)u_1(\mathcal K) \\
+	\implies 0 &= \mathcal K = x_0
+\end{align*}
+
+Since $x_0 = \mathcal K = 0$, there's no conjugate points to $x_0$.
+
+Thus, from the textbook\footnote{The Calculus of Variations by van Brunt, Page 242.}, Theorem 10.5.1, since $f_{y'y'2} > 0$ and there's no conjugate points to $x_0$, $-\mathcal J$ has a weak local minimum in $S$ at $\bar y$ with $c = -\frac{1}{2}$.
+
+Therefore, form the textbook\footnote{The Calculus of Variations by van Brunt, Page 241. The Textbook states that: $J$ is said to have a weak local maximum at $y \in S$ if $-J$ has a weak local minimum at $y$. }, Section 10.5, $\mathcal J$ has a weak local maximum in $S$ at $\bar y$ with $c = -\frac{1}{2}$.
+\hfill $\blacksquare$
+
+\vspace{10pt}
+\noindent
+\textbf{(e) WTS: $\bar y$ is a global minimum if $c=\frac{1}{6}$.}
+
+Suppose $c=\frac{1}{6}$, which $y' = c = \frac{1}{6}$.
+
+From lecture slide\footnote{July 8th Lecture Slides}, let $\hat y = \bar y + \epsilon \eta$ be a perturbation where $\eta \in H = \{\eta \in X: \eta(x_0) =\eta(0)0,\, \eta(x_1) = \eta(1) = 0 \}$, gives, 
+\begin{align*}
+	J(\hat y) - J(\bar y) &= J(y + \epsilon \eta) - J(\bar{y}) \\
+	&= \int_0^1 \Big((c+\epsilon \eta')^2 (1+c+\epsilon \eta')^2\Big) dx - \int_0^1 \Big(c^2(1+c)^2 \Big) dx \\
+	&= \int_0^1 \Big((c+\epsilon \eta')^2 (1+c+\epsilon \eta')^2 - c^2(1+c)^2 \Big) dx \\
+	&= \int_0^1 \Big((c^2+\epsilon^2 (\eta')^2 +2c\epsilon \eta' ) (1+c+\epsilon \eta')^2 - c^2(1+c)^2\Big) dx \\
+	&= \int_0^1 \Big(\big(c^2 + 2c\epsilon \eta' + \epsilon^2 (\eta')^2\big)\,\big((1+c)^2 + 2(1+c)\epsilon \eta' + \epsilon^2 (\eta')^2\big) - c^2(1+c)^2\Big) dx \\
+	&= \int_0^1 2c(1+c)^2 \epsilon \eta' + (6c^2+6c+1)\epsilon^2 (\eta')^2 + (4c+2)\epsilon^3 (\eta')^3 + \epsilon^4 (\eta')^4 dx \\
+	&= \int_0^1 2c(1+c)^2 \epsilon \eta' dx + \int_0^1 (6c^2+6c+1)\epsilon^2 (\eta')^2 dx + \int_0^1 (4c+2)\epsilon^3 (\eta')^3 dx + \int_0^1 \epsilon^4 (\eta')^4 dx 
+\end{align*}
+
+Since $\eta(0)=\eta(1)=0$, we have, $\int_0^1\eta'(x)\,dx=\eta(1)-\eta(0)=0$, which the first-order term is cancelled. I'll then substitute $c=\frac{1}{6}$, gives, 
+\begin{align*}
+	J(\hat y) - J(\bar y) &= \int_0^1 (6(\frac{1}{6})^2+6(\frac{1}{6})+1)\epsilon^2 (\eta')^2 dx + \int_0^1 (4(\frac{1}{6})+2)\epsilon^3 (\eta')^3 dx + \int_0^1 \epsilon^4 (\eta')^4 dx \\
+	&= \int_0^1 \frac{13}{6}\epsilon^2 (\eta')^2 dx + \int_0^1 \frac{8}{3}\epsilon^3 (\eta')^3 dx + \int_0^1 \epsilon^4 (\eta')^4 dx \\
+	&= \epsilon^2 \int_0^1 (\eta')^2 \Big( \epsilon^2 (\eta')^2 + \frac{8}{3}\epsilon \eta' + \frac{13}{6} \Big) dx \\
+	&= \epsilon^2 \int_0^1 (\eta')^2 \Big( (\epsilon \eta' + \frac{4}{3})^2 + \frac{7}{18} \Big) dx
+\end{align*}
+
+Since all the terms except the constant $\frac{7}{18}$ are non-negative, gives, the integral is non-negative, which, 
+$$J(\hat y) - J(\bar y) = \epsilon^2 \int_0^1 (\eta')^2 \Big( (\epsilon \eta' + \frac{4}{3})^2 + \frac{7}{18} \Big) dx \ge 0$$
+
+Therefore, I've shown that $\mathcal J$ has a global minimum in $S$ at $\bar y$ with $c = \frac{1}{6}$.
+
+\hfill $\blacksquare$
 
 
 % To print the reference
